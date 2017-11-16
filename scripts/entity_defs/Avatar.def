@@ -10,6 +10,7 @@
 		<Interface>TeleportSystem</Interface>
 		<Interface>ChatChannelSystem</Interface>
 		<Interface>CampSystem</Interface>
+		<Interface>MagicWeaponSystem</Interface>
 	</Implements>
 	<Properties>
 		<spaceName>

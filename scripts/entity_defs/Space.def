@@ -1,30 +1,36 @@
 ﻿<root>
 	<Implements>
 		<Interface>EntityObject</Interface>
+		<Interface>SpaceArenaSystem</Interface>
+		<Interface>SpaceGateWaySystem</Interface>
+		<Interface>SpaceMonsterSystem</Interface>
+		<Interface>SpaceNpcSystem</Interface>
+		<Interface>SpaceResourceWarSystem</Interface>
 	</Implements>
 	<Properties>
 		<cityName>
 			<Type>UNICODE</Type>
 			<Default>None</Default>
 			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>true</Persistent>
 		</cityName>
 		<spaceName>
 			<Type>UNICODE</Type>
 			<Default>None</Default>
 			<Flags>ALL_CLIENTS</Flags>
-		</spaceName>
-		<xinShouYinDaoDBID>
-			<Type>DBID</Type>
-			<Default>0</Default>
-			<Flags>BASE</Flags>
 			<Persistent>true</Persistent>
-		</xinShouYinDaoDBID>
+		</spaceName>
 		<SP_Concentration>
 			<Type>INT32</Type>
 			<Default>10</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</SP_Concentration>
+		<taskMonumentDBID>
+			<Type>DBID</Type>
+			<Flags>BASE</Flags>
+			<Persistent>true</Persistent>
+		</taskMonumentDBID>
 	</Properties>
 	<BaseMethods>
 		<loginSpace>

@@ -2,25 +2,25 @@
 	<Properties>
 		<MSP>
 			<Type>INT32</Type>
-			<Default>20</Default>
+			<Default>200</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</MSP>
 		<MSP_Max>
 			<Type>INT32</Type>
-			<Default>20</Default>
+			<Default>200</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</MSP_Max>
 		<SP>
 			<Type>INT32</Type>
-			<Default>100</Default>
+			<Default>10000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</SP>
 		<SP_Max>
 			<Type>INT32</Type>
-			<Default>100</Default>
+			<Default>10000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</SP_Max>

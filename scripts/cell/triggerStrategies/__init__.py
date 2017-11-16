@@ -8,6 +8,7 @@ from triggerStrategies.CampStrategy import CampStrategy
 from triggerStrategies.IceStrategy import IceStrategy
 from triggerStrategies.ImprisonStrategy import ImprisonStrategy
 from triggerStrategies.DecelerateStrategy import DecelerateStrategy
+from triggerStrategies.ArenaStrategy import ArenaStrategy
 
 
 __all__ = \
@@ -20,5 +21,6 @@ __all__ = \
         "CampStrategy",
         "IceStrategy",
         "ImprisonStrategy",
-        "DecelerateStrategy"
+        "DecelerateStrategy",
+        "ArenaStrategy"
     ]

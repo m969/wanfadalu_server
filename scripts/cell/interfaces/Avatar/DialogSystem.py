@@ -46,6 +46,8 @@ class DialogSystem:
                          ", avatarTaskInfo[0], avatarTaskInfo[1])")
         self.addTimer(1, 1, 31)  # 添加 任务监视检测 定时器
 
+        self.giveTask("TestNpc", 1)
+
     def onTimer(self, timerHandle, userData):
         if userData == 31:  # 任务监视检测 定时器
             """
@@ -80,35 +82,30 @@ class DialogSystem:
         tempBag[goodsID] = goodsID
         self.avatarBag = tempBag
         DEBUG_MSG(self.avatarBag)
-        # 郑晓飞--小试牛刀三任务--购买木剑
         if goods_data.data[goodsID]['name'] == "木剑":
             if self.hasAttr("Xiaoshiniudao_San_TaskCounter") is True:
                 self.setAttr("Xiaoshiniudao_San_TaskCounter",
                              self.getAttr("Xiaoshiniudao_San_TaskCounter") + 1)
             else:
                 self.setAttr("Xiaoshiniudao_San_TaskCounter", 1)
-        # 郑晓飞--探险山洞任务--获得宝箱
         if goods_data.data[goodsID]['name'] == "精致宝箱":
             if self.hasAttr("TanxianshandongRenWu_TaskCounter") is True:
                 self.setAttr("TanxianshandongRenWu_TaskCounter",
                              self.getAttr("TanxianshandongRenWu_TaskCounter") + 1)
             else:
                 self.setAttr("TanxianshandongRenWu_TaskCounter", 1)
-        # 郑晓飞--采集钻石任务--采集钻石
         if goods_data.data[goodsID]['name'] == "钻石":
             if self.hasAttr("Caijizuanshi_TaskCounter") is True:
                 self.setAttr("Caijizuanshi_TaskCounter",
                              self.getAttr("Caijizuanshi_TaskCounter") + 1)
             else:
                 self.setAttr("Caijizuanshi_TaskCounter", 1)
-        # 郑晓飞--寻找宝马任务--寻找宝马
         if goods_data.data[goodsID]['name'] == "宝马":
             if self.hasAttr("Xunzhaobaoma_TaskCounter") is True:
                 self.setAttr("Xunzhaobaoma_TaskCounter",
                              self.getAttr("Xunzhaobaoma_TaskCounter") + 1)
             else:
                 self.setAttr("Xunzhaobaoma_TaskCounter", 1)
-        # /郑晓飞
         pass
 
     def deleteGoods(self, goodsID):
@@ -124,7 +121,6 @@ class DialogSystem:
             del tempBag[goodsID]
         self.avatarBag = tempBag
         DEBUG_MSG(self.avatarBag)
-        # 郑晓飞--千里送情任务--将信给予刘公子(丢弃)
         if goods_data.data[goodsID]['name'] == "信":
             if self.hasAttr("Qianlisongqing_TaskCounter") is True:
                 self.setAttr("Qianlisongqing_TaskCounter",
@@ -202,7 +198,6 @@ class DialogSystem:
                     self.giveGoods(k)
             if i == 0:
                 DEBUG_MSG("has no this prop!")
-        # 郑晓飞------丢掉任务道具
         for (propName, propCount) in npc_data.data[npcName][taskIndex]["道具丢弃"].items():
             i = 0
             for (k, va) in goods_data.data.items():
@@ -212,7 +207,6 @@ class DialogSystem:
                     self.deleteGoods(k)
             if i == 0:
                 DEBUG_MSG("has no this prop!")
-        # 郑晓飞
         for (key, value) in self.taskInfoList.items():
             if value[0] == npcName and value[1] == taskIndex:
                 self.taskInfoList[key][3] = True

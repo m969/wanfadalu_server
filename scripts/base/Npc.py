@@ -2,7 +2,7 @@
 import KBEngine
 from KBEDebug import *
 import datetime
-from interfaces.EntityObject import EntityObject
+from interfaces.Common.EntityObject import EntityObject
 
 
 class Npc(KBEngine.Base, EntityObject):

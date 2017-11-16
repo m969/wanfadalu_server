@@ -1,0 +1,5 @@
+﻿<root>
+	<Implements>
+		<Interface>EntityObject</Interface>
+	</Implements>
+</root>

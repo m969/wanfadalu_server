@@ -9,17 +9,19 @@ from triggerStrategies import *
 
 
 class SkillE(Skill):
-    def __init__(self, spellCaster, argsString):
-        Skill.__init__(self, spellCaster, argsString)
-        args = argsString.split()
+    def __init__(self, spellCaster, argsString, gongFaName, skillName):
+        Skill.__init__(self, spellCaster, argsString, gongFaName, skillName)
+        args = argsString.split(":")
         self.skillPoint = Math.Vector3(float(args[0]), float(args[1]), float(args[2]))
+
+    def startSing(self):
+        self.spellCaster.moveToPoint(self.skillPoint, 0.01, 0.1, {}, True, True)
+        return super().startSing()
 
     def cast(self):
         damage = int(self.skillSpAmount * self.skillQuality)
         self.strategyData = {"伤害": damage}
-
         super().cast()
-
         midPoint = self.midPoint(self.spellCaster.position, self.skillPoint)
         pointList = [self.spellCaster.position, midPoint, self.skillPoint]
 
@@ -32,7 +34,7 @@ class SkillE(Skill):
                                                 'entityName': "SkillE_Trigger",
                                                 'owner': self.spellCaster,
                                                 'campName': self.spellCaster.getAttr("campName"),
-                                                'lifeSpans': 2,
+                                                'lifeSpans': 2.0,
                                                 'triggerID': 2,
                                                 'triggerSize': 4,
                                                 'triggerStrategy': self.triggerStrategy

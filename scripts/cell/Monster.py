@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import KBEngine
 import monster_data
 from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject

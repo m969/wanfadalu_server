@@ -2,14 +2,47 @@
 import KBEngine
 from KBEDebug import *
 import datetime
-from interfaces.EntityObject import EntityObject
+
+from interfaces.Avatar.CampSystem import CampSystem
+from interfaces.Avatar.ChatChannelSystem import ChatChannelSystem
+from interfaces.Avatar.DialogSystem import DialogSystem
+from interfaces.Avatar.FriendSystem import FriendSystem
+from interfaces.Avatar.MotionSystem import MotionSystem
+from interfaces.Avatar.TeleportSystem import TeleportSystem
+from interfaces.Avatar.TaskSystem import TaskSystem
+
+from interfaces.Common.EntityObject import EntityObject
+from interfaces.Common.HealthSystem import HealthSystem
+from interfaces.Common.SkillSystem import SkillSystem
+from interfaces.Common.SuperPowerSystem import SuperPowerSystem
 
 
-class Avatar(KBEngine.Proxy, EntityObject):
+class Avatar(KBEngine.Proxy, 
+             EntityObject,
+             HealthSystem,
+             SuperPowerSystem,
+             MotionSystem,
+             SkillSystem,
+             DialogSystem,
+             TeleportSystem,
+             FriendSystem,
+             ChatChannelSystem,
+             CampSystem,
+             TaskSystem):
     def __init__(self):
         DEBUG_MSG("Avatar:__init__")
         KBEngine.Proxy.__init__(self)
         EntityObject.__init__(self)
+        HealthSystem.__init__(self)
+        SuperPowerSystem.__init__(self)
+        MotionSystem.__init__(self)
+        SkillSystem.__init__(self)
+        DialogSystem.__init__(self)
+        TeleportSystem.__init__(self)
+        FriendSystem.__init__(self)
+        ChatChannelSystem.__init__(self)
+        CampSystem.__init__(self)
+        TaskSystem.__init__(self)
 
     def onEntitiesEnabled(self):
         DEBUG_MSG("Avatar:onEntitiesEnabled:" + self.spaceName)
@@ -48,14 +81,6 @@ class Avatar(KBEngine.Proxy, EntityObject):
     def onClientDeath(self):
         DEBUG_MSG("Avatar:onClientDeath")
         self.writeToDB(self._onAvatarSaved)
-
-    def teleportToSpace(self, baseMailbox):
-        DEBUG_MSG("Avatar:teleportToSpace")
-        self.teleport(baseMailbox)
-
-    def onTeleportSuccess(self, spaceName):
-        DEBUG_MSG("Avatar:onTeleportSuccess")
-        self.spaceName = spaceName
 
     def publishBulletin(self, bulletinContent):
         DEBUG_MSG("Avatar:publishBulletin")

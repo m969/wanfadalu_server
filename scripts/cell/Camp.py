@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import KBEngine
 from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject
 from triggerStrategies import *
@@ -24,7 +25,7 @@ class Camp(KBEngine.Entity, EntityObject):
                                                          "entityName": "CampTrigger",
                                                          "owner": self,
                                                          "campName": self.campName,
-                                                         "lifeSpans": 0,
+                                                         "lifeSpans": 0.0,
                                                          "triggerSize": 50,
                                                          "triggerStrategy": self.triggerStrategy,
                                                          "circleTrigger": True

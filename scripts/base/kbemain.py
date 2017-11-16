@@ -16,14 +16,21 @@ def onBaseAppReady(isBootstrap):
              (isBootstrap, os.getenv("KBE_COMPONENTID"), os.getenv("KBE_BOOTIDX_GROUP"),
               os.getenv("KBE_BOOTIDX_GLOBAL")))
     if isBootstrap:
-        KBEngine.createBaseLocally("SpacesManager", {})
-        # KBEngine.createBaseFromDBID("BigWorld", 1, _onBigWorldCreateCB)
-        # KBEngine.executeRawDatabaseCommand("SELECT * from mini_Spaces", _dbCmdSelectCB)
+        DEBUG_MSG("isBootstrap")
+        # if "spacesManager" not in KBEngine.globalData.keys():
+        #     DEBUG_MSG("create SpacesManager")
+        #     KBEngine.createBaseLocally("SpacesManager", {})
+        # if "taskMonument" not in KBEngine.globalData.keys():
+        #     DEBUG_MSG("create TaskMonument")
+        #     KBEngine.createBaseLocally("TaskMonument", {})
+
+        # KBEngine.createBaseFromDBID("BigWorld", 1, _onSpacesManagerCreateCB)
+        # KBEngine.executeRawDatabaseCommand("SELECT * from tbl_SpacesManager", _dbCmdSelectCB)
 
 
-def _onSpacesManagerCreateCB(resultCollect, num, errorInfo):
-    DEBUG_MSG("_onSpacesManagerCreateCB")
-    pass
+# def _onSpacesManagerCreateCB(resultCollect, num, errorInfo):
+#     DEBUG_MSG("_onSpacesManagerCreateCB")
+#     pass
 
 
 def _dbCmdSelectCB(resultCollect, num, errorInfo):
@@ -32,38 +39,36 @@ def _dbCmdSelectCB(resultCollect, num, errorInfo):
     # DEBUG_MSG(errorInfo)
     if errorInfo is not None:
         DEBUG_MSG("error")
-        KBEngine.executeRawDatabaseCommand(
-            "CREATE TABLE mini_Spaces (name VARCHAR(255) NOT NULL DEFAULT '' primary key, dbid BIGINT)",
-            _dbCmdCreateTblCB)
+        # KBEngine.executeRawDatabaseCommand(
+        #     "CREATE TABLE mini_Spaces (name VARCHAR(255) NOT NULL DEFAULT '' primary key, dbid BIGINT)",
+        #     _dbCmdCreateTblCB)
     else:
         DEBUG_MSG("not error")
         if not resultCollect:
             DEBUG_MSG("resultCollect == []")
-            bigWorld = KBEngine.createBaseLocally("BigWorld", {})
-            if bigWorld:
-                DEBUG_MSG("create bigWorld success")
-                bigWorld.writeToDB(_bigWorldSavedCB)
-                # KBEngine.executeRawDatabaseCommand("INSERT INTO mini_Spaces VALUES ('BigWorld', 0)",
-                # _dbCmdInsertBigWorldCB)
+            spacesManager = KBEngine.createBaseLocally("SpacesManager", {})
+            if spacesManager:
+                DEBUG_MSG("create spacesManager success")
+                spacesManager.writeToDB(_spacesManagerSavedCB)
             else:
-                ERROR_MSG("create bigWorld failed")
+                ERROR_MSG("create spacesManager failed")
         else:
             for value in resultCollect:
-                if value[0] == b'BigWorld':
+                if value[0] == b'SpacesManager':
                     DEBUG_MSG("==b")
                     if value[1] != 0:
-                        KBEngine.createBaseFromDBID("BigWorld", int(value[1].decode('ascii')), _onBigWorldCreateCB)
+                        KBEngine.createBaseFromDBID("SpacesManager", int(value[1].decode('ascii')), _onSpacesManagerCreateCB)
                         DEBUG_MSG(int(value[1].decode('ascii')))
                         return
 
 
-def _onBigWorldCreateCB(baseRef, dbid, wasActive):
+def _onSpacesManagerCreateCB(baseRef, dbid, wasActive):
     if baseRef is None:
-        DEBUG_MSG("_onBigWorldCreateCB-failed")
-        KBEngine.executeRawDatabaseCommand("SELECT * from mini_Spaces", _dbCmdSelectCB)
+        DEBUG_MSG("_onSpacesManagerCreateCB-failed")
+        # KBEngine.executeRawDatabaseCommand("SELECT * from mini_Spaces", _dbCmdSelectCB)
         # KBEngine.executeRawDatabaseCommand("INSERT INTO MiniGame.tbl_BigWorld VALUES(0,0,0,0,0,0,0,0,0)", _dbCmdCB)
     else:
-        DEBUG_MSG("_onBigWorldCreateCB-success")
+        DEBUG_MSG("_onSpacesManagerCreateCB-success")
 
 
 def _dbCmdCreateTblCB(resultCollect, num, errorInfo):
@@ -72,7 +77,7 @@ def _dbCmdCreateTblCB(resultCollect, num, errorInfo):
         bigWorld = KBEngine.createBaseLocally("BigWorld", {})
         if bigWorld:
             DEBUG_MSG("create bigWorld success")
-            bigWorld.writeToDB(_bigWorldSavedCB)
+            bigWorld.writeToDB(_spacesManagerSavedCB)
             # KBEngine.executeRawDatabaseCommand("INSERT INTO mini_Spaces VALUES ('BigWorld', 0)",
             # _dbCmdInsertBigWorldCB)
         else:
@@ -81,10 +86,10 @@ def _dbCmdCreateTblCB(resultCollect, num, errorInfo):
         ERROR_MSG("create tbl failed")
 
 
-def _bigWorldSavedCB(success, bigWorld):
-    DEBUG_MSG("")
-    KBEngine.executeRawDatabaseCommand("INSERT INTO mini_Spaces VALUES ('BigWorld', " + str(bigWorld.databaseID) + ")",
-                                       _dbCmdInsertBigWorldCB)
+def _spacesManagerSavedCB(success, spacesManager):
+    DEBUG_MSG("_spacesManagerSavedCB")
+    # KBEngine.executeRawDatabaseCommand("INSERT INTO mini_Spaces VALUES ('BigWorld', " + str(spacesManager.databaseID) + ")",
+    #                                    _dbCmdInsertBigWorldCB)
 
 
 def _dbCmdInsertBigWorldCB(resultCollect, num, errorInfo):
@@ -98,7 +103,7 @@ def _dbCmdCB(resultCollect, num, errorInfo):
     else:
         DEBUG_MSG("_dbCmdCB-resultCollect is not None.")
         DEBUG_MSG(resultCollect)
-        # KBEngine.createBaseFromDBID("BigWorld", 1, _onBigWorldCreateCB)
+        # KBEngine.createBaseFromDBID("BigWorld", 1, _onSpacesManagerCreateCB)
     pass
 
 

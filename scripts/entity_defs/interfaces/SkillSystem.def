@@ -1,4 +1,7 @@
 ﻿<root>
+	<Implements>
+		<Interface>GongFaSystem</Interface>
+	</Implements>
 	<Properties>
 		<currentEquipmentID>
 			<Type>INT32</Type>
@@ -12,6 +15,20 @@
 			<Persistent>false</Persistent>
 		</isIceFreezing>
 	</Properties>
+	<ClientMethods>
+		<OnSkillStartSing>
+			<Arg>FLOAT</Arg>
+		</OnSkillStartSing>
+		<OnSkillStartCast>
+			<Arg>UNICODE</Arg>
+			<Arg>UNICODE</Arg>
+			<Arg>FLOAT</Arg>
+		</OnSkillStartCast>
+		<OnSkillEndCast>
+			<Arg>UNICODE</Arg>
+			<Arg>UNICODE</Arg>
+		</OnSkillEndCast>
+	</ClientMethods>
 	<CellMethods>
 		<requestCastSkill>
 			<Exposed />

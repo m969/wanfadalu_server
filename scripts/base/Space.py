@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-from interfaces.EntityObject import EntityObject
+from interfaces.Common.EntityObject import EntityObject
 import monster_data
 import npc_data
 import space_data
@@ -12,8 +12,11 @@ class Space(KBEngine.Base, EntityObject):
         DEBUG_MSG("Space:__init__")
         KBEngine.Base.__init__(self)
         EntityObject.__init__(self)
-        self.spaceName = self.cellData["spaceName"]
-        self.spaceData = space_data.data[self.cellData["cityName"]]     # 取出自身的场景数据
+        if not hasattr(self, "spaceName"):
+            self.spaceName = self.cellData["spaceName"]
+        if not hasattr(self, "cityName"):
+            self.cityName = self.cellData["cityName"]
+        self.spaceData = space_data.data[self.cityName]     # 取出自身的场景数据
         self.createInNewSpace(None)
 
     def onGetCell(self):

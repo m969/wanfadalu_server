@@ -1,10 +1,12 @@
 ﻿<root>
 	<Account hasClient="true" />
+	<Arena hasClient="true" />
 	<Avatar hasClient="true" />
 	<Camp hasClient="true" />
 	<Monster hasClient="true" />
 	<Npc hasClient="true" />
 	<Space hasClient="true" />
 	<SpacesManager hasClient="true" />
+	<TaskMonument hasClient="true" />
 	<Trigger hasClient="true" />
 </root>

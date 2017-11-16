@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import KBEngine
 from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject
 
@@ -10,7 +11,7 @@ class Trigger(KBEngine.Entity, EntityObject):
         # DEBUG_MSG("Trigger:__init__")
         # DEBUG_MSG(self.triggerStrategy)
         self.isTrigger = True
-        if self.lifeSpans > 0:
+        if self.lifeSpans > 0.0:
             self.addTimer(self.lifeSpans, 0, 0)
         if self.circleTrigger is True:
             # DEBUG_MSG("circleTrigger is True")

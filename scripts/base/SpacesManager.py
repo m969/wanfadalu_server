@@ -16,13 +16,46 @@ class SpacesManager(KBEngine.Base, CombatBulletinSystem):
         KBEngine.globalData["spacesManager"] = self
         # 根据场景配置表（space_data）来创建场景
         KBEngine.globalData["allAvatarBases"] = {}
-        for (cityName, spaceData) in space_data.data.items():
-            DEBUG_MSG("spaceName:" + spaceData["场景名称"])
-            spaceBase = KBEngine.createBaseLocally("Space",
-                                               {
-                                                   "cityName": cityName,
-                                                   "spaceName": spaceData["场景名称"]
-                                               })
+
+        if self.muLingCunSpaceDBID:
+            DEBUG_MSG("createBaseFromDBID muLingCunSpaceDBID")
+            KBEngine.createBaseFromDBID("Space", self.muLingCunSpaceDBID, self._muLingCunSpaceCreateCallback)
+        else:
+            DEBUG_MSG("createBaseLocally muLingCunSpace")
+            self.muLingCunSpace = KBEngine.createBaseLocally("Space",{"cityName": "木灵村","spaceName": "MuLingCunSpace"})
+            self.muLingCunSpace.writeToDB(self._onMuLingCunSpaceSaved)
+
+        if self.yunLingZongSpaceDBID:
+            DEBUG_MSG("createBaseFromDBID yunLingZongSpaceDBID")
+            KBEngine.createBaseFromDBID("Space", self.yunLingZongSpaceDBID, self._yunLingZongSpaceCreateCallback)
+        else:
+            DEBUG_MSG("createBaseLocally yunLingZongSpace")
+            self.yunLingZongSpace = KBEngine.createBaseLocally("Space",{"cityName": "云灵宗","spaceName": "YunLingZongSpace"})
+            self.yunLingZongSpace.writeToDB(self._onYunLingZongSpaceSaved)
+
+    def _onMuLingCunSpaceSaved(self, success, space):
+        self.muLingCunSpaceDBID = space.databaseID
+        self.writeToDB(self._onSpacesManagerSaved, True)
+
+    def _onYunLingZongSpaceSaved(self, success, space):
+        self.yunLingZongSpaceDBID = space.databaseID
+        self.writeToDB(self._onSpacesManagerSaved, True)
+
+    def _onSpacesManagerSaved(self, success, spacesManager):
+        DEBUG_MSG("SpacesManager:_onSpacesManagerSaved")
+        DEBUG_MSG(spacesManager.databaseID)
+
+    def _muLingCunSpaceCreateCallback(self, baseRef, dbid, wasActive):
+        if baseRef:
+            self.muLingCunSpace = baseRef
+        else:
+            DEBUG_MSG("_muLingCunSpaceCreateCallback baseRef is None")
+
+    def _yunLingZongSpaceCreateCallback(self, baseRef, dbid, wasActive):
+        if baseRef:
+            self.yunLingZongSpace = baseRef
+        else:
+            DEBUG_MSG("_yunLingZongSpaceCreateCallback baseRef is None")
 
     def onTimer(self, timerHandle, userData):
         CombatBulletinSystem.onTimer(self, timerHandle, userData)

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
+from interfaces.EventAggregator.EventAggregator import EventAggregator
 
 
-class EntityObject:
+class EntityObject(EventAggregator):
     def __init__(self):
         # DEBUG_MSG("EntityObject:__init__")
         pass

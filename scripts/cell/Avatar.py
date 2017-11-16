@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
+import KBEngine
 from KBEDebug import *
+
 from interfaces.Avatar.CampSystem import CampSystem
 from interfaces.Avatar.ChatChannelSystem import ChatChannelSystem
 from interfaces.Avatar.DialogSystem import DialogSystem
 from interfaces.Avatar.FriendSystem import FriendSystem
 from interfaces.Avatar.MotionSystem import MotionSystem
 from interfaces.Avatar.TeleportSystem import TeleportSystem
+from interfaces.Avatar.TaskSystem import TaskSystem
+from interfaces.Avatar.MagicWeaponSystem import MagicWeaponSystem
+
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Common.HealthSystem import HealthSystem
 from interfaces.Common.SkillSystem import SkillSystem
@@ -39,7 +44,9 @@ class Avatar(KBEngine.Entity,
              TeleportSystem,
              FriendSystem,
              ChatChannelSystem,
-             CampSystem):
+             CampSystem,
+             TaskSystem,
+             MagicWeaponSystem):
     def __init__(self):
         DEBUG_MSG("Avatar.cell:__init__")
         KBEngine.Entity.__init__(self)
@@ -53,6 +60,8 @@ class Avatar(KBEngine.Entity,
         FriendSystem.__init__(self)
         ChatChannelSystem.__init__(self)
         CampSystem.__init__(self)
+        TaskSystem.__init__(self)
+        MagicWeaponSystem.__init__(self)
 
     def onTimer(self, timerHandle, userData):
         SuperPowerSystem.onTimer(self, timerHandle, userData)   # 10
@@ -64,6 +73,18 @@ class Avatar(KBEngine.Entity,
 
     def setAvatarName(self, entityName):
         self.entityName = entityName
+
+    def onEnteredCell(self, parameter_list):
+        DEBUG_MSG("Avatar:onEnteredCell 1")
+        pass
+
+    def onEnteredCell(self, a1, a2):
+        DEBUG_MSG("Avatar:onEnteredCell 2")
+        pass
+
+    def onEnteredCell(self, a1, a2, a3):
+        DEBUG_MSG("Avatar:onEnteredCell 3")
+        pass
 
     def onDestroy(self):
         DEBUG_MSG("Avatar:onCellDestroy")

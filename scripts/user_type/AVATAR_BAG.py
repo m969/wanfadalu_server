@@ -8,6 +8,8 @@ class TAvatarBag(dict):
         pass
 
     def asDict(self):
+        # DEBUG_MSG("TAvatarBag:asDict")
+        # DEBUG_MSG(self)
         datas = []
         dic = {"values":datas}
         for key, value in self.items():
@@ -15,6 +17,9 @@ class TAvatarBag(dict):
         return dic
 
     def createFromDict(self, dictData):
+        # DEBUG_MSG("TAvatarBag:createFromDict")
+        # DEBUG_MSG(self)
+        # DEBUG_MSG(dictData)
         for data in dictData["values"]:
             self[data] = data
         return self

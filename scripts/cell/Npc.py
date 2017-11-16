@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import KBEngine
 import goods_data
 import npc_data
 import store_data
