@@ -8,8 +8,11 @@ import avatar_skill_data
 class SuperPowerSystem:
     def __init__(self):
         DEBUG_MSG("SuperPowerSystem:__init__")
+        # self.MSP_Max = 200
         self.MSP = self.MSP_Max
+        # self.SP_Max = 10000
         self.SP = self.SP_Max
+        
         self.canUseSP = True
         self.canRevertSP = True
         self.canIncreaseSPMax = True

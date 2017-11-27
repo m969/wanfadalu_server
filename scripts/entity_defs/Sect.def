@@ -3,10 +3,10 @@
 		<Interface>EntityObject</Interface>
 	</Implements>
 	<Properties>
-		<arenaID>
+		<sectID>
 			<Type>INT32</Type>
 			<Flags>ALL_CLIENTS</Flags>
-			<Persistent>false</Persistent>
-		</arenaID>
+			<Persistent>true</Persistent>
+		</sectID>
 	</Properties>
 </root>

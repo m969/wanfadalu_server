@@ -1,9 +1,9 @@
 ﻿<root>
 	<Properties>
-		<magicWeaponList>
+		<sectID>
 			<Type>INT32</Type>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
-		</magicWeaponList>
+		</sectID>
 	</Properties>
 </root>

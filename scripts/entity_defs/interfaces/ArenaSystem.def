@@ -1,0 +1,16 @@
+﻿<root>
+	<Properties>
+		<arenaID>
+			<Type>INT32</Type>
+			<Default>0</Default>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>true</Persistent>
+		</arenaID>
+	</Properties>
+	<CellMethods>
+		<requestEnterArena>
+			<Exposed />
+			<Arg>INT32</Arg>
+		</requestEnterArena>
+	</CellMethods>
+</root>

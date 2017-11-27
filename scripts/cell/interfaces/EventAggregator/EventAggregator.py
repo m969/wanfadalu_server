@@ -17,6 +17,6 @@ class EventAggregator:
         pass
 
     def onEvent(self, eventName, onNext, onCompeleted = lambda evt: DEBUG_MSG("onCompeleted"), onError =lambda evt: DEBUG_MSG("onError")):
-        DEBUG_MSG("EventAggregator:onEvent")
+        DEBUG_MSG("EventAggregator:onEvent " + eventName)
         self.eventAggregator.filter(lambda evt: evt['eventName'] == eventName).subscribe(on_next=onNext, on_completed=onCompeleted, on_error=onError)
         pass

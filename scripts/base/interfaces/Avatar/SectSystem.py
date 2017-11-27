@@ -3,6 +3,6 @@ import KBEngine
 from KBEDebug import *
 
 
-class MagicWeaponSystem:
+class SectSystem:
     def __init__(self):
-        DEBUG_MSG("MagicWeaponSystem:__init__")
+        DEBUG_MSG("SectSystem:__init__")

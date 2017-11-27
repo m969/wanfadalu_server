@@ -5,12 +5,14 @@
 		<Interface>SuperPowerSystem</Interface>
 		<Interface>MotionSystem</Interface>
 		<Interface>SkillSystem</Interface>
-		<Interface>DialogSystem</Interface>
-		<Interface>FriendSystem</Interface>
-		<Interface>TeleportSystem</Interface>
-		<Interface>ChatChannelSystem</Interface>
+		<Interface>ArenaSystem</Interface>
 		<Interface>CampSystem</Interface>
+		<Interface>TeleportSystem</Interface>
+		<Interface>FriendSystem</Interface>
+		<Interface>ChatChannelSystem</Interface>
 		<Interface>MagicWeaponSystem</Interface>
+		<Interface>DialogSystem</Interface>
+		<Interface>SectSystem</Interface>
 	</Implements>
 	<Properties>
 		<spaceName>

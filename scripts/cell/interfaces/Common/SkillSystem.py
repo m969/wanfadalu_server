@@ -49,6 +49,7 @@ class SkillSystem(GongFaSystem):
             })
 
     def requestCastSkill(self, exposed, skillName, argsString):
+        DEBUG_MSG("SkillSystem:requestCastSkill")
         if exposed != self.id:
             return
         if self.canCastSkill is False:
@@ -57,7 +58,7 @@ class SkillSystem(GongFaSystem):
         strList = skillName.split(":")
 
         if self.haveLearnedSkill(strList[0], strList[1]) is False:
-            DEBUG_MSG("you have not learned the skill")
+            DEBUG_MSG("Error! You have not learned the skill.")
             return
 
         mySkillData = self.gongFaList[strList[0]][strList[1]]

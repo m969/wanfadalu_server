@@ -10,6 +10,8 @@ from interfaces.Avatar.MotionSystem import MotionSystem
 from interfaces.Avatar.TeleportSystem import TeleportSystem
 from interfaces.Avatar.TaskSystem import TaskSystem
 from interfaces.Avatar.MagicWeaponSystem import MagicWeaponSystem
+from interfaces.Avatar.ArenaSystem import ArenaSystem
+from interfaces.Avatar.SectSystem import SectSystem
 
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Common.HealthSystem import HealthSystem
@@ -46,7 +48,9 @@ class Avatar(KBEngine.Entity,
              ChatChannelSystem,
              CampSystem,
              TaskSystem,
-             MagicWeaponSystem):
+             MagicWeaponSystem,
+             ArenaSystem,
+             SectSystem):
     def __init__(self):
         DEBUG_MSG("Avatar.cell:__init__")
         KBEngine.Entity.__init__(self)
@@ -62,6 +66,8 @@ class Avatar(KBEngine.Entity,
         CampSystem.__init__(self)
         TaskSystem.__init__(self)
         MagicWeaponSystem.__init__(self)
+        ArenaSystem.__init__(self)
+        SectSystem.__init__(self)
 
     def onTimer(self, timerHandle, userData):
         SuperPowerSystem.onTimer(self, timerHandle, userData)   # 10

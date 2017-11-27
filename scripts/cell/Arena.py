@@ -11,6 +11,9 @@ class Arena(KBEngine.Entity, EntityObject):
         EntityObject.__init__(self)
         DEBUG_MSG("Arena:__init__")
         self.arenaTrigger = None
+        # self.onEvent("requestEnterArena", lambda evt: DEBUG_MSG("Arena onEvent " + str(evt["eventName"])))
+        self.onEvent("requestEnterArena", self.requestEnterArena)
+        self.avatarList = []
 
     def createArenaTrigger(self):
         DEBUG_MSG("Arena:createArenaTrigger")
@@ -35,3 +38,8 @@ class Arena(KBEngine.Entity, EntityObject):
 
     def closeShield(self):
         DEBUG_MSG("Arena:closeShield")
+
+    def requestEnterArena(self, evt):
+        DEBUG_MSG("Arena:requestEnterArena")
+        self.createArenaTrigger()
+        self.avatarList.append(evt["avatar"])

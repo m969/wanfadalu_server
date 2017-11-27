@@ -3,6 +3,6 @@ import KBEngine
 from KBEDebug import *
 
 
-class MagicWeaponSystem:
+class ArenaSystem:
     def __init__(self):
-        DEBUG_MSG("MagicWeaponSystem:__init__")
+        DEBUG_MSG("ArenaSystem:__init__")
