@@ -14,4 +14,7 @@ class ArenaSystem:
             return
         # KBEngine.entities[arenaID].requestEnterArena(self)
         self.publish({ "eventName": "requestEnterArena", "arenaID": arenaID, "avatar": self })
-        pass
+
+    def onEnterArena(self, arena):
+        DEBUG_MSG("ArenaSystem:onEnterArena")
+        self.position = arena.outPosition

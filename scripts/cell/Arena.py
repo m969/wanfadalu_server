@@ -41,5 +41,9 @@ class Arena(KBEngine.Entity, EntityObject):
 
     def requestEnterArena(self, evt):
         DEBUG_MSG("Arena:requestEnterArena")
-        self.createArenaTrigger()
+        if self.arenaTrigger is None:
+            self.createArenaTrigger()
+        if self.avatarList.__len__() >= 2:
+            return
         self.avatarList.append(evt["avatar"])
+        evt["avatar"].onEnterArena(self)

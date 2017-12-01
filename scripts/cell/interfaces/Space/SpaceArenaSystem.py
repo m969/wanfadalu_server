@@ -8,10 +8,11 @@ class SpaceArenaSystem:
         DEBUG_MSG("SpaceArenaSystem:__init__")
         arenaPosition = self.spaceData["擂台数据"]["擂台坐标"]
         arenaID = self.spaceData["擂台数据"]["擂台ID"]
+        centerPosition = self.spaceData["擂台数据"]["擂台中心坐标"]
         outPosition = self.spaceData["擂台数据"]["排异强制坐标"]
-        self.createArena(arenaPosition, arenaID, outPosition)
+        self.createArena(arenaPosition, arenaID, outPosition, centerPosition)
 
-    def createArena(self, arenaPosition, arenaID, outPosition):
+    def createArena(self, arenaPosition, arenaID, outPosition, centerPosition):
         DEBUG_MSG("SpaceArenaSystem:createArena")
         self.arena = KBEngine.createEntity("Arena",
                               self.spaceID,
@@ -20,7 +21,8 @@ class SpaceArenaSystem:
                               {
                                   'entityName': "ArenaView",
                                   'arenaID': arenaID,
-                                  "outPosition": outPosition
+                                  "outPosition": outPosition,
+                                  'centerPosition': centerPosition
                               })
 
     def createArenaTrigger(self):

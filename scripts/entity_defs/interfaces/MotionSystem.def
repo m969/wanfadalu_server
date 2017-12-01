@@ -1,4 +1,11 @@
 ﻿<root>
+	<Properties>
+		<canMove>
+			<Type>INT32</Type>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</canMove>
+	</Properties>
 	<ClientMethods>
 		<DoMove>
 			<Arg>VECTOR3</Arg>
