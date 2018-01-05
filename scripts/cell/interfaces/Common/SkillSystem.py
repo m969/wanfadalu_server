@@ -39,14 +39,14 @@ class SkillSystem(GongFaSystem):
         self.timerIdToNameDict = {}
         self.lastUserData = 100
 
-        source = Observable.create(push_five_strings)
-        source.subscribe(PrintObserver())
+        # source = Observable.create(push_five_strings)
+        # source.subscribe(PrintObserver())
 
-        self.onEvent("testEvent", lambda evt: DEBUG_MSG("onEvent " + str(evt["eventName"])))
-        self.publish({
-            "eventName": "testEvent",
-            "arg1": "arg"
-            })
+        # self.onEvent("testEvent", lambda evt: DEBUG_MSG("onEvent " + str(evt["eventName"])))
+        # self.publish({
+        #     "eventName": "testEvent",
+        #     "arg1": "arg"
+        #     })
 
     def requestCastSkill(self, exposed, skillName, argsString):
         DEBUG_MSG("SkillSystem:requestCastSkill")

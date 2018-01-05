@@ -18,7 +18,6 @@ class TaskMonument(KBEngine.Base, EntityObject):
 
     def _onTaskMonumentSaved(self, success, taskMonument):
         DEBUG_MSG("TaskMonument:_onTaskMonumentSaved")
-        DEBUG_MSG(taskMonument.databaseID)
 
     def addTask(self, taskName, publishAvatarName):
         DEBUG_MSG("TaskMonument:addTask")

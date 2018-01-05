@@ -10,7 +10,6 @@ class ArenaStrategy(TriggerStrategy):
     """
     def __init__(self):
         TriggerStrategy.__init__(self)
-        pass
 
     def initializeStrategy(self, strategyData):
         super().initializeStrategy(strategyData)
@@ -18,4 +17,5 @@ class ArenaStrategy(TriggerStrategy):
     def execute(self):
         super().execute()
         if self.otherEntity.arenaID != self.trigger.owner.id:
-            self.otherEntity.position = self.trigger.owner.outPosition
+            if self.otherEntity.id != self.trigger.owner.id:
+                self.otherEntity.position = self.trigger.owner.outPosition

@@ -17,5 +17,8 @@
 			<Exposed />
 			<Arg>VECTOR3</Arg>
 		</requestMove>
+		<requestStopMove>
+			<Exposed />
+		</requestStopMove>
 	</CellMethods>
 </root>

@@ -46,7 +46,7 @@ class DialogSystem:
                          ", avatarTaskInfo[0], avatarTaskInfo[1])")
         self.addTimer(1, 1, 31)  # 添加 任务监视检测 定时器
 
-        self.giveTask("TestNpc", 1)
+        #self.giveTask("TestNpc", 1)
 
     def onTimer(self, timerHandle, userData):
         if userData == 31:  # 任务监视检测 定时器

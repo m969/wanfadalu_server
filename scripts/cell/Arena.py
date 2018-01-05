@@ -11,9 +11,9 @@ class Arena(KBEngine.Entity, EntityObject):
         EntityObject.__init__(self)
         DEBUG_MSG("Arena:__init__")
         self.arenaTrigger = None
-        # self.onEvent("requestEnterArena", lambda evt: DEBUG_MSG("Arena onEvent " + str(evt["eventName"])))
-        self.onEvent("requestEnterArena", self.requestEnterArena)
         self.avatarList = []
+        self.onEvent("requestEnterArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestEnterArena)
+        self.onEvent("requestExitArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestExitArena)
 
     def createArenaTrigger(self):
         DEBUG_MSG("Arena:createArenaTrigger")
@@ -45,5 +45,16 @@ class Arena(KBEngine.Entity, EntityObject):
             self.createArenaTrigger()
         if self.avatarList.__len__() >= 2:
             return
+        if evt["avatar"] in self.avatarList:
+            DEBUG_MSG("avatar has in arena")
+            return
         self.avatarList.append(evt["avatar"])
         evt["avatar"].onEnterArena(self)
+
+    def requestExitArena(self, evt):
+        DEBUG_MSG("Arena:requestExitArena")
+        if not evt["avatar"] in self.avatarList:
+            DEBUG_MSG("avatar has not in arena")
+            return
+        self.avatarList.remove(evt["avatar"])
+        evt["avatar"].onExitArena(self)

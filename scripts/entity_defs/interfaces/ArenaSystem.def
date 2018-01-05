@@ -12,5 +12,8 @@
 			<Exposed />
 			<Arg>INT32</Arg>
 		</requestEnterArena>
+		<requestExitArena>
+			<Exposed />
+		</requestExitArena>
 	</CellMethods>
 </root>

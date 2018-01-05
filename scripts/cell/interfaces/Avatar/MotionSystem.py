@@ -6,16 +6,26 @@ from KBEDebug import *
 class MotionSystem:
     def __init__(self):
         DEBUG_MSG("MotionSystem:__init__")
-        self.controlledBy = None
+        self.controlledByServer = False
+        if self.controlledByServer:
+            self.controlledBy = None
+        else:
+            pass
         self.movementId = 0
         self.canMove = True
 
     def requestMove(self, exposed, point):
-        self.controlledBy = None
         if self.canMove:
             # DEBUG_MSG("MotionSystem:requestMove " + str(point))
-            self.moveToPointSample(point, 20)
+            if self.controlledByServer:
+                self.controlledBy = None
+                self.moveToPointSample(point, 20)
+            else:
+                pass
             self.allClients.DoMove(point)
+
+    def requestStopMove(self, exposed):
+        self.allClients.OnStopMove()
 
     def stopMove(self):
         # DEBUG_MSG("Avatar:stopMove")
