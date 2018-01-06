@@ -5,6 +5,8 @@ import level_data
 import avatar_skill_data
 
 
+
+
 class SuperPowerSystem:
     def __init__(self):
         DEBUG_MSG("SuperPowerSystem:__init__")
@@ -12,20 +14,18 @@ class SuperPowerSystem:
         self.MSP = self.MSP_Max
         # self.SP_Max = 10000
         self.SP = self.SP_Max
-        
         self.canUseSP = True
         self.canRevertSP = True
         self.canIncreaseSPMax = True
-
         self.skillPool = avatar_skill_data.data
         self.levelInfoData = level_data.level_info_data
         self.levelName = level_data.level_name_data[self.level]
         self.levelPeriodName = level_data.level_period_name_data[self.levelPeriod]
-
         if self.__class__.__name__ == "Avatar":
             self.addTimer(1, 60, 11)  # 添加 灵力上限值增加 定时器
         self.addTimer(1, 3, 12)  # 添加 灵力值恢复 定时器
         self.addTimer(1, 0.5, 13)  # 添加 瞬时释放灵力值恢复 定时器
+
 
     def onTimer(self, timerHandle, userData):
         if userData == 11:  # 灵力上限值增加 定时器，每60秒调用一次

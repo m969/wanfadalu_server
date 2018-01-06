@@ -7,6 +7,14 @@
 			<Persistent>true</Persistent>
 		</arenaID>
 	</Properties>
+	<ClientMethods>
+		<OnEnterArena>
+			<Arg>VECTOR3</Arg>
+		</OnEnterArena>
+		<OnExitArena>
+			<Arg>VECTOR3</Arg>
+		</OnExitArena>
+	</ClientMethods>
 	<CellMethods>
 		<requestEnterArena>
 			<Exposed />

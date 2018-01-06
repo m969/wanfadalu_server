@@ -16,12 +16,8 @@ class ArenaSystem:
 
     def onEnterArena(self, arena):
         DEBUG_MSG("ArenaSystem:onEnterArena")
-        # DEBUG_MSG(self.position)
-        # self.controlledBy = None
-        self.position = arena.centerPosition
-        # self.controlledBy = self.base
-        # DEBUG_MSG(self.position)
         self.arenaID = arena.arenaID
+        self.client.OnEnterArena(arena.centerPosition)
 
     def requestExitArena(self, exposed):
         DEBUG_MSG("ArenaSystem:requestExitArena")
@@ -31,8 +27,4 @@ class ArenaSystem:
 
     def onExitArena(self, arena):
         DEBUG_MSG("ArenaSystem:onExitArena")
-        # DEBUG_MSG(self.position)
-        # self.controlledBy = None
-        self.position = arena.outPosition
-        # self.controlledBy = self.base
-        # DEBUG_MSG(self.position)
+        self.client.OnExitArena(arena.outPosition)
