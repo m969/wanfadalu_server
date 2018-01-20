@@ -3,6 +3,8 @@ import KBEngine
 from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject
 from triggerStrategies import *
+from rx import Observable, Observer
+from rx.subjects import Subject
 
 
 class Arena(KBEngine.Entity, EntityObject):
@@ -11,7 +13,7 @@ class Arena(KBEngine.Entity, EntityObject):
         EntityObject.__init__(self)
         DEBUG_MSG("Arena:__init__")
         self.arenaTrigger = None
-        self.avatarList = []
+        self.contestantList = {}
         self.onEvent("requestEnterArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestEnterArena)
         self.onEvent("requestExitArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestExitArena)
 
@@ -43,18 +45,42 @@ class Arena(KBEngine.Entity, EntityObject):
         DEBUG_MSG("Arena:requestEnterArena")
         if self.arenaTrigger is None:
             self.createArenaTrigger()
-        if self.avatarList.__len__() >= 2:
+        if self.contestantList.__len__() >= 2:
             return
-        if evt["avatar"] in self.avatarList:
+        if evt["avatar"].getDatabaseID() in self.contestantList.keys():
             DEBUG_MSG("avatar has in arena")
             return
-        self.avatarList.append(evt["avatar"])
+        self.contestantList.__setitem__(evt["avatar"].getDatabaseID(), evt["avatar"])
         evt["avatar"].onEnterArena(self)
+        self.onEvent("avatarDeadEvent").filter(lambda et: et["avatarID"] == evt["avatar"].id).subscribe(on_next=self.onAvatarDead)
 
     def requestExitArena(self, evt):
         DEBUG_MSG("Arena:requestExitArena")
-        if not evt["avatar"] in self.avatarList:
+        if not evt["avatar"].getDatabaseID() in self.contestantList.keys():
             DEBUG_MSG("avatar has not in arena")
             return
-        self.avatarList.remove(evt["avatar"])
+        self.contestantList.__delitem__(evt["avatar"].getDatabaseID())
         evt["avatar"].onExitArena(self)
+
+    def onAvatarDead(self, evt):
+        DEBUG_MSG("Arena:onAvatarDead")
+        self.setMatchResult(evt["avatar"].getDatabaseID())
+
+    def setMatchResult(self, loserDBID):
+        DEBUG_MSG("Arena:setMatchResult")
+        for dbid in self.contestantList.keys():
+            if dbid == loserDBID:
+                loserDBID = dbid
+            else:
+                winnerDBID = dbid
+        self.contestantList[loserDBID].onMatchEnd(iswin=False)
+        self.contestantList[winnerDBID].onMatchEnd(iswin=True)
+        matchResult = {}
+        matchResult["winnerInfo"] = {}
+        matchResult["loserInfo"] = {}
+        matchResult["winnerInfo"]["dbid"] = winnerDBID
+        matchResult["loserInfo"]["dbid"] = loserDBID
+        KBEngine.globalData["spacesManager"].addNewMatchResult(matchResult)
+
+    def endMatch(self):
+        DEBUG_MSG("Arena:endMatch")

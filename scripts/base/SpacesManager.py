@@ -4,14 +4,16 @@ import space_data
 from KBEDebug import *
 import datetime
 import math
-from interfaces.CombatBulletinSystem import CombatBulletinSystem
+from interfaces.SpacesManager.CombatBulletinSystem import CombatBulletinSystem
+from interfaces.SpacesManager.RankingListSystem import RankingListSystem
 
 
-class SpacesManager(KBEngine.Base, CombatBulletinSystem):
+class SpacesManager(KBEngine.Base, CombatBulletinSystem, RankingListSystem):
     def __init__(self):
         DEBUG_MSG("SpacesManager:__init__")
         KBEngine.Base.__init__(self)
         CombatBulletinSystem.__init__(self)
+        RankingListSystem.__init__(self)
 
         KBEngine.globalData["spacesManager"] = self
         # 根据场景配置表（space_data）来创建场景
@@ -22,7 +24,7 @@ class SpacesManager(KBEngine.Base, CombatBulletinSystem):
             KBEngine.createBaseFromDBID("Space", self.muLingCunSpaceDBID, self._muLingCunSpaceCreateCallback)
         else:
             DEBUG_MSG("createBaseLocally muLingCunSpace")
-            self.muLingCunSpace = KBEngine.createBaseLocally("Space",{"cityName": "木灵村","spaceName": "MuLingCunSpace"})
+            self.muLingCunSpace = KBEngine.createBaseLocally("Space", {"cityName": "木灵村", "spaceName": "MuLingCunSpace"})
             self.muLingCunSpace.writeToDB(self._onMuLingCunSpaceSaved)
 
         if self.yunLingZongSpaceDBID:
@@ -30,7 +32,7 @@ class SpacesManager(KBEngine.Base, CombatBulletinSystem):
             KBEngine.createBaseFromDBID("Space", self.yunLingZongSpaceDBID, self._yunLingZongSpaceCreateCallback)
         else:
             DEBUG_MSG("createBaseLocally yunLingZongSpace")
-            self.yunLingZongSpace = KBEngine.createBaseLocally("Space",{"cityName": "云灵宗","spaceName": "YunLingZongSpace"})
+            self.yunLingZongSpace = KBEngine.createBaseLocally("Space", {"cityName": "云灵宗", "spaceName": "YunLingZongSpace"})
             self.yunLingZongSpace.writeToDB(self._onYunLingZongSpaceSaved)
 
     def _onMuLingCunSpaceSaved(self, success, space):

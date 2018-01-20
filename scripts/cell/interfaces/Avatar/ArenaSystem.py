@@ -28,3 +28,17 @@ class ArenaSystem:
     def onExitArena(self, arena):
         DEBUG_MSG("ArenaSystem:onExitArena")
         self.client.OnExitArena(arena.outPosition)
+
+    def onMatchEnd(self, iswin):
+        DEBUG_MSG("ArenaSystem:onMatchEnd")
+        self.client.OnMatchEnd(iswin)
+        if iswin:
+            self.onMatchWin()
+        else:
+            self.onMatchLose()
+
+    def onMatchLose(self):
+        DEBUG_MSG("ArenaSystem:onMatchLose")
+
+    def onMatchWin(self):
+        DEBUG_MSG("ArenaSystem:onMatchWin")

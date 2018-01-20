@@ -1,0 +1,18 @@
+﻿<root>
+	<Properties>
+		<rankingList>
+			<Type>RANKING_LIST</Type>
+			<Flags>BASE</Flags>
+			<Persistent>true</Persistent>
+		</rankingList>
+	</Properties>
+	<BaseMethods>
+		<requestRankingList />
+		<requestAvatarRanking>
+			<Arg>DBID</Arg>
+		</requestAvatarRanking>
+		<addNewMatchResult>
+			<Arg>PY_DICT</Arg>
+		</addNewMatchResult>
+	</BaseMethods>
+</root>

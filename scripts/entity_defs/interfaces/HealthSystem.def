@@ -14,7 +14,7 @@
 		</HP_Max>
 	</Properties>
 	<ClientMethods>
-		<OnDie />
+		<OnDead />
 		<OnRespawn>
 			<Arg>VECTOR3</Arg>
 		</OnRespawn>

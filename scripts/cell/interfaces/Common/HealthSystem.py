@@ -37,9 +37,10 @@ class HealthSystem:
             self.dieSelf(murderer)
 
     def dieSelf(self, murderer):
-        self.onDie(murderer)
+        self.onDead(murderer)
 
-    def onDie(self, murderer):
-        DEBUG_MSG("HealthSystem:onDie")
+    def onDead(self, murderer):
+        DEBUG_MSG("HealthSystem:onDead")
+        self.publish({"eventName": "avatarDeadEvent", "avatarID": self.id, "avatar": self})
         self.addTimer(4, 0, 21)  # 添加重生时间器
-        self.allClients.OnDie()
+        self.allClients.OnDead()
