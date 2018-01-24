@@ -14,11 +14,8 @@ class SpacesManager(KBEngine.Base, CombatBulletinSystem, RankingListSystem):
         KBEngine.Base.__init__(self)
         CombatBulletinSystem.__init__(self)
         RankingListSystem.__init__(self)
-
-        KBEngine.globalData["spacesManager"] = self
-        # 根据场景配置表（space_data）来创建场景
+        KBEngine.globalData["SpacesManager"] = self
         KBEngine.globalData["allAvatarBases"] = {}
-
         if self.muLingCunSpaceDBID:
             DEBUG_MSG("createBaseFromDBID muLingCunSpaceDBID")
             KBEngine.createBaseFromDBID("Space", self.muLingCunSpaceDBID, self._muLingCunSpaceCreateCallback)
@@ -26,7 +23,6 @@ class SpacesManager(KBEngine.Base, CombatBulletinSystem, RankingListSystem):
             DEBUG_MSG("createBaseLocally muLingCunSpace")
             self.muLingCunSpace = KBEngine.createBaseLocally("Space", {"cityName": "木灵村", "spaceName": "MuLingCunSpace"})
             self.muLingCunSpace.writeToDB(self._onMuLingCunSpaceSaved)
-
         if self.yunLingZongSpaceDBID:
             DEBUG_MSG("createBaseFromDBID yunLingZongSpaceDBID")
             KBEngine.createBaseFromDBID("Space", self.yunLingZongSpaceDBID, self._yunLingZongSpaceCreateCallback)
@@ -73,9 +69,6 @@ class SpacesManager(KBEngine.Base, CombatBulletinSystem, RankingListSystem):
     def loginToSpaceByName(self, spaceName, entityMailbox):
         """
         通过Space名称登录到Space
-        :param spaceName:
-        :param entityMailbox:
-        :return:
         """
         DEBUG_MSG("SpacesManager:loginToSpaceByName")
         KBEngine.globalData["space_" + spaceName].loginSpace(entityMailbox)
@@ -83,16 +76,12 @@ class SpacesManager(KBEngine.Base, CombatBulletinSystem, RankingListSystem):
     def teleportToSpaceByName(self, spaceName, gateWayEntrancePosition, entityMailbox):
         """
         通过Space名称传送到Space
-        :param spaceName:
-        :param entityMailbox:
-        :return:
         """
         DEBUG_MSG("SpacesManager:teleportToSpaceByName")
         entityMailbox.cell.isGoingToTeleport(spaceName, gateWayEntrancePosition)
 
     def logoutSpace(self, avatarID, spaceID):
         """
-        defined method.
         某个玩家请求登出这个space
         """
         space = KBEngine.globalData["space_%i" % spaceID]

@@ -55,8 +55,8 @@ class Avatar(KBEngine.Proxy,
 
     def onEntitiesEnabled(self):
         DEBUG_MSG("Avatar:onEntitiesEnabled:" + self.spaceName)
-        KBEngine.globalData["spacesManager"].loginToSpaceByName(self.spaceName, self)
-        KBEngine.globalData["spacesManager"].addNewAvatar(self.id, self)
+        KBEngine.globalData["SpacesManager"].loginToSpaceByName(self.spaceName, self)
+        KBEngine.globalData["SpacesManager"].addNewAvatar(self.id, self)
 
     def createCell(self, space):
         DEBUG_MSG("Avatar:createCell")
@@ -77,7 +77,7 @@ class Avatar(KBEngine.Proxy,
 
     def onDestroy(self):
         DEBUG_MSG("Avatar:onDestroy")
-        KBEngine.globalData["spacesManager"].delAvatar(self.id)
+        KBEngine.globalData["SpacesManager"].delAvatar(self.id)
         if self.accountEntity is not None:
             self.accountEntity.destroyAccount()
 

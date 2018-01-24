@@ -12,16 +12,14 @@ class TaskMonument(KBEngine.Base, EntityObject):
         DEBUG_MSG("TaskMonument:__init__")
         KBEngine.Base.__init__(self)
         
-        KBEngine.globalData["taskMonument"] = self
+        KBEngine.globalData["TaskMonument"] = self
         self.writeToDB(self._onTaskMonumentSaved, True)
-        pass
 
     def _onTaskMonumentSaved(self, success, taskMonument):
         DEBUG_MSG("TaskMonument:_onTaskMonumentSaved")
 
     def addTask(self, taskName, publishAvatarName):
         DEBUG_MSG("TaskMonument:addTask")
-        pass
 
     def removeTask(self, taskName):
-        pass
+        DEBUG_MSG("TaskMonument:removeTask")

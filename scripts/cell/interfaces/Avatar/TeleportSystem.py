@@ -21,11 +21,9 @@ class TeleportSystem:
         self.client.onMainAvatarLeaveSpace()
         self.newSpaceName = spaceName
         self.newSpacePosition = gateWayEntrancePosition
-        pass
 
     def teleportToSpace(self, spaceCellMailbox, position, direction):
         """
-        defined.
         baseapp返回teleportSpace的回调
         """
         DEBUG_MSG("TeleportSystem:teleportToSpace")
@@ -44,9 +42,7 @@ class TeleportSystem:
     def onLeaveSpaceClientInputInValid(self, exposed):
         DEBUG_MSG("TeleportSystem:onLeaveSpaceClientInputInValid")
         KBEngine.globalData["space_" + self.newSpaceName].requestTeleport(self.base)
-        pass
 
     def onAvatarEnterSpace(self, spaceID, spaceName):
         DEBUG_MSG("TeleportSystem:onEnterSpace")
         self.client.onMainAvatarEnterSpace(spaceID, spaceName)
-        pass

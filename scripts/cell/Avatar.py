@@ -74,7 +74,6 @@ class Avatar(KBEngine.Entity,
         HealthSystem.onTimer(self, timerHandle, userData)       # 20
         DialogSystem.onTimer(self, timerHandle, userData)       # 30
         TeleportSystem.onTimer(self, timerHandle, userData)     # 40
-
         SkillSystem.onTimer(self, timerHandle, userData)        # 100
 
     def setAvatarName(self, entityName):
@@ -82,15 +81,12 @@ class Avatar(KBEngine.Entity,
 
     def onEnteredCell(self, parameter_list):
         DEBUG_MSG("Avatar:onEnteredCell 1")
-        pass
 
     def onEnteredCell(self, a1, a2):
         DEBUG_MSG("Avatar:onEnteredCell 2")
-        pass
 
     def onEnteredCell(self, a1, a2, a3):
         DEBUG_MSG("Avatar:onEnteredCell 3")
-        pass
 
     def onDestroy(self):
         DEBUG_MSG("Avatar:onCellDestroy")

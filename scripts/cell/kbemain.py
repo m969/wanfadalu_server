@@ -16,7 +16,7 @@ def onGlobalData(key, value):
 	KBEngine method.
 	globalData改变 
 	"""
-    DEBUG_MSG('onGlobalData: %s' % key)
+    DEBUG_MSG('onGlobalData: %s: %s' % (key, str(value)))
 
 
 def onGlobalDataDel(key):

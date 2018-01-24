@@ -41,7 +41,7 @@ class SuperPowerSystem:
                     self.SP = self.SP_Max
                 else:
                     self.SP += self.spRevertStrength
-        if userData == 13:  # 瞬时释放灵力值恢复 定时器，每2秒调用一次
+        if userData == 13:  # 瞬时释放灵力值恢复 定时器，每0.5秒调用一次
             if self.canRevertSP:
                 if self.SP >= self.mspRevertStrength:
                     if self.MSP < self.MSP_Max:

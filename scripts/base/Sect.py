@@ -14,4 +14,3 @@ class Sect(KBEngine.Base, EntityObject):
 
     def addSectMember(self, avatarID):
         DEBUG_MSG("Sect:addSectMember")
-        pass

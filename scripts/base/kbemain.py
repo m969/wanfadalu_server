@@ -5,6 +5,12 @@ from KBEDebug import *
 import space_data
 
 
+def onAutoLoadEntityCreate(entityType, dbid):
+    DEBUG_MSG("kbemain:onAutoLoadEntityCreate entityType = " + str(entityType) + " dbid = " + str(dbid))
+    KBEngine.globalData[entityType] = True
+    KBEngine.createBaseFromDBID(entityType, dbid)
+
+
 def onBaseAppReady(isBootstrap):
     """
     KBEngine method.
@@ -17,94 +23,12 @@ def onBaseAppReady(isBootstrap):
               os.getenv("KBE_BOOTIDX_GLOBAL")))
     if isBootstrap:
         DEBUG_MSG("isBootstrap")
-        # if "spacesManager" not in KBEngine.globalData.keys():
-        #     DEBUG_MSG("create SpacesManager")
-        #     KBEngine.createBaseLocally("SpacesManager", {})
-        # if "taskMonument" not in KBEngine.globalData.keys():
-        #     DEBUG_MSG("create TaskMonument")
-        #     KBEngine.createBaseLocally("TaskMonument", {})
-
-        # KBEngine.createBaseFromDBID("BigWorld", 1, _onSpacesManagerCreateCB)
-        # KBEngine.executeRawDatabaseCommand("SELECT * from tbl_SpacesManager", _dbCmdSelectCB)
-
-
-# def _onSpacesManagerCreateCB(resultCollect, num, errorInfo):
-#     DEBUG_MSG("_onSpacesManagerCreateCB")
-#     pass
-
-
-def _dbCmdSelectCB(resultCollect, num, errorInfo):
-    DEBUG_MSG(resultCollect)
-    DEBUG_MSG(num)
-    # DEBUG_MSG(errorInfo)
-    if errorInfo is not None:
-        DEBUG_MSG("error")
-        # KBEngine.executeRawDatabaseCommand(
-        #     "CREATE TABLE mini_Spaces (name VARCHAR(255) NOT NULL DEFAULT '' primary key, dbid BIGINT)",
-        #     _dbCmdCreateTblCB)
-    else:
-        DEBUG_MSG("not error")
-        if not resultCollect:
-            DEBUG_MSG("resultCollect == []")
-            spacesManager = KBEngine.createBaseLocally("SpacesManager", {})
-            if spacesManager:
-                DEBUG_MSG("create spacesManager success")
-                spacesManager.writeToDB(_spacesManagerSavedCB)
-            else:
-                ERROR_MSG("create spacesManager failed")
-        else:
-            for value in resultCollect:
-                if value[0] == b'SpacesManager':
-                    DEBUG_MSG("==b")
-                    if value[1] != 0:
-                        KBEngine.createBaseFromDBID("SpacesManager", int(value[1].decode('ascii')), _onSpacesManagerCreateCB)
-                        DEBUG_MSG(int(value[1].decode('ascii')))
-                        return
-
-
-def _onSpacesManagerCreateCB(baseRef, dbid, wasActive):
-    if baseRef is None:
-        DEBUG_MSG("_onSpacesManagerCreateCB-failed")
-        # KBEngine.executeRawDatabaseCommand("SELECT * from mini_Spaces", _dbCmdSelectCB)
-        # KBEngine.executeRawDatabaseCommand("INSERT INTO MiniGame.tbl_BigWorld VALUES(0,0,0,0,0,0,0,0,0)", _dbCmdCB)
-    else:
-        DEBUG_MSG("_onSpacesManagerCreateCB-success")
-
-
-def _dbCmdCreateTblCB(resultCollect, num, errorInfo):
-    DEBUG_MSG(errorInfo)
-    if errorInfo is None:
-        bigWorld = KBEngine.createBaseLocally("BigWorld", {})
-        if bigWorld:
-            DEBUG_MSG("create bigWorld success")
-            bigWorld.writeToDB(_spacesManagerSavedCB)
-            # KBEngine.executeRawDatabaseCommand("INSERT INTO mini_Spaces VALUES ('BigWorld', 0)",
-            # _dbCmdInsertBigWorldCB)
-        else:
-            ERROR_MSG("create bigWorld failed")
-    else:
-        ERROR_MSG("create tbl failed")
-
-
-def _spacesManagerSavedCB(success, spacesManager):
-    DEBUG_MSG("_spacesManagerSavedCB")
-    # KBEngine.executeRawDatabaseCommand("INSERT INTO mini_Spaces VALUES ('BigWorld', " + str(spacesManager.databaseID) + ")",
-    #                                    _dbCmdInsertBigWorldCB)
-
-
-def _dbCmdInsertBigWorldCB(resultCollect, num, errorInfo):
-    DEBUG_MSG(errorInfo)
-
-
-def _dbCmdCB(resultCollect, num, errorInfo):
-    if resultCollect is None:
-        DEBUG_MSG("_dbCmdCB-resultCollect is None.")
-        DEBUG_MSG(errorInfo)
-    else:
-        DEBUG_MSG("_dbCmdCB-resultCollect is not None.")
-        DEBUG_MSG(resultCollect)
-        # KBEngine.createBaseFromDBID("BigWorld", 1, _onSpacesManagerCreateCB)
-    pass
+        if "SpacesManager" not in KBEngine.globalData.keys():
+            DEBUG_MSG("create SpacesManager")
+            KBEngine.createBaseLocally("SpacesManager", {})
+        if "TaskMonument" not in KBEngine.globalData.keys():
+            DEBUG_MSG("create TaskMonument")
+            KBEngine.createBaseLocally("TaskMonument", {})
 
 
 def onReadyForLogin(isBootstrap):
@@ -161,7 +85,7 @@ def onGlobalData(key, value):
     KBEngine method.
     globalData有改变
     """
-    DEBUG_MSG('onGlobalData: %s' % key)
+    DEBUG_MSG('onGlobalData: %s: %s' % (key, str(value)))
 
 
 def onGlobalDataDel(key):

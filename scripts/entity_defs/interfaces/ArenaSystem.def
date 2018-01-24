@@ -14,6 +14,9 @@
 		<OnExitArena>
 			<Arg>VECTOR3</Arg>
 		</OnExitArena>
+		<OnMatchEnd>
+			<Arg>INT32</Arg>
+		</OnMatchEnd>
 	</ClientMethods>
 	<CellMethods>
 		<requestEnterArena>

@@ -1,8 +1,8 @@
 {
     "python.autoComplete.extraPaths": [
-        "F:/Users/Administrator/DOCUME~1/Kbengine/kbengine/huanhuoserver/scripts/tips/cellapp",
-        "F:/Users/Administrator/DOCUME~1/Kbengine/kbengine/huanhuoserver/scripts/data",
-        "F:/Users/Administrator/DOCUME~1/Kbengine/kbengine/huanhuoserver/scripts/common",
-        "F:/Users/Administrator/DOCUME~1/Kbengine/kbengine/kbe/res/scripts/common/Lib/rx",
-        "F:/Users/Administrator/DOCUME~1/Kbengine/kbengine/huanhuoserver/scripts/user_type" ]
+        "D:/MyProjects/kbengine/huanhuoserver/scripts/tips/cellapp",
+        "D:/MyProjects/kbengine/huanhuoserver/scripts/data",
+        "D:/MyProjects/kbengine/huanhuoserver/scripts/common",
+        "D:/MyProjects/kbengine/kbe/res/scripts/common/Lib/rx",
+        "D:/MyProjects/kbengine/huanhuoserver/scripts/user_type" ]
 }

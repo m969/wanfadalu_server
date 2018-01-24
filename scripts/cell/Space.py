@@ -17,17 +17,14 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
     def __init__(self):
         DEBUG_MSG("Space:cell:__init__ " + str(self.spaceID) + " " + str(self.id) + " " + self.spaceName)
         KBEngine.Entity.__init__(self)
-
         self.spaceData = space_data.data[self.cityName]     # 取出自身的场景数据
         self.respawnPoint = self.spaceData["重生点"]
-
         EntityObject.__init__(self)
         SpaceMonsterSystem.__init__(self)
         SpaceNpcSystem.__init__(self)
         SpaceResourceWarSystem.__init__(self)
         SpaceGateWaySystem.__init__(self)
         SpaceArenaSystem.__init__(self)
-
         KBEngine.globalData["space_%i" % self.spaceID] = self.base
         KBEngine.globalData["space_" + self.spaceName] = self.base
         KBEngine.globalData["space_cell_%i" % self.spaceID] = self
@@ -45,7 +42,6 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
 
     def onEnter(self, entityMailbox):
         """
-        defined method.
         进入场景
         """
         DEBUG_MSG('Space::onEnter space[%d] entityID = %i.' % (self.spaceID, entityMailbox.id))
@@ -56,7 +52,6 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
 
     def onLeave(self, entityID):
         """
-        defined method.
         离开场景
         """
         DEBUG_MSG('Space::onLeave space entityID = %i.' % (entityID))

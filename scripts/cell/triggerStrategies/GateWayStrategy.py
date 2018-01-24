@@ -20,7 +20,7 @@ class GateWayStrategy(TriggerStrategy):
     def execute(self):
         super().execute()
         if self.otherEntity.getAttr("isAvatar") is True:
-            KBEngine.globalData["spacesManager"].teleportToSpaceByName(
+            KBEngine.globalData["SpacesManager"].teleportToSpaceByName(
                 self.targetSpaceName,
                 self.gateWayEntrancePosition,
                 self.otherEntity.base)

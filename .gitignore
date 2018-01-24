@@ -27,3 +27,4 @@ logs/
 .DS_Store?
 ehthumbs.db
 Thumbs.db
+/ToolsConfig.xml
