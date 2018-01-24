@@ -28,3 +28,6 @@ logs/
 ehthumbs.db
 Thumbs.db
 /ToolsConfig.xml
+/scripts/.vscode
+.vscode
+.vscode

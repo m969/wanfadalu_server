@@ -1,8 +1,0 @@
-{
-    "python.autoComplete.extraPaths": [
-        "D:/MyProjects/kbengine/huanhuoserver/scripts/tips/cellapp",
-        "D:/MyProjects/kbengine/huanhuoserver/scripts/data",
-        "D:/MyProjects/kbengine/huanhuoserver/scripts/common",
-        "D:/MyProjects/kbengine/kbe/res/scripts/common/Lib/rx",
-        "D:/MyProjects/kbengine/huanhuoserver/scripts/user_type" ]
-}
