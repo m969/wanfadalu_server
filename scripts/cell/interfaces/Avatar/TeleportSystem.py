@@ -36,7 +36,7 @@ class TeleportSystem:
         self.teleport(spaceCellMailbox, position, direction)
         self.base.onTeleportSuccess(self.newSpaceName)
         self.counter = 0
-        self.resetPositionTimerHandle = self.addTimer(0.1, 0.2, 41)  # 重置角色坐标计数器
+        #self.resetPositionTimerHandle = self.addTimer(0.1, 0.2, 41)  # 重置角色坐标计数器
         self.onAvatarEnterSpace(spaceCellMailbox.spaceID, spaceCellMailbox.spaceName)
 
 
