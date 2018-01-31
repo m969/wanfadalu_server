@@ -7,6 +7,8 @@ import monster_data
 from triggerStrategies import *
 
 
+
+
 class AI:
     def __init__(self):
         # 移动速度
@@ -28,11 +30,13 @@ class AI:
         #
         self.addTimer(1, 1, 0)
 
+
     def initEntity(self):
         """
         virtual method.
         """
         pass
+
 
     def checkInTerritory(self):
         """
@@ -46,6 +50,7 @@ class AI:
                     if math.fabs(self.movePos[2]) < self.spawnPos[2] + self.territoryArea:
                         ret = True
         return ret
+
 
     def randomMovePos(self):
         """
@@ -62,6 +67,7 @@ class AI:
             self.movePos = (self.movePos[0] + x, self.movePos[1], self.movePos[2] + z)
             break
         return True
+
 
     def woodMonsterSkill(self, point, yaw):
         """
@@ -90,6 +96,7 @@ class AI:
             # 火球技能移动到目标位置
             bullet.moveToPointSample((point.x, 1, point.z), self.skillSpeed)
 
+
     def yanshilingMonsterSkill(self, point, yaw):
         """
         岩石灵怪的技能:发射一个火球
@@ -116,6 +123,7 @@ class AI:
                                             })
             # 火球技能移动到目标位置
             bullet.moveToPointSample((point.x, 1, point.z), self.skillSpeed)
+
 
     def langshourenguaiMonsterSkill(self, point, yaw):
         """
@@ -165,6 +173,7 @@ class AI:
                 # 技能移动到目标位置
                 bullet1.moveToPointSample((point.x, 1, point.z), self.skillSpeed)
 
+
     def addTerritory(self):
         """
         添加领地
@@ -173,13 +182,13 @@ class AI:
         # 有实体进入领域，并返回领域ID
         self.addProximity(self.territoryArea, 0, 0)
 
+
     def setTarget(self, entityID):
         """
         设置攻击目标
         """
         self.targetID = entityID
 
-    # -------------------------------------Callbacks--------------------------------------
 
     def onEnterTrap(self, entityEntering, range_xz, range_y, controllerID, userarg):
         """
@@ -203,6 +212,7 @@ class AI:
         # 添加敌人实体
         self.targetEntity = entityEntering
 
+
     def onLeaveTrap(self, entityLeaving, range_xz, range_y, controllerID, userarg):
         """
         KBEngine method.
@@ -218,6 +228,7 @@ class AI:
         self.onRemoveEnemy(entityLeaving.id)
         self.targetEntity = None
 
+
     def onAddEnemy(self, entityID):
         """
         virtual method.
@@ -225,6 +236,7 @@ class AI:
         """
         if self.targetID == 0:
             self.setTarget(entityID)
+
 
     def onRemoveEnemy(self, entityID):
         """
@@ -235,35 +247,32 @@ class AI:
             # 敌人丢失
             self.onLoseTarget()
 
+
     def onLoseTarget(self):
         """
         敌人丢失
         """
         self.targetID = 0
 
+
     def onMoveOver(self, controllerID, userData):
         """
         当怪物停止移动时调用闲置时的动画
         """
         self.allClients.StopMove()
-
         if controllerID == self.moveToEntityID:
             # 岩石灵怪释放技能
             if self.name == "炎石灵怪":
                 self.yanshilingMonsterSkill(self.targetEntity.position, self.position.y)
-
             # 木精怪释放技能
             if (self.name == "木精怪") | (self.name == "绿雾灵怪"):
                 self.woodMonsterSkill(self.targetEntity.position, self.position.y)
-
             # 狼兽人怪释放技能
             if self.name == "狼兽人怪":
                 self.langshourenguaiMonsterSkill(self.targetEntity.position, self.position.y)
-
             # 狼兽人怪释放技能
             if self.name == "小狼兽人":
                 self.langshourenguaiMonsterSkill(self.targetEntity.position, self.position.y)
-
 
 
     def onTimer(self, tid, userArg):
@@ -278,7 +287,6 @@ class AI:
             #DEBUG_MSG("AI:addTerritory")
             self.addTerritory()
             self.delTimer(tid)
-
         if self.targetID == 0:
             # 在区域内没有目标，血量自动回满
             self.HP = self.HP_Max
@@ -289,7 +297,6 @@ class AI:
                 self.movePos = self.spawnPos
             self.moveToPoint(self.movePos, self.speed, 0, self, True, False)
             self.allClients.StartMove()
-
         if self.targetID != 0 and self.HP < self.HP_Max:
             # 敌人存在，向敌人移动并进攻敌人
             # 返回此移动的id

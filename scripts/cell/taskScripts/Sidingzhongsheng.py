@@ -11,7 +11,7 @@ class Sidingzhongsheng(object):
         self.npcName = npcName
         self.npcTaskIndex = npcTaskIndex
         self.owner.setAttr("Sidingzhongsheng_TaskCounter", 0)
-        self.oldTaskCounter = self.owner.getAttr("Sidingzhongsheng_TaskCounter")
+        self.oldTaskCounter = self.owner.Sidingzhongsheng_TaskCounter
         # 给予任务者玉佩(18是玉佩id)
         self.owner.giveGoods(18)
         #将信给刘公子
@@ -20,5 +20,5 @@ class Sidingzhongsheng(object):
 
     def detectTaskCompleteness(self):
         self.owner.setAttr("Sidingzhongsheng_TaskCounter", 0)
-        if self.owner.getAttr("Sidingzhongsheng_TaskCounter") >= 0:
+        if self.owner.Sidingzhongsheng_TaskCounter >= 0:
             self.owner.setTaskFinish(self.npcName, self.npcTaskIndex, self.selfIndex)

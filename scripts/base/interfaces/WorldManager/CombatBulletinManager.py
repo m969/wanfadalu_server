@@ -5,9 +5,9 @@ import datetime
 import math
 
 
-class CombatBulletinSystem:
+class CombatBulletinManager:
     def __init__(self):
-        DEBUG_MSG("CombatBulletinSystem:__init__")
+        DEBUG_MSG("CombatBulletinManager:__init__")
         targethour = datetime.timedelta(hours=21)
         now = datetime.datetime.now()
         nowhour = datetime.timedelta(hours=now.hour, minutes=now.minute, seconds=now.second)

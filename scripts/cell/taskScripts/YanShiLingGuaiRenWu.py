@@ -18,8 +18,8 @@ class YanShiLingGuaiRenWu(object):
         self.npcName = npcName
         self.npcTaskIndex = npcTaskIndex
         self.owner.setAttr("YanShiLingGuai_TaskCounter", 0)
-        self.oldTaskCounter = self.owner.getAttr("YanShiLingGuai_TaskCounter")
+        self.oldTaskCounter = self.owner.YanShiLingGuai_TaskCounter
 
     def detectTaskCompleteness(self):
-        if self.owner.getAttr("YanShiLingGuai_TaskCounter") - self.oldTaskCounter >= 2:
+        if self.owner.YanShiLingGuai_TaskCounter - self.oldTaskCounter >= 2:
             self.owner.setTaskFinish(self.npcName, self.npcTaskIndex, self.selfIndex)

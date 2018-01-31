@@ -6,17 +6,16 @@
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</entityName>
+		<dbid>
+			<Type>INT64</Type>
+			<Flags>CELL_PRIVATE</Flags>
+			<Persistent>false</Persistent>
+		</dbid>
 	</Properties>
 	<ClientMethods>
 		<OnEntityDestroy />
 	</ClientMethods>
 	<BaseMethods>
-		<hasAttr>
-			<Arg>UNICODE</Arg>
-		</hasAttr>
-		<getAttr>
-			<Arg>UNICODE</Arg>
-		</getAttr>
 		<setAttr>
 			<Arg>UNICODE</Arg>
 			<Arg>PYTHON</Arg>
@@ -24,17 +23,8 @@
 		<delAttr>
 			<Arg>UNICODE</Arg>
 		</delAttr>
-		<getDatabaseID />
-		<getScriptName />
-		<getCell />
 	</BaseMethods>
 	<CellMethods>
-		<hasAttr>
-			<Arg>UNICODE</Arg>
-		</hasAttr>
-		<getAttr>
-			<Arg>UNICODE</Arg>
-		</getAttr>
 		<setAttr>
 			<Arg>UNICODE</Arg>
 			<Arg>PYTHON</Arg>
@@ -43,10 +33,5 @@
 			<Arg>UNICODE</Arg>
 		</delAttr>
 		<destroyEntity />
-		<getEntityID />
-		<getDatabaseID />
-		<getScriptName />
-		<getCurrentSpaceBase />
-		<getCurrentSpace />
 	</CellMethods>
 </root>

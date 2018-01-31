@@ -1,10 +1,10 @@
 ﻿<root>
 	<Properties>
-		<sectID>
+		<lingshiAmount>
 			<Type>INT32</Type>
-			<Default>0</Default>
+			<Default>100</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
-		</sectID>
+		</lingshiAmount>
 	</Properties>
 </root>

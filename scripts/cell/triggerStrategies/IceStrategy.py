@@ -17,8 +17,8 @@ class IceStrategy(TriggerStrategy):
 
     def execute(self):
         super().execute()
-        if self.otherEntity.getAttr("campName") != self.trigger.owner.getAttr("campName"):
-            if self.otherEntity.getAttr("canReceiveSkill") is True:
+        if self.otherEntity.campName != self.trigger.owner.campName:
+            if self.otherEntity.canReceiveSkill is True:
                 self.otherEntity.setAttr("isIceFreezing", True)
                 self.otherEntity.addSkillControlTimer(
                     "IceCancelTimer",

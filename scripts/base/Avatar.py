@@ -2,7 +2,6 @@
 import KBEngine
 from KBEDebug import *
 import datetime
-
 from interfaces.Avatar.CampSystem import CampSystem
 from interfaces.Avatar.ChatChannelSystem import ChatChannelSystem
 from interfaces.Avatar.DialogSystem import DialogSystem
@@ -13,11 +12,12 @@ from interfaces.Avatar.TaskSystem import TaskSystem
 from interfaces.Avatar.MagicWeaponSystem import MagicWeaponSystem
 from interfaces.Avatar.ArenaSystem import ArenaSystem
 from interfaces.Avatar.SectSystem import SectSystem
-
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Common.HealthSystem import HealthSystem
 from interfaces.Common.SkillSystem import SkillSystem
 from interfaces.Common.SuperPowerSystem import SuperPowerSystem
+
+
 
 
 class Avatar(KBEngine.Proxy, 
@@ -53,14 +53,17 @@ class Avatar(KBEngine.Proxy,
         ArenaSystem.__init__(self)
         SectSystem.__init__(self)
 
+
     def onEntitiesEnabled(self):
         DEBUG_MSG("Avatar:onEntitiesEnabled:" + self.spaceName)
         KBEngine.globalData["SpacesManager"].loginToSpaceByName(self.spaceName, self)
         KBEngine.globalData["SpacesManager"].addNewAvatar(self.id, self)
 
+
     def createCell(self, space):
         DEBUG_MSG("Avatar:createCell")
         self.createCellEntity(space)
+
 
     def setAvatarName(self, accountName):
         if self.cell:
@@ -68,12 +71,15 @@ class Avatar(KBEngine.Proxy,
         else:
             self.cellData["entityName"] = accountName
 
+
     def onGetCell(self):
         DEBUG_MSG("onGetCell")
+
 
     def onLoseCell(self):
         DEBUG_MSG("Avatar:onLoseCell")
         self.destroy()
+
 
     def onDestroy(self):
         DEBUG_MSG("Avatar:onDestroy")
@@ -81,15 +87,19 @@ class Avatar(KBEngine.Proxy,
         if self.accountEntity is not None:
             self.accountEntity.destroyAccount()
 
+
     def onClientGetCell(self):
         DEBUG_MSG("Avatar:onClientGetCell")
+
 
     def _onAvatarSaved(self, success, avatar):
         self.destroyCellEntity()
 
+
     def onClientDeath(self):
         DEBUG_MSG("Avatar:onClientDeath")
         self.writeToDB(self._onAvatarSaved)
+
 
     def publishBulletin(self, bulletinContent):
         DEBUG_MSG("Avatar:publishBulletin")

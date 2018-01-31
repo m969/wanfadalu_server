@@ -11,9 +11,9 @@ class Bangzhushenmiren(object):
         self.npcName = npcName
         self.npcTaskIndex = npcTaskIndex
         self.owner.setAttr("Bangzhushenmiren_TaskCounter", 1)
-        self.oldTaskCounter = self.owner.getAttr("Bangzhushenmiren_TaskCounter")
+        self.oldTaskCounter = self.owner.Bangzhushenmiren_TaskCounter
 
     def detectTaskCompleteness(self):
         self.owner.setAttr("Bangzhushenmiren_TaskCounter", 0)
-        if self.owner.getAttr("Bangzhushenmiren_TaskCounter") == 0:
+        if self.owner.Bangzhushenmiren_TaskCounter == 0:
             self.owner.setTaskFinish(self.npcName, self.npcTaskIndex, self.selfIndex)

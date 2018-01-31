@@ -1,9 +1,9 @@
 ﻿<root>
 	<Properties>
-		<magicWeaponList>
+		<sectDBIDList>
 			<Type>DBID_LIST</Type>
-			<Flags>ALL_CLIENTS</Flags>
+			<Flags>BASE</Flags>
 			<Persistent>true</Persistent>
-		</magicWeaponList>
+		</sectDBIDList>
 	</Properties>
 </root>

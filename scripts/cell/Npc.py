@@ -63,7 +63,7 @@ class Npc(KBEngine.Entity, EntityObject):
         DEBUG_MSG("Npc:requestBuyGoods")
         goodsName = goods_data.data[goodsID]['name']
         if goodsName in self.storeData:
-            if requester.getAttr('goldCount') >= goods_data.data[goodsID]['price']:
+            if requester.goldCount >= goods_data.data[goodsID]['price']:
                 requester.giveGoods(goodsID)
                 requester.deductMoney(goods_data.data[goodsID]['price'])
                 return True

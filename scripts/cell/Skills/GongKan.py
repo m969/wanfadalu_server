@@ -29,7 +29,7 @@ class GongKan(Skill):
                                         {
                                             'entityName': "GongKan_Trigger",
                                             'owner': self.spellCaster,
-                                            "campName": self.spellCaster.getAttr("campName"),
+                                            "campName": self.spellCaster.campName,
                                             'lifeSpans': 0.2,
                                             'triggerID': 2,
                                             'triggerSize': 4,

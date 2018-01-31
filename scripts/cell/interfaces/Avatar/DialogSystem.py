@@ -85,25 +85,25 @@ class DialogSystem:
         if goods_data.data[goodsID]['name'] == "木剑":
             if self.hasAttr("Xiaoshiniudao_San_TaskCounter") is True:
                 self.setAttr("Xiaoshiniudao_San_TaskCounter",
-                             self.getAttr("Xiaoshiniudao_San_TaskCounter") + 1)
+                             self.Xiaoshiniudao_San_TaskCounter + 1)
             else:
                 self.setAttr("Xiaoshiniudao_San_TaskCounter", 1)
         if goods_data.data[goodsID]['name'] == "精致宝箱":
             if self.hasAttr("TanxianshandongRenWu_TaskCounter") is True:
                 self.setAttr("TanxianshandongRenWu_TaskCounter",
-                             self.getAttr("TanxianshandongRenWu_TaskCounter") + 1)
+                             self.TanxianshandongRenWu_TaskCounter+ 1)
             else:
                 self.setAttr("TanxianshandongRenWu_TaskCounter", 1)
         if goods_data.data[goodsID]['name'] == "钻石":
             if self.hasAttr("Caijizuanshi_TaskCounter") is True:
                 self.setAttr("Caijizuanshi_TaskCounter",
-                             self.getAttr("Caijizuanshi_TaskCounter") + 1)
+                             self.Caijizuanshi_TaskCounter + 1)
             else:
                 self.setAttr("Caijizuanshi_TaskCounter", 1)
         if goods_data.data[goodsID]['name'] == "宝马":
             if self.hasAttr("Xunzhaobaoma_TaskCounter") is True:
                 self.setAttr("Xunzhaobaoma_TaskCounter",
-                             self.getAttr("Xunzhaobaoma_TaskCounter") + 1)
+                             self.Xunzhaobaoma_TaskCounter + 1)
             else:
                 self.setAttr("Xunzhaobaoma_TaskCounter", 1)
         pass
@@ -124,7 +124,7 @@ class DialogSystem:
         if goods_data.data[goodsID]['name'] == "信":
             if self.hasAttr("Qianlisongqing_TaskCounter") is True:
                 self.setAttr("Qianlisongqing_TaskCounter",
-                             self.getAttr("Qianlisongqing_TaskCounter") + 1)
+                             self.Qianlisongqing_TaskCounter + 1)
             else:
                 self.setAttr("Qianlisongqing_TaskCounter", 1)
         pass
@@ -143,7 +143,7 @@ class DialogSystem:
         npcMailbox = KBEngine.globalData["space_cell_%i" % self.spaceID].requestNpc(npcName)
         if npcMailbox:
             dialog = npcMailbox.requestTask(self)
-            self.client.DoDialog(npcMailbox.getAttr("name"), dialog)
+            self.client.DoDialog(npcMailbox.name, dialog)
         else:
             DEBUG_MSG("npcMailbox is None")
 

@@ -28,7 +28,7 @@ class SkillW(Skill):
                                         {
                                             'entityName': "SkillW_Trigger",
                                             'owner': self.spellCaster,
-                                            "campName": self.spellCaster.getAttr("campName"),
+                                            "campName": self.spellCaster.campName,
                                             'triggerID': 2,
                                             'triggerSize': 4,
                                             'triggerStrategy': self.triggerStrategy

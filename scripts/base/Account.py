@@ -58,11 +58,13 @@ class Account(KBEngine.Proxy):
             ERROR_MSG("Account::__onAvatarCreated:(%i): when character was created, it died as well!" % (self.id))
             return
         avatar.accountEntity = self
+        avatar.cellData["dbid"] = dbid
         avatar.setAvatarName(self.__ACCOUNT_NAME__)
         self.giveClientTo(avatar)
 
     def _onAvatarSaved(self, success, avatar):
         self.avatarDBID = self.avatar.databaseID
+        self.avatar.cellData["dbid"] = self.avatar.databaseID
         self.writeToDB(self._onAccountSaved)
 
     def _onAccountSaved(self, success, account):

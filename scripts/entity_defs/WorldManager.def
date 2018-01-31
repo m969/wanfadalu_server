@@ -1,0 +1,8 @@
+﻿<root>
+	<Implements>
+		<Interface>SpacesManager</Interface>
+		<Interface>RankingListManager</Interface>
+		<Interface>CombatBulletinManager</Interface>
+		<Interface>SectsManager</Interface>
+	</Implements>
+</root>

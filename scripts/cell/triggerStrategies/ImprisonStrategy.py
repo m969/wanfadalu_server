@@ -17,14 +17,14 @@ class ImprisonStrategy(TriggerStrategy):
 
     def execute(self):
         super().execute()
-        if self.otherEntity.getAttr("campName") != self.trigger.owner.getAttr("campName"):
-            if self.otherEntity.getAttr("canReceiveSkill") is True:
+        if self.otherEntity.campName != self.trigger.owner.campName:
+            if self.otherEntity.canReceiveSkill is True:
 
-                if self.otherEntity.getAttr("canMove") is not None:
+                if self.otherEntity.canMove is not None:
                     self.otherEntity.moveToPointSample(self.otherEntity.position, 20)
                     self.otherEntity.setAttr("canMove", False)
 
-                if self.otherEntity.getAttr("canCastSkill") is not None:
+                if self.otherEntity.canCastSkill is not None:
                     self.otherEntity.setAttr("canCastSkill", False)
 
                 self.otherEntity.addSkillControlTimer(

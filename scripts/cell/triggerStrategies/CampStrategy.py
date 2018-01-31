@@ -19,8 +19,8 @@ class CampStrategy(TriggerStrategy):
     def execute(self):
         super().execute()
         if self.otherEntity.getScriptName() == "Avatar":
-            if self.otherEntity.getAttr("campName") != self.trigger.getAttr("campName"):
+            if self.otherEntity.campName != self.trigger.campName:
                 self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
         elif self.otherEntity.getScriptName() == "Trigger":
-            if self.otherEntity.getAttr("campName") != self.trigger.getAttr("campName"):
+            if self.otherEntity.campName != self.trigger.campName:
                 self.otherEntity.destroyEntity()

@@ -13,7 +13,7 @@ class HealthSystem:
 
     def onTimer(self, timerHandle, userData):
         if userData == 21:  # 重生定时器
-            respawnPosition = self.getCurrentSpace().getAttr("respawnPoint")
+            respawnPosition = self.getCurrentSpace().respawnPoint
             DEBUG_MSG(respawnPosition)
             self.position = respawnPosition
             self.HP = self.HP_Max

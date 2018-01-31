@@ -11,8 +11,8 @@ class Pobudeyi(object):
         self.npcName = npcName
         self.npcTaskIndex = npcTaskIndex
         self.owner.setAttr("Pobudeyi_TaskCounter", 0)
-        self.oldTaskCounter = self.owner.getAttr("Pobudeyi_TaskCounter")
+        self.oldTaskCounter = self.owner.Pobudeyi_TaskCounter
 
     def detectTaskCompleteness(self):
-        if self.owner.getAttr("Pobudeyi_TaskCounter") - self.oldTaskCounter >= 1:
+        if self.owner.Pobudeyi_TaskCounter - self.oldTaskCounter >= 1:
             self.owner.setTaskFinish(self.npcName, self.npcTaskIndex, self.selfIndex)

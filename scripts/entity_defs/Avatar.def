@@ -13,6 +13,7 @@
 		<Interface>MagicWeaponSystem</Interface>
 		<Interface>DialogSystem</Interface>
 		<Interface>SectSystem</Interface>
+		<Interface>LingshiSystem</Interface>
 	</Implements>
 	<Properties>
 		<spaceName>

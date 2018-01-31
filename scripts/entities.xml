@@ -7,7 +7,7 @@
 	<Npc hasClient="true" />
 	<Sect />
 	<Space hasClient="true" />
-	<SpacesManager hasClient="true" />
 	<TaskMonument hasClient="true" />
 	<Trigger hasClient="true" />
+	<WorldManager />
 </root>

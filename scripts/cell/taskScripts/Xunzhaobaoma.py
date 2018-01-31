@@ -11,9 +11,9 @@ class Xunzhaobaoma(object):
         self.npcName = npcName
         self.npcTaskIndex = npcTaskIndex
         self.owner.setAttr("Xunzhaobaoma_TaskCounter", 0)
-        self.oldTaskCounter = self.owner.getAttr("Xunzhaobaoma_TaskCounter")
+        self.oldTaskCounter = self.owner.Xunzhaobaoma_TaskCounter
 
 
     def detectTaskCompleteness(self):
-        if self.owner.getAttr("Xunzhaobaoma_TaskCounter") - self.oldTaskCounter >= 1:
+        if self.owner.Xunzhaobaoma_TaskCounter - self.oldTaskCounter >= 1:
             self.owner.setTaskFinish(self.npcName, self.npcTaskIndex, self.selfIndex)

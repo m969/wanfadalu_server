@@ -46,12 +46,12 @@ class Monster(KBEngine.Entity, EntityObject, AI, HealthSystem, SuperPowerSystem,
         HealthSystem.onDie(self, murderer)
         if murderer.hasAttr(self.killerTaskCounterVariableName) is True:
             murderer.setAttr(self.killerTaskCounterVariableName,
-                             murderer.getAttr(self.killerTaskCounterVariableName) + 1)
+                             getattr(murderer, self.killerTaskCounterVariableName) + 1)
         else:
             murderer.setAttr(self.killerTaskCounterVariableName, 1)
         if murderer.hasAttr("Pobudeyi_TaskCounter") is True:
             murderer.setAttr("Pobudeyi_TaskCounter",
-                             murderer.getAttr("Pobudeyi_TaskCounter") + 1)
+                             murderer.Pobudeyi_TaskCounter + 1)
         else:
             murderer.setAttr("Pobudeyi_TaskCounter", 1)
         self.delTimer(self.timerMoveID)

@@ -4,6 +4,8 @@ from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject
 
 
+
+
 class Trigger(KBEngine.Entity, EntityObject):
     def __init__(self):
         KBEngine.Entity.__init__(self)
@@ -18,8 +20,8 @@ class Trigger(KBEngine.Entity, EntityObject):
             self.entityList = {}
             self.delEntityList = []
             self.addTimer(0, 0.1, 1)
-
         DEBUG_MSG("entityName = " + str(self.entityName))
+
 
     def onTimer(self, tid, userArg):
         if userArg == 0:
@@ -29,7 +31,7 @@ class Trigger(KBEngine.Entity, EntityObject):
                 entity = entityInfo["entity"]
                 hasEntered = entityInfo["hasEntered"]
                 if entity is not None:
-                    dist = self.position.distTo(entity.getAttr("position"))
+                    dist = self.position.distTo(entity.position)
                     if dist < self.triggerSize:
                         if hasEntered is False:
                             entityInfo["hasEntered"] = True
@@ -53,16 +55,17 @@ class Trigger(KBEngine.Entity, EntityObject):
                     del self.entityList[entityId]
                     self.delEntityList.remove(entityId)
 
+
     def onEnterTrap(self, other, rangeXZ, rangeY, controllerID, userArg):
         """
         当进入触发器时
         """
         if self.circleTrigger is True:
-            if other.getAttr("id") == self.owner.getAttr("id"):
+            if other.id == self.owner.id:
                 return
-            if self.entityList.get(other.getAttr("id"), None) is not None:
+            if self.entityList.get(other.id, None) is not None:
                 return
-            self.entityList[other.getAttr("id")] = {"entity": other, "hasEntered": False}
+            self.entityList[other.id] = {"entity": other, "hasEntered": False}
             self.triggerControllerID = controllerID
         else:
             if self.triggerStrategy.__class__.__name__ == "dict":
@@ -74,14 +77,16 @@ class Trigger(KBEngine.Entity, EntityObject):
                 self.triggerStrategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
                 self.triggerStrategy.execute()
 
+
     def onLeaveTrap(self, other, rangeXZ, rangeY, controllerID, userArg):
         """
         当离开触发器时
         """
         if self.circleTrigger is True:
-            if self.entityList.get(other.getAttr("id"), None) is None:
+            if self.entityList.get(other.id, None) is None:
                 return
-            self.delEntityList.append(other.getAttr("id"))
+            self.delEntityList.append(other.id)
+
 
     def onWitnessed(self, isWitnessed):
         """
@@ -90,11 +95,13 @@ class Trigger(KBEngine.Entity, EntityObject):
         # DEBUG_MSG("Trigger:onWitnessed")
         self.proximityID = self.addProximity(self.triggerSize, self.triggerSize, 0)
 
+
     def moveToPointSample(self, destination, velocity, distance=0.2):
         """
         移动到某点
         """
         self.moveToPoint(destination, velocity, distance, {}, True, True)
+
 
     def moveToEntitySample(self, destEntityID, velocity, distance=0.1):
         """

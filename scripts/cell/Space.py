@@ -22,7 +22,7 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
         EntityObject.__init__(self)
         SpaceMonsterSystem.__init__(self)
         SpaceNpcSystem.__init__(self)
-        SpaceResourceWarSystem.__init__(self)
+        #SpaceResourceWarSystem.__init__(self)
         SpaceGateWaySystem.__init__(self)
         SpaceArenaSystem.__init__(self)
         KBEngine.globalData["space_%i" % self.spaceID] = self.base

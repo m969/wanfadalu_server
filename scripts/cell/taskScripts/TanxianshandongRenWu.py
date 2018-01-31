@@ -11,8 +11,8 @@ class TanxianshandongRenWu(object):
         self.npcName = npcName
         self.npcTaskIndex = npcTaskIndex
         self.owner.setAttr("TanxianshandongRenWu_TaskCounter", 0)
-        self.oldTaskCounter = self.owner.getAttr("TanxianshandongRenWu_TaskCounter")
+        self.oldTaskCounter = self.owner.TanxianshandongRenWu_TaskCounter
 
     def detectTaskCompleteness(self):
-        if self.owner.getAttr("TanxianshandongRenWu_TaskCounter") - self.oldTaskCounter >= 1:
+        if self.owner.TanxianshandongRenWu_TaskCounter - self.oldTaskCounter >= 1:
             self.owner.setTaskFinish(self.npcName, self.npcTaskIndex, self.selfIndex)

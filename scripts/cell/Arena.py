@@ -53,39 +53,43 @@ class Arena(KBEngine.Entity, EntityObject):
             self.createArenaTrigger()
         if self.contestantList.__len__() >= 2:
             return
-        if evt["avatar"].getDatabaseID() in self.contestantList.keys():
+        if evt["avatar"].dbid in self.contestantList.keys():
             DEBUG_MSG("avatar has in arena")
             return
-        self.contestantList[evt["avatar"].getDatabaseID()] = evt["avatar"]
+        self.contestantList[evt["avatar"].dbid] = evt["avatar"]
         evt["avatar"].onEnterArena(self)
         self.onEvent("avatarDeadEvent").filter(lambda et: et["avatarID"] == evt["avatar"].id).subscribe(on_next=self.onAvatarDead)
 
 
     def requestExitArena(self, evt):
         DEBUG_MSG("Arena:requestExitArena")
-        if not evt["avatar"].getDatabaseID() in self.contestantList.keys():
+        if not evt["avatar"].dbid in self.contestantList.keys():
             DEBUG_MSG("avatar has not in arena")
             return
         if len(self.contestantList) is 2:
-            self.setMatchResult(evt["avatar"].getDatabaseID())
-        del self.contestantList[evt["avatar"].getDatabaseID()]
+            self.setMatchResult(evt["avatar"].dbid)
+        del self.contestantList[evt["avatar"].dbid]
         evt["avatar"].onExitArena(self)
 
 
     def onAvatarDead(self, evt):
         DEBUG_MSG("Arena:onAvatarDead")
-        self.setMatchResult(evt["avatar"].getDatabaseID())
+        self.setMatchResult(evt["avatar"].dbid)
 
 
     def setMatchResult(self, loserDBID):
         DEBUG_MSG("Arena:setMatchResult")
-        for dbid in self.contestantList.keys():
+        winnerDBID = 0
+        DEBUG_MSG(self.contestantList)
+        for dbid in list(self.contestantList.keys()):
             if dbid == loserDBID:
                 loserDBID = dbid
             else:
                 winnerDBID = dbid
         self.contestantList[loserDBID].onMatchEnd(iswin=False)
+        self.contestantList[loserDBID].onExitArena(self)
         self.contestantList[winnerDBID].onMatchEnd(iswin=True)
+        self.contestantList[winnerDBID].onExitArena(self)
         matchResult = {}
         matchResult["winnerInfo"] = {}
         matchResult["loserInfo"] = {}

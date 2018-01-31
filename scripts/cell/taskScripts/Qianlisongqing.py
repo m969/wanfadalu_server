@@ -11,12 +11,12 @@ class Qianlisongqing(object):
         self.npcName = npcName
         self.npcTaskIndex = npcTaskIndex
         self.owner.setAttr("Qianlisongqing_TaskCounter", 0)
-        self.oldTaskCounter = self.owner.getAttr("Qianlisongqing_TaskCounter")
+        self.oldTaskCounter = self.owner.Qianlisongqing_TaskCounter
         # 给予任务者信(17是信id)
         self.owner.giveGoods(17)
 
 
     def detectTaskCompleteness(self):
         #self.owner.setAttr("Qianlisongqing_TaskCounter", 0)
-        if self.owner.getAttr("Qianlisongqing_TaskCounter") >= 1:
+        if self.owner.Qianlisongqing_TaskCounter >= 1:
             self.owner.setTaskFinish(self.npcName, self.npcTaskIndex, self.selfIndex)

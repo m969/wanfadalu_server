@@ -33,7 +33,7 @@ class SkillE(Skill):
                                             {
                                                 'entityName': "SkillE_Trigger",
                                                 'owner': self.spellCaster,
-                                                'campName': self.spellCaster.getAttr("campName"),
+                                                'campName': self.spellCaster.campName,
                                                 'lifeSpans': 2.0,
                                                 'triggerID': 2,
                                                 'triggerSize': 4,

@@ -4,12 +4,15 @@ from KBEDebug import *
 from triggerStrategies.Strategy import Strategy
 
 
+
+
 class TriggerStrategy(Strategy):
     """
     触发器策略
     """
     def __init__(self):
         Strategy.__init__(self)
+
 
     def setInfo(self, trigger=None, otherEntity=None, rangeXZ=None, rangeY=None, controllerID=None, userArg=None):
         """
@@ -22,8 +25,10 @@ class TriggerStrategy(Strategy):
         self.triggerControllerID = controllerID
         self.triggerUserArg = userArg
 
+
     def initializeStrategy(self, strategyData):
         pass
+
 
     def execute(self):
         """

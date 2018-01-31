@@ -11,8 +11,8 @@ class Caijizuanshi(object):
         self.npcName = npcName
         self.npcTaskIndex = npcTaskIndex
         self.owner.setAttr("Caijizuanshi_TaskCounter", 0)
-        self.oldTaskCounter = self.owner.getAttr("Caijizuanshi_TaskCounter")
+        self.oldTaskCounter = self.owner.Caijizuanshi_TaskCounter
 
     def detectTaskCompleteness(self):
-        if self.owner.getAttr("Caijizuanshi_TaskCounter") - self.oldTaskCounter >= 1:
+        if self.owner.Caijizuanshi_TaskCounter - self.oldTaskCounter >= 1:
             self.owner.setTaskFinish(self.npcName, self.npcTaskIndex, self.selfIndex)

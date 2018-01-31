@@ -23,12 +23,12 @@ def onBaseAppReady(isBootstrap):
               os.getenv("KBE_BOOTIDX_GLOBAL")))
     if isBootstrap:
         DEBUG_MSG("isBootstrap")
-        if "SpacesManager" not in KBEngine.globalData.keys():
-            DEBUG_MSG("create SpacesManager")
-            KBEngine.createBaseLocally("SpacesManager", {})
-        if "TaskMonument" not in KBEngine.globalData.keys():
-            DEBUG_MSG("create TaskMonument")
-            KBEngine.createBaseLocally("TaskMonument", {})
+        if "WorldManager" not in KBEngine.globalData.keys():
+            DEBUG_MSG("create WorldManager")
+            KBEngine.createBaseLocally("WorldManager", {})
+        # if "TaskMonument" not in KBEngine.globalData.keys():
+        #     DEBUG_MSG("create TaskMonument")
+        #     KBEngine.createBaseLocally("TaskMonument", {})
 
 
 def onReadyForLogin(isBootstrap):

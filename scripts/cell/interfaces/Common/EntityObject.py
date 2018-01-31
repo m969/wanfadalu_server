@@ -9,14 +9,6 @@ class EntityObject(EventAggregator):
         # DEBUG_MSG("EntityObject:__init__")
         pass
 
-    def hasAttr(self, attr):
-        # DEBUG_MSG("hasAttr : " + attr)
-        return hasattr(self, attr)
-
-    def getAttr(self, attr):
-        # DEBUG_MSG("getAttr : " + attr)
-        return getattr(self, attr, None)
-
     def setAttr(self, attr, value):
         # exec("DEBUG_MSG(self."+attr+")")
         if hasattr(self, attr):
@@ -34,9 +26,6 @@ class EntityObject(EventAggregator):
 
     def getEntityID(self):
         return self.id
-
-    def getDatabaseID(self):
-        return self.base.getDatabaseID()
 
     def getScriptName(self):
         return self.__class__.__name__
