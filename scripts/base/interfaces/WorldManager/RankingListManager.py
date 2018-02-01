@@ -14,6 +14,7 @@ class RankingListManager:
         DEBUG_MSG("RankingListManager:__init__")
         if not hasattr(self, "rankingList"):
             self.rankingList = TRankingList()
+        KBEngine.globalData["RankingListManager"] = self
 
 
     def addNewMatchResult(self, matchResult):

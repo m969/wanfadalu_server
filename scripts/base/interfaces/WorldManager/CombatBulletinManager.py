@@ -5,6 +5,8 @@ import datetime
 import math
 
 
+
+
 class CombatBulletinManager:
     def __init__(self):
         DEBUG_MSG("CombatBulletinManager:__init__")
@@ -18,6 +20,7 @@ class CombatBulletinManager:
             self.addTimer(hourdelta.total_seconds(), 0, 3)
         else:
             self.addTimer(0, 60 * 60, 0)
+
 
     def onTimer(self, timerHandle, userData):
         if userData == 0:
@@ -62,6 +65,7 @@ class CombatBulletinManager:
                 self.addTimer(0, 60 * 60, 0)
             self.delTimer(timerHandle)
 
+
     def getTotalSeconds(self):
         targethour = datetime.timedelta(hours=21)
         now = datetime.datetime.now()
@@ -69,14 +73,18 @@ class CombatBulletinManager:
         hourdelta = targethour - nowhour
         return hourdelta.total_seconds()
 
+
     def calculateHours(self, total_seconds):
         return int(math.floor(float(total_seconds) / 3600))
+
 
     def calculateMinutes(self, total_seconds, lefthours):
         return int((float(total_seconds) - lefthours * 3600) / 60)
 
+
     def calculateSeconds(self, total_seconds, lefthours, leftminutes):
         return int(float(total_seconds) - lefthours * 3600 - leftminutes * 60)
+
 
     def calculateHMS(self, total_seconds):
         lefthours = self.calculateHours(total_seconds)
