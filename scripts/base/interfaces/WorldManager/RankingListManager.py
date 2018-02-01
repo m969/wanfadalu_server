@@ -40,9 +40,11 @@ class RankingListManager:
             loserMatchInfo["matchAmount"] = loserMatchInfo["matchAmount"] + 1
 
 
-    def requestRankingList(self):
+    def requestRankingList(self, avatarCall):
         DEBUG_MSG("RankingListManager:requestRankingList")
+        avatarCall.onRequestRankingListReturn(self.rankingList)
 
 
-    def requestAvatarRanking(self, avatarDBID):
+    def requestAvatarRanking(self, avatarCall, avatarDBID):
         DEBUG_MSG("RankingListManager:requestAvatarRanking")
+        avatarCall.onRequestSelfRankingReturn(self.rankingList[avatarDBID])
