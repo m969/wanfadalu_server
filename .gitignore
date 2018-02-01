@@ -2,8 +2,8 @@
 /kbe/src/_objs
 /kbe/src/ipch
 __pycache__/
-.idea/
-logs/
+.idea
+logs
 *.suo
 *.user
 *.ncb
