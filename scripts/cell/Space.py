@@ -10,6 +10,8 @@ from interfaces.Space.SpaceResourceWarSystem import SpaceResourceWarSystem
 from interfaces.Space.SpaceArenaSystem import SpaceArenaSystem
 
 
+
+
 class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, SpaceResourceWarSystem, SpaceGateWaySystem, SpaceArenaSystem):
     """
     游戏场景，在这里代表野外大地图
@@ -30,6 +32,7 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
         KBEngine.globalData["space_cell_%i" % self.spaceID] = self
         KBEngine.globalData["space_cell_" + self.spaceName] = self
 
+
     def onDestroy(self):
         """
         KBEngine method.
@@ -40,6 +43,7 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
         del KBEngine.globalData["space_cell_" + self.spaceName]
         self.destroySpace()
 
+
     def onEnter(self, entityMailbox):
         """
         进入场景
@@ -47,8 +51,10 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
         DEBUG_MSG('Space::onEnter space[%d] entityID = %i.' % (self.spaceID, entityMailbox.id))
         entityMailbox.cell.onAvatarEnterSpace(self.spaceID, space_data.data[self.cityName]["场景名称"])
 
+
     def onTimer(self, timerHandle, userData):
         SpaceMonsterSystem.onTimer(self, timerHandle, userData)
+
 
     def onLeave(self, entityID):
         """

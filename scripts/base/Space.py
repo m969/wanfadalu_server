@@ -48,7 +48,7 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
 
     def requestTeleport(self, entityMailbox):
         DEBUG_MSG("Space:requestTeleport")
-        entityMailbox.cell.teleportToSpace(self.cell, (0.0, 0.0, 0.0), (0.0, 0.0, 0.0))
+        entityMailbox.cell.teleportToSpace(self.cell, self.spaceData["触发器数据"]["传送门入口点"], (0.0, 0.0, 0.0))
 
 
     def onEnter(self, entityMailbox):

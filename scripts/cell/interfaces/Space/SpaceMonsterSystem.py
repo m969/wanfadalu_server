@@ -6,15 +6,18 @@ import space_data
 from triggerStrategies import *
 
 
+
+
 class SpaceMonsterSystem:
     def __init__(self):
         DEBUG_MSG("SpaceMonsterSystem:__init__")
         self.spaceData = space_data.data[self.cityName]  # 取出自身的场景数据
-        self.addTimer(0, 2, 0)    # 怪物生成定时器 每2秒生成5个
-        self.monsterSpawnCounter = {}
-        self.monsterSpawnPositionList = self.spaceData["怪物数据"]       # 怪物出生点列表
-        for monsterName, monsterSpawnPositionList in self.monsterSpawnPositionList.items():
-            self.monsterSpawnCounter[monsterName] = 0
+        # self.addTimer(0, 2, 0)    # 怪物生成定时器 每2秒生成5个
+        # self.monsterSpawnCounter = {}
+        # self.monsterSpawnPositionList = self.spaceData["怪物数据"]       # 怪物出生点列表
+        # for monsterName, monsterSpawnPositionList in self.monsterSpawnPositionList.items():
+        #     self.monsterSpawnCounter[monsterName] = 0
+
 
     def onTimer(self, timerHandle, userData):
         if userData is 0:
@@ -44,6 +47,7 @@ class SpaceMonsterSystem:
                         self.monsterSpawnCounter[monsterName] = counter
             if finishCounter >= len(self.monsterSpawnPositionList):
                 self.delTimer(timerHandle)
+
 
     def monsterReborn(self, spawnPos, name):
         """

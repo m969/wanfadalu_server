@@ -8,16 +8,10 @@ from KBEDebug import *
 class TeleportSystem:
     def __init__(self):
         DEBUG_MSG("TeleportSystem:__init__")
-        self.counter = 0  # 新场景重置坐标次数计数器
 
 
     def onTimer(self, timerHandle, userData):
-        if userData == 41:  # 进入新场景重置坐标定时器
-            DEBUG_MSG("TeleportSystem : reset position!")
-            self.position = self.newSpacePosition
-            self.counter += 1
-            if self.counter >= 10:
-                self.delTimer(timerHandle)
+        pass
 
 
     def isGoingToTeleport(self, spaceName, gateWayEntrancePosition):
@@ -34,17 +28,19 @@ class TeleportSystem:
         DEBUG_MSG("TeleportSystem:teleportToSpace")
         self.getCurrentSpaceBase().onLeave(self.id)
         self.teleport(spaceCellMailbox, position, direction)
-        self.base.onTeleportSuccess(self.newSpaceName)
-        self.counter = 0
+        #self.base.onTeleportSuccess(self.newSpaceName)
+        #self.counter = 0
         #self.resetPositionTimerHandle = self.addTimer(0.1, 0.2, 41)  # 重置角色坐标计数器
-        self.onAvatarEnterSpace(spaceCellMailbox.spaceID, spaceCellMailbox.spaceName)
+        #self.onAvatarEnterSpace(spaceCellMailbox.spaceID, spaceCellMailbox.spaceName)
 
 
-    def _onTeleportSuccess(self, nearbyEntity):
+    def onTeleportSuccess(self, nearbyEntity):
         DEBUG_MSG("TeleportSystem:onTeleportSuccess")
-        self.base.onTeleportSuccess(self.newSpaceName)
-        self.teleport(None, self.newSpacePosition, (0.0, 0.0, 0.0))
+        #self.base.onTeleportSuccess(self.newSpaceName)
+        #self.teleport(None, self.newSpacePosition, (0.0, 0.0, 0.0))
         self.teleporting = False
+        self.onAvatarEnterSpace(self.spaceID, self.newSpaceName)
+        self.client.Teleport(self.newSpacePosition)
 
 
     def onLeaveSpaceClientInputInValid(self, exposed):
@@ -53,5 +49,5 @@ class TeleportSystem:
 
 
     def onAvatarEnterSpace(self, spaceID, spaceName):
-        DEBUG_MSG("TeleportSystem:onEnterSpace")
+        DEBUG_MSG("TeleportSystem:onAvatarEnterSpace")
         self.client.onMainAvatarEnterSpace(spaceID, spaceName)

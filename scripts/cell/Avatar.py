@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-
 from interfaces.Avatar.CampSystem import CampSystem
 from interfaces.Avatar.ChatChannelSystem import ChatChannelSystem
 from interfaces.Avatar.DialogSystem import DialogSystem
@@ -12,16 +11,19 @@ from interfaces.Avatar.TaskSystem import TaskSystem
 from interfaces.Avatar.MagicWeaponSystem import MagicWeaponSystem
 from interfaces.Avatar.ArenaSystem import ArenaSystem
 from interfaces.Avatar.SectSystem import SectSystem
-
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Common.HealthSystem import HealthSystem
 from interfaces.Common.SkillSystem import SkillSystem
 from interfaces.Common.SuperPowerSystem import SuperPowerSystem
 
 
+
+
 class AvatarState:
     def __init__(self):
         DEBUG_MSG("AvatarState")
+
+
 
 
 class StandState(AvatarState):
@@ -30,10 +32,14 @@ class StandState(AvatarState):
         AvatarState.__init__(self)
 
 
+
+
 class RunState(AvatarState):
     def __init__(self):
         DEBUG_MSG("RunState")
         AvatarState.__init__(self)
+
+
 
 
 class Avatar(KBEngine.Entity,
@@ -69,6 +75,7 @@ class Avatar(KBEngine.Entity,
         ArenaSystem.__init__(self)
         SectSystem.__init__(self)
 
+
     def onTimer(self, timerHandle, userData):
         SuperPowerSystem.onTimer(self, timerHandle, userData)   # 10
         HealthSystem.onTimer(self, timerHandle, userData)       # 20
@@ -76,17 +83,26 @@ class Avatar(KBEngine.Entity,
         TeleportSystem.onTimer(self, timerHandle, userData)     # 40
         SkillSystem.onTimer(self, timerHandle, userData)        # 100
 
+
     def setAvatarName(self, entityName):
         self.entityName = entityName
+
+
+    def onTeleportSuccess(self, nearbyEntity):
+        TeleportSystem.onTeleportSuccess(self, nearbyEntity)
+
 
     def onEnteredCell(self, parameter_list):
         DEBUG_MSG("Avatar:onEnteredCell 1")
 
+
     def onEnteredCell(self, a1, a2):
         DEBUG_MSG("Avatar:onEnteredCell 2")
 
+
     def onEnteredCell(self, a1, a2, a3):
         DEBUG_MSG("Avatar:onEnteredCell 3")
+
 
     def onDestroy(self):
         DEBUG_MSG("Avatar:onCellDestroy")

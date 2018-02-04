@@ -5,7 +5,8 @@
 	<Properties>
 		<sectID>
 			<Type>INT32</Type>
-			<Flags>ALL_CLIENTS</Flags>
+			<Default>0</Default>
+			<Flags>BASE_AND_CLIENT</Flags>
 			<Persistent>true</Persistent>
 		</sectID>
 	</Properties>
