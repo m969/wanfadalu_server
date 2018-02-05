@@ -19,7 +19,7 @@ class ArenaSystem:
 
     def onRequestRankingListReturn(self, rankingList):
         DEBUG_MSG("ArenaSystem:requestRankingList")
-        self.client.onRequestRankingListReturn(rankingList)
+        self.client.OnRequestRankingListReturn(rankingList)
 
 
     def requestSelfRanking(self, exposed):
@@ -31,4 +31,4 @@ class ArenaSystem:
 
     def onRequestSelfRankingReturn(self, rankingInfo):
         DEBUG_MSG("ArenaSystem:onRequestSelfRankingReturn")
-        self.client.onRequestSelfRankingReturn(rankingInfo)
+        self.client.OnRequestSelfRankingReturn(rankingInfo)

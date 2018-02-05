@@ -17,7 +17,17 @@
 		<OnMatchEnd>
 			<Arg>INT32</Arg>
 		</OnMatchEnd>
+		<OnRequestRankingListReturn />
+		<OnRequestSelfRankingReturn>
+			<Arg>AVATAR_MATCH_INFO</Arg>
+		</OnRequestSelfRankingReturn>
 	</ClientMethods>
+	<BaseMethods>
+		<requestRankingList>
+			<Exposed />
+		</requestRankingList>
+		<requestSelfRanking />
+	</BaseMethods>
 	<CellMethods>
 		<requestEnterArena>
 			<Exposed />
