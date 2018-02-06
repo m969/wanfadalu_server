@@ -2,7 +2,7 @@
 
 data = \
     {
-        1: { "spaceID": 1, '场景名称': 'MuLingCunSpace', '城池名称': '木灵村', '重生点': (123.0, 0.0, 96.0), 
+        1: { "spaceUID": 1, 'spaceName': 'MuLingCunSpace', 'cityName': '木灵村', '重生点': (123.0, 0.0, 96.0), 
                 '触发器数据':
                     {
                         1:
@@ -21,7 +21,7 @@ data = \
                         '排异强制坐标': (200.0, 0.0, 110.0)
                     }
             },
-        2: { "spaceID": 2, '场景名称': 'YunLingZongSpace', '城池名称': '云灵宗', '重生点': (50.0, 0.0, 100.0),
+        2: { "spaceUID": 2, 'spaceName': 'YunLingZongSpace', 'cityName': '云灵宗', '重生点': (50.0, 0.0, 100.0),
                 '触发器数据':
                     {
                         1:
