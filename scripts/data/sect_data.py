@@ -2,5 +2,5 @@
 
 data = \
 {
-    1:{ "sectID": 1, "sectName": "云灵宗", "spaceID": 2 }
+    1:{ "sectID": 1, "sectName": "云灵宗", "spaceUID": 2 }
 }

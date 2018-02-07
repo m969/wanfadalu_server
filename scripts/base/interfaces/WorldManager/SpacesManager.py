@@ -94,12 +94,28 @@ class SpacesManager:
         del KBEngine.globalData["allAvatarBases"][id]
 
 
+    def loginToSpace(self, spaceUID, entityMailbox):
+        """
+        登录到Space
+        """
+        DEBUG_MSG("SpacesManager:loginToSpace")
+        KBEngine.globalData["space_base_%i" % spaceUID].loginSpace(entityMailbox)
+
+
+    def teleportToSpace(self, spaceUID, gateWayEntrancePosition, entityMailbox):
+        """
+        传送到Space
+        """
+        DEBUG_MSG("SpacesManager:teleportToSpace")
+        entityMailbox.cell.isGoingToTeleport(spaceUID, gateWayEntrancePosition)
+
+
     def loginToSpaceByName(self, spaceName, entityMailbox):
         """
         通过Space名称登录到Space
         """
         DEBUG_MSG("SpacesManager:loginToSpaceByName")
-        KBEngine.globalData["space_" + spaceName].loginSpace(entityMailbox)
+        KBEngine.globalData["space_base_%s" % spaceName].loginSpace(entityMailbox)
 
 
     def teleportToSpaceByName(self, spaceName, gateWayEntrancePosition, entityMailbox):

@@ -24,18 +24,20 @@ class RankingListManager:
         winnerMatchInfo = self.rankingList.get(winnerDBID)
         loserMatchInfo = self.rankingList.get(loserDBID)
         if winnerMatchInfo is None:
-            self.rankingList[winnerDBID] = TAvatarMatchInfo()
-            self.rankingList[winnerDBID]["avatarDBID"] = winnerDBID
-            self.rankingList[winnerDBID]["matchAmount"] = 1
-            self.rankingList[winnerDBID]["winAmount"] = 1
+            winnerMatchInfo = TAvatarMatchInfo()
+            winnerMatchInfo["avatarDBID"] = winnerDBID
+            winnerMatchInfo["matchAmount"] = 1
+            winnerMatchInfo["winAmount"] = 1
+            self.rankingList[winnerDBID] = winnerMatchInfo
         else:
             winnerMatchInfo["matchAmount"] = winnerMatchInfo["matchAmount"] + 1
             winnerMatchInfo["winAmount"] = winnerMatchInfo["winAmount"] + 1
         if loserMatchInfo is None:
-            self.rankingList[loserDBID] = TAvatarMatchInfo()
-            self.rankingList[loserDBID]["avatarDBID"] = loserDBID
-            self.rankingList[loserDBID]["matchAmount"] = 1
-            self.rankingList[loserDBID]["winAmount"] = 0
+            loserMatchInfo = TAvatarMatchInfo()
+            loserMatchInfo["avatarDBID"] = loserDBID
+            loserMatchInfo["matchAmount"] = 1
+            loserMatchInfo["winAmount"] = 0
+            self.rankingList[loserDBID] = loserMatchInfo
         else:
             loserMatchInfo["matchAmount"] = loserMatchInfo["matchAmount"] + 1
 

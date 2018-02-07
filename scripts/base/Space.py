@@ -19,6 +19,9 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
         DEBUG_MSG("Space:__init__")
         KBEngine.Base.__init__(self)
         EntityObject.__init__(self)
+        if not hasattr(self, "spaceUID"):
+            self.spaceUID = self.cellData["spaceUID"]
+        self.spaceData = space_data.data[self.spaceUID]
         SpaceMonsterSystem.__init__(self)
         SpaceNpcSystem.__init__(self)
         SpaceResourceWarSystem.__init__(self)
@@ -28,7 +31,6 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
             self.spaceName = self.cellData["spaceName"]
         if not hasattr(self, "cityName"):
             self.cityName = self.cellData["cityName"]
-        self.spaceData = space_data.data[self.cityName]     # 取出自身的场景数据
         self.createInNewSpace(None)
 
 

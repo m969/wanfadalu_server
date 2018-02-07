@@ -5,7 +5,7 @@
 	<Camp hasClient="true" />
 	<Monster hasClient="true" />
 	<Npc hasClient="true" />
-	<Sect />
+	<Sect hasClient="true" />
 	<Space hasClient="true" />
 	<TaskMonument hasClient="true" />
 	<Trigger hasClient="true" />

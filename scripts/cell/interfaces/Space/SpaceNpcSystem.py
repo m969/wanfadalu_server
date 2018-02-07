@@ -9,8 +9,6 @@ import space_data
 class SpaceNpcSystem:
     def __init__(self):
         DEBUG_MSG("SpaceNpcSystem:__init__")
-
-        self.spaceData = space_data.data[self.cityName]  # 取出自身的场景数据
         # self.npcList = {}
         # self.npcsData = self.spaceData["Npc数据"]      # 取出场景Npc数据
         # for npcName, npcData in self.npcsData.items():

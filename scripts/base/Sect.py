@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 import space_data
+import sect_data
 from KBEDebug import *
 import datetime
 import math
@@ -14,6 +15,7 @@ class Sect(KBEngine.Base, EntityObject):
         DEBUG_MSG("Sect:__init__")
         KBEngine.Base.__init__(self)
         KBEngine.globalData["sect_%i" % self.sectID] = self
+        self.sectData = sect_data.data[self.sectID]
         self.memberList = []
 
 

@@ -19,7 +19,7 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
     def __init__(self):
         DEBUG_MSG("Space:cell:__init__ " + str(self.spaceID) + " " + str(self.id) + " " + self.spaceName)
         KBEngine.Entity.__init__(self)
-        self.spaceData = space_data.data[self.cityName]     # 取出自身的场景数据
+        self.spaceData = space_data.data[self.spaceUID]     # 取出自身的场景数据
         self.respawnPoint = self.spaceData["重生点"]
         EntityObject.__init__(self)
         SpaceMonsterSystem.__init__(self)
@@ -27,20 +27,23 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
         #SpaceResourceWarSystem.__init__(self)
         SpaceGateWaySystem.__init__(self)
         SpaceArenaSystem.__init__(self)
-        KBEngine.globalData["space_%i" % self.spaceID] = self.base
-        KBEngine.globalData["space_" + self.spaceName] = self.base
+        KBEngine.globalData["space_base_%i" % self.spaceID] = self.base
         KBEngine.globalData["space_cell_%i" % self.spaceID] = self
-        KBEngine.globalData["space_cell_" + self.spaceName] = self
+        KBEngine.globalData["space_base_%i" % self.spaceUID] = self.base
+        KBEngine.globalData["space_cell_%i" % self.spaceUID] = self
+        #
+        KBEngine.globalData["space_base_%s" % self.spaceName] = self.base
 
 
     def onDestroy(self):
         """
-        KBEngine method.
         """
-        del KBEngine.globalData["space_%i" % self.spaceID]
-        del KBEngine.globalData["space_" + self.spaceName]
+        del KBEngine.globalData["space_base_%i" % self.spaceID]
         del KBEngine.globalData["space_cell_%i" % self.spaceID]
-        del KBEngine.globalData["space_cell_" + self.spaceName]
+        del KBEngine.globalData["space_base_%i" % self.spaceUID]
+        del KBEngine.globalData["space_cell_%i" % self.spaceUID]
+        #
+        del KBEngine.globalData["space_base_%s" % self.spaceName]
         self.destroySpace()
 
 
