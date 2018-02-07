@@ -1,7 +1,7 @@
 ﻿<root>
 	<Properties>
 		<sectDBIDList>
-			<Type>DBID_LIST</Type>
+			<Type>ID_DBID_MAP_LIST</Type>
 			<Flags>BASE</Flags>
 			<Persistent>true</Persistent>
 		</sectDBIDList>

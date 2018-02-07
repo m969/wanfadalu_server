@@ -40,6 +40,9 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
 
     def loginSpace(self, entityMailbox):
         DEBUG_MSG("Space:loginSpace")
+        if self.cell is None:
+            WARNING_MSG("space cell is None")
+            return
         entityMailbox.createCell(self.cell)
         self.onEnter(entityMailbox)
 
@@ -55,8 +58,7 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
 
     def onEnter(self, entityMailbox):
         DEBUG_MSG("Space:onEnter")
-        if self.cell is not None:
-            self.cell.onEnter(entityMailbox)
+        self.cell.onEnter(entityMailbox)
 
 
     def onLeave(self, entityID):

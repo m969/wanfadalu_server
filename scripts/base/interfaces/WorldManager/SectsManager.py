@@ -21,7 +21,7 @@ class SectsManager:
             if sectID in self.sectDBIDList.keys():
                 KBEngine.createBaseFromDBID("Sect", self.sectDBIDList[sectID]["dbid"], self.__sectCreateCallback)
             else:
-                sect = KBEngine.createBaseLocally("Sect", {"sectName": sectData["sectName"], "sectID": sectID})
+                sect = KBEngine.createBaseLocally("Sect", {"sectName": sectData["sectName"], "sectID": sectID, "position": sectData["position"]})
                 sect.writeToDB(self.__onSectSaved)
                 self.sectList[sect.sectID] = sect
 

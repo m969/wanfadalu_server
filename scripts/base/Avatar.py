@@ -55,8 +55,8 @@ class Avatar(KBEngine.Proxy,
 
 
     def onEntitiesEnabled(self):
-        DEBUG_MSG("Avatar:onEntitiesEnabled:" + self.spaceName)
-        KBEngine.globalData["SpacesManager"].loginToSpaceByName(self.spaceName, self)
+        DEBUG_MSG("Avatar:onEntitiesEnabled")
+        KBEngine.globalData["SpacesManager"].loginToSpace(self.spaceUID, self)
         KBEngine.globalData["SpacesManager"].addNewAvatar(self.id, self)
 
 

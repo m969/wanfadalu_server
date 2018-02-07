@@ -1,15 +1,10 @@
 ﻿<root>
 	<Properties>
-		<muLingCunSpaceDBID>
-			<Type>DBID</Type>
+		<spaceDBIDList>
+			<Type>ID_DBID_MAP_LIST</Type>
 			<Flags>BASE</Flags>
 			<Persistent>true</Persistent>
-		</muLingCunSpaceDBID>
-		<yunLingZongSpaceDBID>
-			<Type>DBID</Type>
-			<Flags>BASE</Flags>
-			<Persistent>true</Persistent>
-		</yunLingZongSpaceDBID>
+		</spaceDBIDList>
 	</Properties>
 	<BaseMethods>
 		<loginToSpaceByName>

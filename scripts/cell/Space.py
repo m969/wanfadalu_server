@@ -52,7 +52,7 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
         进入场景
         """
         DEBUG_MSG('Space::onEnter space[%d] entityID = %i.' % (self.spaceID, entityMailbox.id))
-        entityMailbox.cell.onAvatarEnterSpace(self.spaceID, space_data.data[self.cityName]["场景名称"])
+        entityMailbox.cell.onAvatarEnterSpace(self.spaceID, self.spaceName)
 
 
     def onTimer(self, timerHandle, userData):

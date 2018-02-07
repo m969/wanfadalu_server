@@ -25,20 +25,6 @@ class SpacesManager:
                 space = KBEngine.createBaseLocally("Space", {"spaceUID": spaceUID, "cityName": spaceData["cityName"], "spaceName": spaceData["spaceName"]})
                 space.writeToDB(self.__onSpaceSaved)
                 self.spaceList[spaceUID] = space
-        # if self.muLingCunSpaceDBID:
-        #     DEBUG_MSG("createBaseFromDBID muLingCunSpaceDBID")
-        #     KBEngine.createBaseFromDBID("Space", self.muLingCunSpaceDBID, self._muLingCunSpaceCreateCallback)
-        # else:
-        #     DEBUG_MSG("createBaseLocally muLingCunSpace")
-        #     self.muLingCunSpace = KBEngine.createBaseLocally("Space", {"cityName": "木灵村", "spaceName": "MuLingCunSpace"})
-        #     self.muLingCunSpace.writeToDB(self._onMuLingCunSpaceSaved)
-        # if self.yunLingZongSpaceDBID:
-        #     DEBUG_MSG("createBaseFromDBID yunLingZongSpaceDBID")
-        #     KBEngine.createBaseFromDBID("Space", self.yunLingZongSpaceDBID, self._yunLingZongSpaceCreateCallback)
-        # else:
-        #     DEBUG_MSG("createBaseLocally yunLingZongSpace")
-        #     self.yunLingZongSpace = KBEngine.createBaseLocally("Space", {"cityName": "云灵宗", "spaceName": "YunLingZongSpace"})
-        #     self.yunLingZongSpace.writeToDB(self._onYunLingZongSpaceSaved)
 
 
     def __onSpaceSaved(self, success, space):
@@ -48,19 +34,8 @@ class SpacesManager:
         self.writeToDB(self._onSpacesManagerSaved, True)
 
 
-    # def _onMuLingCunSpaceSaved(self, success, space):
-    #     self.muLingCunSpaceDBID = space.databaseID
-    #     self.writeToDB(self._onSpacesManagerSaved, True)
-
-
-    # def _onYunLingZongSpaceSaved(self, success, space):
-    #     self.yunLingZongSpaceDBID = space.databaseID
-    #     self.writeToDB(self._onSpacesManagerSaved, True)
-
-
     def _onSpacesManagerSaved(self, success, spacesManager):
         DEBUG_MSG("SpacesManager:_onSpacesManagerSaved")
-        DEBUG_MSG(spacesManager.databaseID)
 
 
     def __onSpaceCreateCallback(self, baseRef, dbid, wasActive):
@@ -68,20 +43,6 @@ class SpacesManager:
             self.spaceList[baseRef.spaceUID] = baseRef
         else:
             DEBUG_MSG("space baseRef is None")
-
-
-    # def _muLingCunSpaceCreateCallback(self, baseRef, dbid, wasActive):
-    #     if baseRef:
-    #         self.muLingCunSpace = baseRef
-    #     else:
-    #         DEBUG_MSG("_muLingCunSpaceCreateCallback baseRef is None")
-
-
-    # def _yunLingZongSpaceCreateCallback(self, baseRef, dbid, wasActive):
-    #     if baseRef:
-    #         self.yunLingZongSpace = baseRef
-    #     else:
-    #         DEBUG_MSG("_yunLingZongSpaceCreateCallback baseRef is None")
 
 
     def addNewAvatar(self, id, avatar):

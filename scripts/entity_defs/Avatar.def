@@ -16,12 +16,12 @@
 		<Interface>LingshiSystem</Interface>
 	</Implements>
 	<Properties>
-		<spaceName>
-			<Type>UNICODE</Type>
-			<Default>MuLingCunSpace</Default>
+		<spaceUID>
+			<Type>INT32</Type>
+			<Default>1</Default>
 			<Flags>BASE_AND_CLIENT</Flags>
 			<Persistent>true</Persistent>
-		</spaceName>
+		</spaceUID>
 		<lastOnlineTime>
 			<Type>INT32</Type>
 			<Flags>CELL_PRIVATE</Flags>

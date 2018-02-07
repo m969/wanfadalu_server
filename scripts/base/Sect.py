@@ -17,6 +17,12 @@ class Sect(KBEngine.Base, EntityObject):
         KBEngine.globalData["sect_%i" % self.sectID] = self
         self.sectData = sect_data.data[self.sectID]
         self.memberList = []
+        KBEngine.globalData["space_base_%i" % self.sectData["spaceUID"]].loginSpace(self)
+
+
+    def createCell(self, space):
+        DEBUG_MSG("Sect:createCell")
+        self.createCellEntity(space)
 
 
     def requestJoinSect(self, avatarCall):
