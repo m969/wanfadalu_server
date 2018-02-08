@@ -38,7 +38,7 @@
 		</spRevertStrength>
 		<mspRevertStrength>
 			<Type>INT32</Type>
-			<Default>2</Default>
+			<Default>20</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</mspRevertStrength>

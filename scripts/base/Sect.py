@@ -25,7 +25,18 @@ class Sect(KBEngine.Base, EntityObject):
         self.createCellEntity(space)
 
 
-    def requestJoinSect(self, avatarCall):
+    def onGetCell(self):
+        DEBUG_MSG("Sect:onGetCell")
+
+
+    def onLoseCell(self):
+        DEBUG_MSG("Sect:onLoseCell")
+        self.destroy()
+
+
+    def requestJoinSect(self, avatarCall, avatarDBID):
         DEBUG_MSG("Sect:requestJoinSect")
+        if avatarDBID in self.memberList:
+            return
         self.memberList.append(avatarCall.id)
         avatarCall.onJoinSectResult(self.sectID, 1)

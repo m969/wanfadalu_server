@@ -73,7 +73,7 @@ class Avatar(KBEngine.Proxy,
 
 
     def onGetCell(self):
-        DEBUG_MSG("onGetCell")
+        DEBUG_MSG("Avatar:onGetCell")
 
 
     def onLoseCell(self):

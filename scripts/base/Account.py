@@ -26,12 +26,12 @@ class Account(KBEngine.Proxy):
                 self.avatar.cellData["position"] = (120.4, 0.44, 90.6)
                 self.avatar.cellData["direction"] = (0.0, 0.0, 0.0)
                 self.avatar.cellData["entityName"] = self.__ACCOUNT_NAME__
-                campNumber = random.randint(0, 1)
-                DEBUG_MSG("campNumber " + str(campNumber))
-                if campNumber == 0:
-                    self.avatar.cellData["campName"] = "蓝营"
-                if campNumber == 1:
-                    self.avatar.cellData["campName"] = "红营"
+                # campNumber = random.randint(0, 1)
+                # DEBUG_MSG("campNumber " + str(campNumber))
+                # if campNumber == 0:
+                #     self.avatar.cellData["campName"] = "蓝营"
+                # if campNumber == 1:
+                #     self.avatar.cellData["campName"] = "红营"
                 self.avatar.writeToDB(self._onAvatarSaved)
                 self.giveClientTo(self.avatar)
         else:
