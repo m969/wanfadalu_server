@@ -1,1 +1,9 @@
-﻿<root />
+﻿<root>
+	<Properties>
+		<SpaceArenaSystem>
+			<Type>BLOB</Type>
+			<Flags>CELL_PRIVATE</Flags>
+			<Persistent>false</Persistent>
+		</SpaceArenaSystem>
+	</Properties>
+</root>

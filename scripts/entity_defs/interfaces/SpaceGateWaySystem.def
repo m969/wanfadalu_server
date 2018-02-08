@@ -1,1 +1,9 @@
-﻿<root />
+﻿<root>
+	<Properties>
+		<SpaceGateWaySystem>
+			<Type>BLOB</Type>
+			<Flags>CELL_PRIVATE</Flags>
+			<Persistent>false</Persistent>
+		</SpaceGateWaySystem>
+	</Properties>
+</root>

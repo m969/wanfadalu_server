@@ -27,32 +27,32 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
         #SpaceResourceWarSystem.__init__(self)
         SpaceGateWaySystem.__init__(self)
         SpaceArenaSystem.__init__(self)
-        KBEngine.globalData["space_base_%i" % self.spaceID] = self.base
-        KBEngine.globalData["space_cell_%i" % self.spaceID] = self
-        KBEngine.globalData["space_base_%i" % self.spaceUID] = self.base
-        KBEngine.globalData["space_cell_%i" % self.spaceUID] = self
+        KBEngine.globalData["space_base_spaceID_%i" % self.spaceID] = self.base
+        KBEngine.globalData["space_cell_spaceID_%i" % self.spaceID] = self
+        # KBEngine.globalData["space_base_%i" % self.spaceUID] = self.base
+        KBEngine.globalData["space_cell_spaceUID_%i" % self.spaceUID] = self
         #
-        KBEngine.globalData["space_base_%s" % self.spaceName] = self.base
+        # KBEngine.globalData["space_base_%s" % self.spaceName] = self.base
 
 
     def onDestroy(self):
         """
         """
-        del KBEngine.globalData["space_base_%i" % self.spaceID]
-        del KBEngine.globalData["space_cell_%i" % self.spaceID]
-        del KBEngine.globalData["space_base_%i" % self.spaceUID]
-        del KBEngine.globalData["space_cell_%i" % self.spaceUID]
+        del KBEngine.globalData["space_base_spaceID_%i" % self.spaceID]
+        del KBEngine.globalData["space_cell_spaceID_%i" % self.spaceID]
+        # del KBEngine.globalData["space_base_%i" % self.spaceUID]
+        del KBEngine.globalData["space_cell_spaceUID_%i" % self.spaceUID]
         #
-        del KBEngine.globalData["space_base_%s" % self.spaceName]
+        # del KBEngine.globalData["space_base_%s" % self.spaceName]
         self.destroySpace()
 
 
-    def onEnter(self, entityMailbox):
+    def onEnter(self, entityCellCall):
         """
         进入场景
         """
-        DEBUG_MSG('Space::onEnter space[%d] entityID = %i.' % (self.spaceID, entityMailbox.id))
-        entityMailbox.cell.onAvatarEnterSpace(self.spaceID, self.spaceName)
+        DEBUG_MSG('Space::onEnter space[%d] entityID = %i.' % (self.spaceID, entityCellCall.id))
+        entityCellCall.onEntityEnterSpace(self.spaceID, self.spaceName)
 
 
     def onTimer(self, timerHandle, userData):

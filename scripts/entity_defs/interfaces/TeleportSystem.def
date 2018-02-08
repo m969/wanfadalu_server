@@ -10,10 +10,10 @@
 		</Teleport>
 	</ClientMethods>
 	<CellMethods>
-		<onAvatarEnterSpace>
+		<onEntityEnterSpace>
 			<Arg>INT32</Arg>
 			<Arg>UNICODE</Arg>
-		</onAvatarEnterSpace>
+		</onEntityEnterSpace>
 		<onLeaveSpaceClientInputInValid>
 			<Exposed />
 		</onLeaveSpaceClientInputInValid>

@@ -31,34 +31,42 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
             self.spaceName = self.cellData["spaceName"]
         if not hasattr(self, "cityName"):
             self.cityName = self.cellData["cityName"]
+        KBEngine.globalData["space_base_spaceUID_%i" % self.spaceUID] = self
+        KBEngine.globalData["space_base_spaceName_%s" % self.spaceName] = self
+        self.loginQueue = []
         self.createInNewSpace(None)
 
 
     def onGetCell(self):
         DEBUG_MSG("Space:onGetCell")
+        KBEngine.globalData["SpacesManager"].onSpaceGetCell(self.spaceUID)
+        # for entityBaseCall in self.loginQueue:
+        #     self.loginSpace(entityBaseCall)
+        # self.loginQueue = []
 
 
-    def loginSpace(self, entityMailbox):
+    def loginSpace(self, entityBaseCall):
         DEBUG_MSG("Space:loginSpace")
-        if self.cell is None:
-            WARNING_MSG("space cell is None")
-            return
-        entityMailbox.createCell(self.cell)
-        self.onEnter(entityMailbox)
+        # if self.cell is None:
+        #     WARNING_MSG("space cell is None")
+        #     self.loginQueue.append(entityBaseCall)
+        #     return
+        entityBaseCall.createCell(self.cell)
+        self.onEnter(entityBaseCall)
 
 
     def logoutSpace(self, entityID):
         self.onLeave(entityID)
 
 
-    def requestTeleport(self, entityMailbox):
+    def requestTeleport(self, entityBaseCall):
         DEBUG_MSG("Space:requestTeleport")
-        entityMailbox.cell.teleportToSpace(self.cell, self.spaceData["触发器数据"]["传送门入口点"], (0.0, 0.0, 0.0))
+        entityBaseCall.cell.teleportToSpace(self.cell, self.spaceData["触发器数据"]["传送门入口点"], (0.0, 0.0, 0.0))
 
 
-    def onEnter(self, entityMailbox):
+    def onEnter(self, entityBaseCall):
         DEBUG_MSG("Space:onEnter")
-        self.cell.onEnter(entityMailbox)
+        # self.cell.onEnter(entityBaseCall)
 
 
     def onLeave(self, entityID):

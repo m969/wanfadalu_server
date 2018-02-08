@@ -1,1 +1,9 @@
-﻿<root />
+﻿<root>
+	<Properties>
+		<SpaceNpcSystem>
+			<Type>BLOB</Type>
+			<Flags>CELL_PRIVATE</Flags>
+			<Persistent>false</Persistent>
+		</SpaceNpcSystem>
+	</Properties>
+</root>

@@ -10,4 +10,10 @@
 			<Persistent>true</Persistent>
 		</sectID>
 	</Properties>
+	<CellMethods>
+		<onEntityEnterSpace>
+			<Arg>INT32</Arg>
+			<Arg>UNICODE</Arg>
+		</onEntityEnterSpace>
+	</CellMethods>
 </root>

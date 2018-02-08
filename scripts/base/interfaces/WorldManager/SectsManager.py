@@ -17,6 +17,10 @@ class SectsManager:
         if not hasattr(self, "sectDBIDList"):
             self.sectDBIDList = TIdDbidMapList()
         self.sectList = {}
+
+
+    def onAllSpacesGetCell(self):
+        DEBUG_MSG("SectsManager:onAllSpacesGetCell")
         for (sectID, sectData) in sect_data.data.items():
             if sectID in self.sectDBIDList.keys():
                 KBEngine.createBaseFromDBID("Sect", self.sectDBIDList[sectID]["dbid"], self.__sectCreateCallback)

@@ -18,6 +18,7 @@ class SpacesManager:
         if not hasattr(self, "spaceDBIDList"):
             self.spaceDBIDList = TIdDbidMapList()
         self.spaceList = {}
+        self.spaceCreateCounter = 0
         for spaceUID, spaceData in space_data.data.items():
             if spaceUID in self.spaceDBIDList.keys():
                 KBEngine.createBaseFromDBID("Space", self.spaceDBIDList[spaceUID]["dbid"], self.__onSpaceCreateCallback)
@@ -31,11 +32,11 @@ class SpacesManager:
         self.spaceDBIDList[space.spaceUID] = TIdDbidMap()
         self.spaceDBIDList[space.spaceUID]["id"] = space.spaceUID
         self.spaceDBIDList[space.spaceUID]["dbid"] = space.databaseID
-        self.writeToDB(self._onSpacesManagerSaved, True)
+        self.writeToDB(self.__onSpacesManagerSaved, True)
 
 
-    def _onSpacesManagerSaved(self, success, spacesManager):
-        DEBUG_MSG("SpacesManager:_onSpacesManagerSaved")
+    def __onSpacesManagerSaved(self, success, spacesManager):
+        DEBUG_MSG("SpacesManager:__onSpacesManagerSaved")
 
 
     def __onSpaceCreateCallback(self, baseRef, dbid, wasActive):
@@ -43,6 +44,13 @@ class SpacesManager:
             self.spaceList[baseRef.spaceUID] = baseRef
         else:
             DEBUG_MSG("space baseRef is None")
+
+
+    def onSpaceGetCell(self, spaceUID):
+        DEBUG_MSG("SpacesManager:onSpaceGetCell")
+        self.spaceCreateCounter = self.spaceCreateCounter + 1
+        if self.spaceCreateCounter >= len(space_data.data):
+            self.onAllSpacesGetCell()
 
 
     def addNewAvatar(self, id, avatar):
@@ -60,7 +68,7 @@ class SpacesManager:
         登录到Space
         """
         DEBUG_MSG("SpacesManager:loginToSpace")
-        KBEngine.globalData["space_base_%i" % spaceUID].loginSpace(entityMailbox)
+        KBEngine.globalData["space_base_spaceUID_%i" % spaceUID].loginSpace(entityMailbox)
 
 
     def teleportToSpace(self, spaceUID, gateWayEntrancePosition, entityMailbox):

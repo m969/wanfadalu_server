@@ -1,9 +1,9 @@
 ﻿<root>
 	<Properties>
-		<define>
+		<CombatBulletinManager>
 			<Type>BLOB</Type>
 			<Flags>CELL_PRIVATE</Flags>
 			<Persistent>false</Persistent>
-		</define>
+		</CombatBulletinManager>
 	</Properties>
 </root>

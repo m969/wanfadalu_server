@@ -1,1 +1,9 @@
-﻿<root />
+﻿<root>
+	<Properties>
+		<SpaceMonsterSystem>
+			<Type>BLOB</Type>
+			<Flags>CELL_PRIVATE</Flags>
+			<Persistent>false</Persistent>
+		</SpaceMonsterSystem>
+	</Properties>
+</root>

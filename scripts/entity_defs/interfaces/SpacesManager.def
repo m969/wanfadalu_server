@@ -30,5 +30,8 @@
 		<delAvatar>
 			<Arg>INT32</Arg>
 		</delAvatar>
+		<onSpaceGetCell>
+			<Arg>INT32</Arg>
+		</onSpaceGetCell>
 	</BaseMethods>
 </root>

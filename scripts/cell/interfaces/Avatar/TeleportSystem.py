@@ -8,6 +8,7 @@ from KBEDebug import *
 class TeleportSystem:
     def __init__(self):
         DEBUG_MSG("TeleportSystem:__init__")
+        KBEngine.globalData["space_cell_spaceID_%i" % self.spaceID].onEnter(self)
 
 
     def onTimer(self, timerHandle, userData):
@@ -48,6 +49,6 @@ class TeleportSystem:
         KBEngine.globalData["space_" + self.newSpaceName].requestTeleport(self.base)
 
 
-    def onAvatarEnterSpace(self, spaceID, spaceName):
-        DEBUG_MSG("TeleportSystem:onAvatarEnterSpace")
+    def onEntityEnterSpace(self, spaceID, spaceName):
+        DEBUG_MSG("TeleportSystem:onEntityEnterSpace")
         self.client.onMainAvatarEnterSpace(spaceID, spaceName)

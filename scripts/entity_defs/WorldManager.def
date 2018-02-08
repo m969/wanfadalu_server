@@ -5,4 +5,11 @@
 		<Interface>CombatBulletinManager</Interface>
 		<Interface>SectsManager</Interface>
 	</Implements>
+	<Properties>
+		<WorldManager>
+			<Type>BLOB</Type>
+			<Flags>CELL_PRIVATE</Flags>
+			<Persistent>false</Persistent>
+		</WorldManager>
+	</Properties>
 </root>
