@@ -6,5 +6,11 @@
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</sectID>
+		<sectID_b>
+			<Type>INT32</Type>
+			<Default>0</Default>
+			<Flags>BASE</Flags>
+			<Persistent>true</Persistent>
+		</sectID_b>
 	</Properties>
 </root>

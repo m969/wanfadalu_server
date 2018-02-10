@@ -1,9 +1,0 @@
-﻿<root>
-	<Properties>
-		<define>
-			<Type>BLOB</Type>
-			<Flags>CELL_PRIVATE</Flags>
-			<Persistent>false</Persistent>
-		</define>
-	</Properties>
-</root>
