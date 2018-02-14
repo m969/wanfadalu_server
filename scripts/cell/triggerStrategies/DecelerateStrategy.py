@@ -18,14 +18,13 @@ class DecelerateStrategy(TriggerStrategy):
     def execute(self):
         super().execute()
         DEBUG_MSG("topSpeed " + str(self.otherEntity.topSpeed))
-        if self.otherEntity.campName != self.trigger.owner.campName:
-            if self.otherEntity.canReceiveSkill is True:
-                if self.otherEntity.canMove is not None:
-                    self.otherEntity.setAttr("topSpeed", self.otherEntity.topSpeed - 4)
-                self.otherEntity.addSkillControlTimer(
-                    "DecelerateCancelTimer",
-                    3,
-                    0,
-                    "self.topSpeed += 4\n" +
-                    "DEBUG_MSG('DecelerateCancelTimer scriptString')",
-                    "onceOperation")
+        if self.otherEntity.canReceiveSkill is True:
+            if self.otherEntity.canMove is not None:
+                self.otherEntity.setAttr("topSpeed", self.otherEntity.topSpeed - 4)
+            self.otherEntity.addSkillControlTimer(
+                "DecelerateCancelTimer",
+                3,
+                0,
+                "self.topSpeed += 4\n" +
+                "DEBUG_MSG('DecelerateCancelTimer scriptString')",
+                "onceOperation")

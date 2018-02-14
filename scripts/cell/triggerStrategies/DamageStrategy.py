@@ -18,8 +18,5 @@ class DamageStrategy(TriggerStrategy):
 
     def execute(self):
         super().execute()
-        if not hasattr(self.otherEntity, "campName"):
-            return
-        if self.otherEntity.campName != self.trigger.owner.campName:
-            if self.otherEntity.canDamage is True:
-                self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
+        if self.otherEntity.canDamage is True:
+            self.otherEntity.receiveDamage(self.trigger.owner, self.damage)

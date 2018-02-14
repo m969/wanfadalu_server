@@ -17,13 +17,12 @@ class IceStrategy(TriggerStrategy):
 
     def execute(self):
         super().execute()
-        if self.otherEntity.campName != self.trigger.owner.campName:
-            if self.otherEntity.canReceiveSkill is True:
-                self.otherEntity.setAttr("isIceFreezing", True)
-                self.otherEntity.addSkillControlTimer(
-                    "IceCancelTimer",
-                    3,
-                    0,
-                    "self.isIceFreezing = False\n" +
-                    "DEBUG_MSG('IceCancelTimer scriptString')",
-                    "onceOperation")
+        if self.otherEntity.canReceiveSkill is True:
+            self.otherEntity.setAttr("isIceFreezing", True)
+            self.otherEntity.addSkillControlTimer(
+                "IceCancelTimer",
+                3,
+                0,
+                "self.isIceFreezing = False\n" +
+                "DEBUG_MSG('IceCancelTimer scriptString')",
+                "onceOperation")

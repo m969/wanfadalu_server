@@ -24,6 +24,5 @@ class OnceDamageStrategy(TriggerStrategy):
         super().execute()
         if isinstance(self.otherEntity, HealthSystem):
             if self.otherEntity.canDamage is True:
-                if self.otherEntity.campName != self.trigger.owner.campName:
-                    self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
-                    self.trigger.destroy()
+                self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
+                self.trigger.destroy()
