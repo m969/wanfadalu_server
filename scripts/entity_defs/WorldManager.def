@@ -4,6 +4,7 @@
 		<Interface>RankingListManager</Interface>
 		<Interface>CombatBulletinManager</Interface>
 		<Interface>SectsManager</Interface>
+		<Interface>PropManager</Interface>
 	</Implements>
 	<Properties>
 		<WorldManager>

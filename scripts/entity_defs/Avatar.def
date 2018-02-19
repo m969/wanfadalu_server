@@ -14,6 +14,7 @@
 		<Interface>DialogSystem</Interface>
 		<Interface>SectSystem</Interface>
 		<Interface>LingshiSystem</Interface>
+		<Interface>PropSystem</Interface>
 	</Implements>
 	<Properties>
 		<spaceUID>
@@ -48,5 +49,8 @@
 		<setAvatarName>
 			<Arg>UNICODE</Arg>
 		</setAvatarName>
+		<setAvatarDBID>
+			<Arg>UINT64</Arg>
+		</setAvatarDBID>
 	</CellMethods>
 </root>

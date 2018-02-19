@@ -101,9 +101,3 @@ class SpacesManager:
         """
         space = KBEngine.globalData["space_%i" % spaceID]
         space.logoutSpace(avatarID)
-
-
-    def publishBulletin(self, bulletinContent):
-        DEBUG_MSG("SpacesManager:publishBulletin")
-        for avatar in KBEngine.globalData["allAvatarBases"].values():
-            avatar.publishBulletin(bulletinContent)

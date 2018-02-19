@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Skills.Skill import Skill
-from Skills.SkillQ import SkillQ
+from Skills.Shoot import Shoot
 from Skills.SkillW import SkillW
 from Skills.SkillE import SkillE
 from Skills.GongKan import GongKan
@@ -9,7 +9,7 @@ from Skills.GongKan import GongKan
 __all__ = \
     [
         "Skill",
-        "SkillQ",
+        "Shoot",
         "SkillW",
         "SkillE",
         "GongKan"

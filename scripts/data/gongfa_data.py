@@ -2,50 +2,32 @@
 
 data = \
     {
-        'PrimaryArrowGongFa' : 
+        1001: 
         {
-            'Shoot':
-            {
-                'class': "SkillQ",
-                'quality': 0.1,
-                'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900},
-                'strategies': ["一次伤害策略"]
-            },
-            'GongKan':
-            {
-                'class': "GongKan",
-                'quality': 0.1,
-                'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900},
-                'strategies': ["伤害策略"]
-            },
-            'ArrowExplode':
-            {
-                'class': "ArrowExplode",
-                'quality': 0.1,
-                'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900},
-                'strategies': ["伤害策略", "爆炸策略"]
-            }
+            'gongFaName': 'PrimaryArrowGongFa',
+            'skillList':
+                [
+                    { 'class': "Shoot", 'quality': 0.1, 'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900}, 'strategies': ["一次伤害策略"] },
+                    { 'class': "GongKan", 'quality': 0.1, 'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900}, 'strategies': ["伤害策略"] },
+                    { 'class': "ArrowExplode", 'quality': 0.1, 'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900}, 'strategies': ["伤害策略", "爆炸策略"] }
+                ]
         },
-        '基础冰系法术':
+        1002:
         {
-            '寒冰刺':
-            {
-                'class': "SkillE",
-                'quality': 0.2,
-                'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900},
-                'strategies': ["伤害策略", "禁锢策略", "冰霜策略"]
-            }
+            'gongFaName': '基础冰系法术',
+            'skillList':
+                [
+                    { 'class': "SkillE", 'quality': 0.2, 'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900}, 'strategies': ["伤害策略", "禁锢策略", "冰霜策略"] }
+                ]
         },
-        '基础土系法术':
+        1003:
         {
-            '碎石阵':
-            {
-                'class': "SkillW",
-                'quality': 0.2,
-                'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900},
-                'strategies': ["伤害策略"]
-            }
+            'gongFaName': '基础土系法术',
+            'skillList':
+                [
+                    { 'class': "SkillW", 'quality': 0.2, 'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900}, 'strategies': ["伤害策略"] }
+                ]
         }
     }
 
-allData = {'角色功法数据': data, }
+allData = {'角色功法数据': data }

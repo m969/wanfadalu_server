@@ -22,6 +22,12 @@ class CombatBulletinManager:
             self.addTimer(0, 60 * 60, 0)
 
 
+    def publishBulletin(self, bulletinContent):
+        DEBUG_MSG("SpacesManager:publishBulletin")
+        # for avatar in KBEngine.globalData["allAvatarBases"].values():
+        #     avatar.publishBulletin(bulletinContent)
+
+
     def onTimer(self, timerHandle, userData):
         if userData == 0:
             DEBUG_MSG("hourTimer")

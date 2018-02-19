@@ -8,8 +8,8 @@ from triggerStrategies import *
 
 
 class GongKan(Skill):
-    def __init__(self, spellCaster, argsString, gongFaName, skillName):
-        Skill.__init__(self, spellCaster, argsString, gongFaName, skillName)
+    def __init__(self, spellCaster, argsString, gongFaID, skillIndex):
+        Skill.__init__(self, spellCaster, argsString, gongFaID, skillIndex)
         args = argsString.split(":")
         self.skillPoint = (float(args[0]), float(args[1]), float(args[2]))
         #self.enemyId = int(args[0])

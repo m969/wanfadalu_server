@@ -2,7 +2,6 @@
 import random
 import KBEngine
 from KBEDebug import *
-from DBID_LIST import TDBIDList
 
 
 
@@ -58,7 +57,10 @@ class Account(KBEngine.Proxy):
 
     def _onAvatarSaved(self, success, avatar):
         self.avatarDBID = self.avatar.databaseID
-        self.avatar.cellData["dbid"] = self.avatar.databaseID
+        if self.avatar.cell is None:
+            self.avatar.cellData["dbid"] = self.avatar.databaseID
+        else:
+            self.avatar.cell.setAvatarDBID(self.avatar.databaseID)
         self.writeToDB(self._onAccountSaved)
 
 

@@ -7,9 +7,9 @@
 			<Persistent>true</Persistent>
 		</entityName>
 		<dbid>
-			<Type>INT64</Type>
+			<Type>UINT64</Type>
 			<Flags>CELL_PRIVATE</Flags>
-			<Persistent>false</Persistent>
+			<Persistent>true</Persistent>
 		</dbid>
 	</Properties>
 	<ClientMethods>

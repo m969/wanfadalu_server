@@ -6,6 +6,7 @@ from KBEDebug import *
 import datetime
 import math
 from interfaces.Common.EntityObject import EntityObject
+from DBID_LIST import TDBIDList
 
 
 
@@ -16,7 +17,8 @@ class Sect(KBEngine.Base, EntityObject):
         KBEngine.Base.__init__(self)
         KBEngine.globalData["sect_%i" % self.sectID] = self
         self.sectData = sect_data.data[self.sectID]
-        self.memberList = []
+        if not hasattr(self, "memberDBIDList"):
+            self.memberDBIDList = TDBIDList()
         KBEngine.globalData["space_base_spaceUID_%i" % self.sectData["spaceUID"]].loginSpace(self)
 
 
@@ -36,7 +38,7 @@ class Sect(KBEngine.Base, EntityObject):
 
     def requestJoinSect(self, avatarCall, avatarDBID):
         DEBUG_MSG("Sect:requestJoinSect")
-        if avatarDBID in self.memberList:
+        if avatarDBID in self.memberDBIDList:
             return
-        self.memberList.append(avatarCall.id)
+        self.memberDBIDList.append(avatarCall.id)
         avatarCall.onJoinSectResult(self.sectID, 1)

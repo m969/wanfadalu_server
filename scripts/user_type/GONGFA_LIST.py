@@ -2,24 +2,19 @@
 import KBEngine
 from KBEDebug import *
 
+
+
+
 class TSkill(dict):
     def __init__(self):
         dict.__init__(self)
 
     def asDict(self):
-        # DEBUG_MSG("TSkill:asDict")
-        # DEBUG_MSG(self)
         return self
 
     def createFromDict(self, dictData):
-        # DEBUG_MSG("TSkill:createFromDict")
-        # DEBUG_MSG(dictData)
-
-        self["skill_name"] = dictData["skill_name"]
-        self["skill_level"] = dictData["skill_level"]
-        # self["gongFa_name"] = dictData["gongFa_name"]
-
-        # DEBUG_MSG(self)
+        self["skillIndex"] = dictData["skillIndex"]
+        self["skillLevel"] = dictData["skillLevel"]
         return self
 
 class SKILL_PICKLER:
@@ -38,27 +33,21 @@ class SKILL_PICKLER:
 skill_inst = SKILL_PICKLER()
 
 
+
+
 class TGongFa(dict):
     def __init__(self):
         dict.__init__(self)
 
     def asDict(self):
-        # DEBUG_MSG("TGongFa:asDict")
-        # DEBUG_MSG(self)
-
         fixedDict = {}
         fixedDict["values"] = self["values"]
-        fixedDict["gongFa_name"] = self["gongFa_name"]
+        fixedDict["gongFaID"] = self["gongFaID"]
         return fixedDict
 
     def createFromDict(self, dictData):
-        # DEBUG_MSG("TGongFa:createFromDict")
-        # DEBUG_MSG(dictData)
-
         self["values"] = dictData["values"]
-        self["gongFa_name"] = dictData["gongFa_name"]
-
-        # DEBUG_MSG(self)
+        self["gongFaID"] = dictData["gongFaID"]
         return self
 
 class GONGFA_PICKLER:
@@ -77,6 +66,8 @@ class GONGFA_PICKLER:
 gongfa_inst = GONGFA_PICKLER()
 
 
+
+
 class TGongFaList(dict):
     def __init__(self):
         dict.__init__(self)
@@ -84,21 +75,17 @@ class TGongFaList(dict):
     def asDict(self):
         """
         转换为固定字典格式存到数据库
-        :return:
         """
-        # DEBUG_MSG("TGongFaList:asDict")
-        # DEBUG_MSG(self)
-
         gongFaList = []
         for gongFaName, gongFa in self.items():
             temp_gongFa = TGongFa()
             temp_gongFa["values"] = []
-            for skill_name, skillInfo in gongFa.items():
+            for skillIndex, skillInfo in gongFa.items():
                 temp_skillInfo = TSkill()
-                temp_skillInfo["skill_name"] = skill_name
-                temp_skillInfo["skill_level"] = skillInfo["skill_level"]
+                temp_skillInfo["skillIndex"] = skillIndex
+                temp_skillInfo["skillLevel"] = skillInfo["skillLevel"]
                 temp_gongFa["values"].append(temp_skillInfo)
-                temp_gongFa["gongFa_name"] = gongFaName
+                temp_gongFa["gongFaID"] = gongFaName
             gongFaList.append(temp_gongFa)
         fixedDict = {}
         fixedDict["values"] = gongFaList
@@ -107,23 +94,15 @@ class TGongFaList(dict):
     def createFromDict(self, dictData):
         """
         从数据库取出固定字典并转换为脚本内存格式
-        :param dictData:
-        :return:
         """
-        # DEBUG_MSG("TGongFaList:createFromDict")
-        # DEBUG_MSG(dictData)
-
         gongFaList = dictData["values"]
         for gongFa in gongFaList:
             temp_gongFa = {}
             for skillInfo in gongFa["values"]:
-                # temp_gongFa[skillInfo["skill_name"]] = skillInfo["skill_level"]
                 temp_skillInfo = {}
-                temp_skillInfo["skill_level"] = skillInfo["skill_level"]
-                temp_gongFa[skillInfo["skill_name"]] = temp_skillInfo
-            self[gongFa["gongFa_name"]] = temp_gongFa
-
-        # DEBUG_MSG(self)
+                temp_skillInfo["skillLevel"] = skillInfo["skillLevel"]
+                temp_gongFa[skillInfo["skillIndex"]] = temp_skillInfo
+            self[gongFa["gongFaID"]] = temp_gongFa
         return self
 
 class GONGFA_LIST_PICKLER:

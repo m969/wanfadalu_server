@@ -3,7 +3,6 @@ import KBEngine
 from KBEDebug import *
 import avatar_skill_data
 import npc_data
-import goods_data
 import level_data
 
 

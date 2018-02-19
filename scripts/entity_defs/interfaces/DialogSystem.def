@@ -1,21 +1,10 @@
 ﻿<root>
 	<Properties>
-		<goldCount>
-			<Type>INT32</Type>
-			<Default>0</Default>
-			<Flags>OWN_CLIENT</Flags>
-			<Persistent>true</Persistent>
-		</goldCount>
 		<currentTaskID>
 			<Type>INT32</Type>
 			<Flags>CELL_PUBLIC_AND_OWN</Flags>
 			<Persistent>true</Persistent>
 		</currentTaskID>
-		<avatarBag>
-			<Type>AVATAR_BAG</Type>
-			<Flags>CELL_PUBLIC_AND_OWN</Flags>
-			<Persistent>true</Persistent>
-		</avatarBag>
 		<taskInfoList>
 			<Type>TASK_INFO_LIST</Type>
 			<Default>

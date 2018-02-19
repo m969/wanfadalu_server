@@ -1,0 +1,9 @@
+﻿<root>
+	<Properties>
+		<propList>
+			<Type>PROP_LIST</Type>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>true</Persistent>
+		</propList>
+	</Properties>
+</root>

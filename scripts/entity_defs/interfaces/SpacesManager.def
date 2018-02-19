@@ -20,9 +20,6 @@
 			<Arg>VECTOR3</Arg>
 			<Arg>MAILBOX</Arg>
 		</teleportToSpaceByName>
-		<publishBulletin>
-			<Arg>UNICODE</Arg>
-		</publishBulletin>
 		<addNewAvatar>
 			<Arg>INT32</Arg>
 			<Arg>MAILBOX</Arg>

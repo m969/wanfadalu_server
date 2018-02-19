@@ -12,6 +12,7 @@ from interfaces.Avatar.TaskSystem import TaskSystem
 from interfaces.Avatar.MagicWeaponSystem import MagicWeaponSystem
 from interfaces.Avatar.ArenaSystem import ArenaSystem
 from interfaces.Avatar.SectSystem import SectSystem
+from interfaces.Avatar.PropSystem import PropSystem
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Common.HealthSystem import HealthSystem
 from interfaces.Common.SkillSystem import SkillSystem
@@ -34,7 +35,8 @@ class Avatar(KBEngine.Proxy,
              TaskSystem,
              MagicWeaponSystem,
              ArenaSystem,
-             SectSystem):
+             SectSystem,
+             PropSystem):
     def __init__(self):
         DEBUG_MSG("Avatar:__init__")
         KBEngine.Proxy.__init__(self)
@@ -52,6 +54,7 @@ class Avatar(KBEngine.Proxy,
         MagicWeaponSystem.__init__(self)
         ArenaSystem.__init__(self)
         SectSystem.__init__(self)
+        PropSystem.__init__(self)
 
 
     def onEntitiesEnabled(self):

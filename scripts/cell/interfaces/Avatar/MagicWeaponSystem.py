@@ -13,6 +13,6 @@ class MagicWeaponSystem:
             self.magicWeaponList = {}
 
 
-    def addMagicWeapon(self, magicWeaponID):
-        DEBUG_MSG("MagicWeaponSystem:addMagicWeapon")
+    def onGetMagicWeapon(self, magicWeaponTypeID, weaponData):
+        DEBUG_MSG("MagicWeaponSystem:onGetMagicWeapon")
         #self.magicWeaponList[]

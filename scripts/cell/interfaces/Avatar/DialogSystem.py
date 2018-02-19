@@ -3,10 +3,9 @@ import KBEngine
 from KBEDebug import *
 import avatar_skill_data
 import npc_data
-import goods_data
+import prop_data
 import level_data
 from TASK_INFO import TTaskInfo
-from AVATAR_BAG import TAvatarBag
 from taskScripts.MuJingGuaiRenWu import MuJingGuaiRenWu
 from taskScripts.YanShiLingGuaiRenWu import YanShiLingGuaiRenWu
 from taskScripts.Duihuarenwu import Duihuarenwu
@@ -82,25 +81,25 @@ class DialogSystem:
         tempBag[goodsID] = goodsID
         self.avatarBag = tempBag
         DEBUG_MSG(self.avatarBag)
-        if goods_data.data[goodsID]['name'] == "木剑":
+        if prop_data.data[goodsID]['name'] == "木剑":
             if self.hasAttr("Xiaoshiniudao_San_TaskCounter") is True:
                 self.setAttr("Xiaoshiniudao_San_TaskCounter",
                              self.Xiaoshiniudao_San_TaskCounter + 1)
             else:
                 self.setAttr("Xiaoshiniudao_San_TaskCounter", 1)
-        if goods_data.data[goodsID]['name'] == "精致宝箱":
+        if prop_data.data[goodsID]['name'] == "精致宝箱":
             if self.hasAttr("TanxianshandongRenWu_TaskCounter") is True:
                 self.setAttr("TanxianshandongRenWu_TaskCounter",
                              self.TanxianshandongRenWu_TaskCounter+ 1)
             else:
                 self.setAttr("TanxianshandongRenWu_TaskCounter", 1)
-        if goods_data.data[goodsID]['name'] == "钻石":
+        if prop_data.data[goodsID]['name'] == "钻石":
             if self.hasAttr("Caijizuanshi_TaskCounter") is True:
                 self.setAttr("Caijizuanshi_TaskCounter",
                              self.Caijizuanshi_TaskCounter + 1)
             else:
                 self.setAttr("Caijizuanshi_TaskCounter", 1)
-        if goods_data.data[goodsID]['name'] == "宝马":
+        if prop_data.data[goodsID]['name'] == "宝马":
             if self.hasAttr("Xunzhaobaoma_TaskCounter") is True:
                 self.setAttr("Xunzhaobaoma_TaskCounter",
                              self.Xunzhaobaoma_TaskCounter + 1)
@@ -121,7 +120,7 @@ class DialogSystem:
             del tempBag[goodsID]
         self.avatarBag = tempBag
         DEBUG_MSG(self.avatarBag)
-        if goods_data.data[goodsID]['name'] == "信":
+        if prop_data.data[goodsID]['name'] == "信":
             if self.hasAttr("Qianlisongqing_TaskCounter") is True:
                 self.setAttr("Qianlisongqing_TaskCounter",
                              self.Qianlisongqing_TaskCounter + 1)
@@ -191,7 +190,7 @@ class DialogSystem:
         for (propName, propCount) in npc_data.data[npcName][taskIndex]["道具奖励"].items():
             # goodsInfo = {0:propName, 1:propCount}
             i = 0
-            for (k, va) in goods_data.data.items():
+            for (k, va) in prop_data.data.items():
                 if propName == va["name"]:
                     i = 1
                     DEBUG_MSG("give prop id = " + str(k))
@@ -200,7 +199,7 @@ class DialogSystem:
                 DEBUG_MSG("has no this prop!")
         for (propName, propCount) in npc_data.data[npcName][taskIndex]["道具丢弃"].items():
             i = 0
-            for (k, va) in goods_data.data.items():
+            for (k, va) in prop_data.data.items():
                 if propName == va["name"]:
                     i = 1
                     DEBUG_MSG("delete prop id = " + str(k))

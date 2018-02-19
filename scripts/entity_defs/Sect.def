@@ -9,6 +9,11 @@
 			<Flags>BASE_AND_CLIENT</Flags>
 			<Persistent>true</Persistent>
 		</sectID>
+		<memberDBIDList>
+			<Type>MEMBER_LIST</Type>
+			<Flags>BASE_AND_CLIENT</Flags>
+			<Persistent>true</Persistent>
+		</memberDBIDList>
 	</Properties>
 	<CellMethods>
 		<onEntityEnterSpace>

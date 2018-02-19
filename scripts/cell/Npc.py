@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-import goods_data
+import prop_data
 import npc_data
 import store_data
 import zuanshi_data
@@ -29,7 +29,7 @@ class Npc(KBEngine.Entity, EntityObject):
                     break
         elif (self.entityName == "商人") | (self.entityName == "上水商人"):
             self.storeData = store_data.data
-            self.goodsData = goods_data.data
+            self.goodsData = prop_data.data
             i = 0
             for value in self.storeData:
                 for (k, v) in self.goodsData.items():
@@ -39,7 +39,7 @@ class Npc(KBEngine.Entity, EntityObject):
         #变相商人，利用商人给予物品的特性，给予商品价格为0的任务道具
         elif self.entityName == "钻石商人":
             self.storeData = zuanshi_data.data
-            self.goodsData = goods_data.data
+            self.goodsData = prop_data.data
             i = 0
             for value in self.storeData:
                 for (k, v) in self.goodsData.items():
@@ -61,11 +61,11 @@ class Npc(KBEngine.Entity, EntityObject):
 
     def requestBuyGoods(self, requester, goodsID):
         DEBUG_MSG("Npc:requestBuyGoods")
-        goodsName = goods_data.data[goodsID]['name']
+        goodsName = prop_data.data[goodsID]['name']
         if goodsName in self.storeData:
-            if requester.goldCount >= goods_data.data[goodsID]['price']:
+            if requester.goldCount >= prop_data.data[goodsID]['price']:
                 requester.giveGoods(goodsID)
-                requester.deductMoney(goods_data.data[goodsID]['price'])
+                requester.deductMoney(prop_data.data[goodsID]['price'])
                 return True
             else:
                 return False

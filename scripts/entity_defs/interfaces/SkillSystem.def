@@ -32,7 +32,8 @@
 	<CellMethods>
 		<requestCastSkill>
 			<Exposed />
-			<Arg>UNICODE</Arg>
+			<Arg>INT32</Arg>
+			<Arg>INT32</Arg>
 			<Arg>UNICODE</Arg>
 		</requestCastSkill>
 		<addSkillControlTimer>

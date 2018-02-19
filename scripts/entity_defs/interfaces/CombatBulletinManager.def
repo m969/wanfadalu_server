@@ -6,4 +6,9 @@
 			<Persistent>false</Persistent>
 		</CombatBulletinManager>
 	</Properties>
+	<BaseMethods>
+		<publishBulletin>
+			<Arg>UNICODE</Arg>
+		</publishBulletin>
+	</BaseMethods>
 </root>
