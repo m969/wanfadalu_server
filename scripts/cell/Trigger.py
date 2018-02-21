@@ -9,18 +9,18 @@ from interfaces.Common.EntityObject import EntityObject
 class Trigger(KBEngine.Entity, EntityObject):
     def __init__(self):
         KBEngine.Entity.__init__(self)
-        EntityObject.__init__(self)
-        # DEBUG_MSG("Trigger:__init__")
-        # DEBUG_MSG(self.triggerStrategy)
-        self.isTrigger = True
-        if self.lifeSpans > 0.0:
-            self.addTimer(self.lifeSpans, 0, 0)
-        if self.circleTrigger is True:
-            # DEBUG_MSG("circleTrigger is True")
-            self.entityList = {}
-            self.delEntityList = []
-            self.addTimer(0, 0.1, 1)
-        DEBUG_MSG("entityName = " + str(self.entityName))
+        # EntityObject.__init__(self)
+        # # DEBUG_MSG("Trigger:__init__")
+        # # DEBUG_MSG(self.triggerStrategy)
+        # self.isTrigger = True
+        # if self.lifeSpans > 0.0:
+        #     self.addTimer(self.lifeSpans, 0, 0)
+        # if self.circleTrigger is True:
+        #     # DEBUG_MSG("circleTrigger is True")
+        #     self.entityList = {}
+        #     self.delEntityList = []
+        #     self.addTimer(0, 0.1, 1)
+        # DEBUG_MSG("entityName = " + str(self.entityName))
 
 
     def onTimer(self, tid, userArg):
