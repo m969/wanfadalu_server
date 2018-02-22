@@ -51,4 +51,4 @@ class Skill:
         for strategyName in self.skillData["strategies"]:
             exec("self.strategy = " + trigger_strategy.data[strategyName] + "()")
             self.strategy.initializeStrategy(self.strategyData)
-            self.triggerStrategy.__setitem__(trigger_strategy.data[strategyName], self.strategy)
+            self.triggerStrategy[trigger_strategy.data[strategyName]] = self.strategy

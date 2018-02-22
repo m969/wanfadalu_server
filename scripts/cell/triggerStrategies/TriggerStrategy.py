@@ -35,5 +35,3 @@ class TriggerStrategy(Strategy):
         触发器策略的执行方法
         """
         Strategy.execute(self)
-        if self.otherEntity.getEntityID() == self.trigger.owner.getEntityID():
-            return

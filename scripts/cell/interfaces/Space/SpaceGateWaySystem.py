@@ -15,14 +15,10 @@ class SpaceGateWaySystem:
             exec("self.triggerStrategy = " + triggerData["触发器类型"] + "Strategy()")
             DEBUG_MSG(self.triggerStrategy)
             self.triggerStrategy.initializeStrategy(triggerData)
-            trigger = KBEngine.createEntity("Trigger",
-                                            self.spaceID,
-                                            triggerData["触发器坐标"],
-                                            (0.0, 0.0, 0.0),
-                                            {
-                                                'entityName': "GateWayTrigger",
-                                                'owner': self,
-                                                'lifeSpans': 0.0,
-                                                'triggerSize': 4,
-                                                "triggerStrategy": self.triggerStrategy
-                                            })     # 创建触发器
+            params = {}
+            params['entityName'] = "GateWayTrigger"
+            params['owner'] = self
+            params['lifeSpans'] = 0.0
+            params['triggerSize'] = 4
+            params['triggerStrategy'] = self.triggerStrategy
+            trigger = KBEngine.createEntity("Trigger", self.spaceID, triggerData["触发器坐标"], (0.0, 0.0, 0.0), params)     # 创建触发器

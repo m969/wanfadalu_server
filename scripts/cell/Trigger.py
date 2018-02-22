@@ -70,9 +70,9 @@ class Trigger(KBEngine.Entity, EntityObject):
         else:
             if self.triggerStrategy.__class__.__name__ == "dict":
                 for strategy in self.triggerStrategy.values():
-                    strategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
-                    strategy.execute()
-            # DEBUG_MSG("class name " + self.triggerStrategy.__class__.__name__)
+                    # strategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
+                    # strategy.execute()
+                    pass
             if self.triggerStrategy.__class__.__name__ != "dict":
                 self.triggerStrategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
                 self.triggerStrategy.execute()

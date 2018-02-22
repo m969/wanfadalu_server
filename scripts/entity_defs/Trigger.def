@@ -24,7 +24,7 @@
 		</triggerSize>
 		<lifeSpans>
 			<Type>FLOAT</Type>
-			<Default>4</Default>
+			<Default>4.0</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>false</Persistent>
 		</lifeSpans>

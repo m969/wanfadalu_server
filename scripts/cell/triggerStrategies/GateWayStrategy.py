@@ -16,7 +16,7 @@ class GateWayStrategy(TriggerStrategy):
 
     def initializeStrategy(self, strategyData):
         super().initializeStrategy(strategyData)
-        self.targetSpaceName = strategyData["目标场景"]
+        self.targetSpaceUID = strategyData["目标场景"]
         self.gateWayEntrancePosition = strategyData["传送门入口点"]
 
 
@@ -28,7 +28,7 @@ class GateWayStrategy(TriggerStrategy):
             if self.otherEntity.teleporting == True:
                 return
             self.otherEntity.teleporting = True
-            KBEngine.globalData["SpacesManager"].teleportToSpaceByName(
-                self.targetSpaceName,
+            KBEngine.globalData["SpacesManager"].teleportToSpace(
+                self.targetSpaceUID,
                 self.gateWayEntrancePosition,
                 self.otherEntity.base)
