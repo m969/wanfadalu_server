@@ -17,8 +17,12 @@ class IceStrategy(TriggerStrategy):
 
     def execute(self):
         super().execute()
+        if self.otherEntity.id == self.trigger.owner.id:
+            return
+        if not hasattr(self.otherEntity, "canDamage"):
+            return
         if self.otherEntity.canReceiveSkill is True:
-            self.otherEntity.setAttr("isIceFreezing", True)
+            self.otherEntity.isIceFreezing = True
             self.otherEntity.addSkillControlTimer(
                 "IceCancelTimer",
                 3,

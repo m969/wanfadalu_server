@@ -104,8 +104,8 @@ class SkillSystem(GongFaSystem):
             self.delTimer(timerHandle)
         if userData == 99:      # 施法定时器
             self.skill.cast()
-            # self.canMove = True
-            # self.allClients.OnSkillEndCast(str(self.skill.gongFaID) + ":" + str(self.skill.skillIndex), self.skill.argsString)
+            self.canMove = True
+            self.allClients.OnSkillEndCast(str(self.skill.gongFaID) + ":" + str(self.skill.skillIndex), self.skill.argsString)
             self.delTimer(timerHandle)
         # 持续状态效果、瞬时性效果
         if userData > 100:

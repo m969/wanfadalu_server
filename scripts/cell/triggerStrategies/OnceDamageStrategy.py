@@ -22,7 +22,10 @@ class OnceDamageStrategy(TriggerStrategy):
 
     def execute(self):
         super().execute()
-        if isinstance(self.otherEntity, HealthSystem):
-            if self.otherEntity.canDamage is True:
-                self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
-                self.trigger.destroy()
+        if self.otherEntity.id == self.trigger.owner.id:
+            return
+        if not hasattr(self.otherEntity, "canDamage"):
+            return
+        if self.otherEntity.canDamage is True:
+            self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
+            self.trigger.destroy()

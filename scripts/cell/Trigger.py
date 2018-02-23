@@ -9,18 +9,15 @@ from interfaces.Common.EntityObject import EntityObject
 class Trigger(KBEngine.Entity, EntityObject):
     def __init__(self):
         KBEngine.Entity.__init__(self)
-        # EntityObject.__init__(self)
-        # # DEBUG_MSG("Trigger:__init__")
-        # # DEBUG_MSG(self.triggerStrategy)
-        # self.isTrigger = True
-        # if self.lifeSpans > 0.0:
-        #     self.addTimer(self.lifeSpans, 0, 0)
-        # if self.circleTrigger is True:
-        #     # DEBUG_MSG("circleTrigger is True")
-        #     self.entityList = {}
-        #     self.delEntityList = []
-        #     self.addTimer(0, 0.1, 1)
-        # DEBUG_MSG("entityName = " + str(self.entityName))
+        EntityObject.__init__(self)
+        # DEBUG_MSG("Trigger:__init__")
+        self.isTrigger = True
+        if self.lifeSpans > 0.0:
+            self.addTimer(self.lifeSpans, 0, 0)
+        if self.circleTrigger is True:
+            self.entityList = {}
+            self.delEntityList = []
+            self.addTimer(0, 0.1, 1)
 
 
     def onTimer(self, tid, userArg):
@@ -70,9 +67,8 @@ class Trigger(KBEngine.Entity, EntityObject):
         else:
             if self.triggerStrategy.__class__.__name__ == "dict":
                 for strategy in self.triggerStrategy.values():
-                    # strategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
-                    # strategy.execute()
-                    pass
+                    strategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
+                    strategy.execute()
             if self.triggerStrategy.__class__.__name__ != "dict":
                 self.triggerStrategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
                 self.triggerStrategy.execute()

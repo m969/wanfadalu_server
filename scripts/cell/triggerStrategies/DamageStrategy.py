@@ -21,5 +21,9 @@ class DamageStrategy(TriggerStrategy):
 
     def execute(self):
         super().execute()
-        # if self.otherEntity.canDamage is True:
-        #     self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
+        if self.otherEntity.id == self.trigger.owner.id:
+            return
+        if not hasattr(self.otherEntity, "canDamage"):
+            return
+        if self.otherEntity.canDamage is True:
+            self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
