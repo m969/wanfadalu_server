@@ -5,68 +5,68 @@ from KBEDebug import *
 
 
 
-class TProp(dict):
+class TWeaponMap(dict):
     def __init__(self):
         dict.__init__(self)
 
     def asDict(self):
         fixedDict = {}
+        fixedDict["index"] = self["index"]
         fixedDict["propUUID"] = self["propUUID"]
-        fixedDict["propData"] = self["propData"]
         return fixedDict
 
     def createFromDict(self, dictData):
+        self["index"] = dictData["index"]
         self["propUUID"] = dictData["propUUID"]
-        self["propData"] = dictData["propData"]
         return self
 
-class PROP_PICKLER:
+class WEAPON_MAP_PICKLER:
     def __init__(self):
         pass
 
     def createObjFromDict(self, dic):
-        return TProp().createFromDict(dic)
+        return TWeaponMap().createFromDict(dic)
 
     def getDictFromObj(self, obj):
         return obj.asDict()
 
     def isSameType(self, obj):
-        return isinstance(obj, TProp)
+        return isinstance(obj, TWeaponMap)
 
-prop_inst = PROP_PICKLER()
-
-
+weapon_map_inst = WEAPON_MAP_PICKLER()
 
 
-class TPropList(dict):
+
+
+class TWeaponMapList(dict):
     def __init__(self):
         dict.__init__(self)
 
     def asDict(self):
-        propList = []
-        for propUUID, prop in self.items():
-            propList.append(prop)
+        values = []
+        for key, value in self.items():
+            values.append(value)
         fixedDict = {}
-        fixedDict["values"] = propList
+        fixedDict["values"] = values
         return fixedDict
 
     def createFromDict(self, dictData):
-        propList = dictData["values"]
-        for prop in propList:
-            self["propUUID"] = prop
+        values = dictData["values"]
+        for value in values:
+            self[value["index"]] = value
         return self
 
-class PROP_LIST_PICKLER:
+class WEAPON_MAP_LIST_PICKLER:
     def __init__(self):
         pass
 
     def createObjFromDict(self, dic):
-        return TPropList().createFromDict(dic)
+        return TWeaponMapList().createFromDict(dic)
 
     def getDictFromObj(self, obj):
         return obj.asDict()
 
     def isSameType(self, obj):
-        return isinstance(obj, TPropList)
+        return isinstance(obj, TWeaponMapList)
 
-prop_list_inst = PROP_LIST_PICKLER()
+weapon_map_list_inst = WEAPON_MAP_LIST_PICKLER()

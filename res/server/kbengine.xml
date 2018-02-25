@@ -7,7 +7,7 @@
 		��ϸ˵�����ο���http://kbengine.org/cn/docs/configuration/kbengine.html
 	-->
 
-	<gameUpdateHertz> 25 </gameUpdateHertz>
+	<gameUpdateHertz> 20 </gameUpdateHertz>
 	
 	<trace_packet>
 		<debug_type> 0 </debug_type>

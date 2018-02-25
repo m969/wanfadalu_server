@@ -2,8 +2,8 @@
 
 data = \
     {
-        1001: {'name': '护盾', 'type': '法宝', 'gongfa': 0},
-        1002: {'name': '弓箭', 'type': '法宝', 'gongfa': 1001},
-        1003: {'name': '弓箭', 'type': '法宝', 'gongfa': 1002},
-        1004: {'name': '弓箭', 'type': '法宝', 'gongfa': 1003},
+        1001: {'id': 1001, 'type': 'weapon', 'gongfa': 1001},
+        1002: {'id': 1002, 'type': 'weapon', 'gongfa': 1002},
+        1003: {'id': 1003, 'type': 'weapon', 'gongfa': 1003},
+        1004: {'id': 1004, 'type': 'weapon', 'gongfa': 1004},
     }

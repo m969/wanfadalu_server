@@ -1,7 +1,7 @@
 ﻿<root>
 	<Properties>
 		<magicWeaponList>
-			<Type>DBID_LIST</Type>
+			<Type>WEAPON_MAP_LIST</Type>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</magicWeaponList>

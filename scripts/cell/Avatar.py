@@ -73,10 +73,10 @@ class Avatar(KBEngine.Entity,
         ChatChannelSystem.__init__(self)
         CampSystem.__init__(self)
         TaskSystem.__init__(self)
-        MagicWeaponSystem.__init__(self)
         ArenaSystem.__init__(self)
         SectSystem.__init__(self)
         PropSystem.__init__(self)
+        MagicWeaponSystem.__init__(self)
 
 
     def onTimer(self, timerHandle, userData):

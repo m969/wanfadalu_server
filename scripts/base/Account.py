@@ -16,7 +16,6 @@ class Account(KBEngine.Proxy):
 
 
     def onEntitiesEnabled(self):
-        DEBUG_MSG(self.avatarDBIDList)
         INFO_MSG("account[%i] entities enable. mailbox:%s" % (self.id, self.client))
         if self.avatarDBID == 0:
             self.avatar = KBEngine.createBaseLocally("Avatar", {})

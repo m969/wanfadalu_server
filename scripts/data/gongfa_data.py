@@ -4,7 +4,7 @@ data = \
     {
         1001: 
         {
-            'gongFaName': 'PrimaryArrowGongFa',
+            'gongFaName': '基础弓箭术',
             'skillList':
                 [
                     { 'class': "Shoot", 'quality': 0.1, 'levelSpLimit': {1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900}, 'strategies': ["一次伤害策略"] },
