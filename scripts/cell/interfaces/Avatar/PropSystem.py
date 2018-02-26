@@ -14,10 +14,11 @@ class PropSystem:
     def __init__(self):
         DEBUG_MSG("PropSystem:__init__")
         if len(self.propList) == 0:
-            self.addPropByType(1001)
-            self.addPropByType(1002)
-            self.addPropByType(1003)
-            self.addPropByType(1004)
+            self.addPropByID(1001)
+            self.addPropByID(1002)
+            self.addPropByID(1003)
+            self.addPropByID(1004)
+        DEBUG_MSG(self.propList)
 
 
     def newPropByID(self, propID):
@@ -37,13 +38,14 @@ class PropSystem:
 
     def addPropByID(self, propID):
         DEBUG_MSG("PropSystem:addPropByID")
-        prop = self.newPropByType(propID)
+        prop = self.newPropByID(propID)
         self.addProp(prop)
 
 
     def addProp(self, prop):
         DEBUG_MSG("PropSystem:addProp")
         self.propList[prop["propUUID"]] = prop
+        self.propList = self.propList
 
 
     def removeProp(self, propUUID):

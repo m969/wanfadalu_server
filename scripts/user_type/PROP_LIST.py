@@ -53,7 +53,7 @@ class TPropList(dict):
     def createFromDict(self, dictData):
         propList = dictData["values"]
         for prop in propList:
-            self["propUUID"] = prop
+            self[prop["propUUID"]] = prop
         return self
 
 class PROP_LIST_PICKLER:
