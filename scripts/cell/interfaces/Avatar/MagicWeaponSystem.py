@@ -17,8 +17,9 @@ class MagicWeaponSystem:
         for i in range(0, 9):
             freeIndexSet.append(i)
         freeIndexSet.reverse()
-        DEBUG_MSG(self.magicWeaponList)
+        propUUIDList = []
         for index, weaponMap in self.magicWeaponList.items():
+            propUUIDList.append(weaponMap["propUUID"])
             if weaponMap["propUUID"] not in self.propList:
                 removeIndexSet.append(index)
                 continue
@@ -27,14 +28,12 @@ class MagicWeaponSystem:
             del self.magicWeaponList[index]
         for propUUID, prop in self.propList.items():
             propData = json.loads(prop["propData"])
-            if propData["type"] == "weapon":
-                if propUUID not in self.magicWeaponList.values():
+            if propData["type"] == 2:
+                if propUUID not in propUUIDList:
                     weaponMap = TWeaponMap()
                     weaponMap["index"] = freeIndexSet.pop()
                     weaponMap["propUUID"] = prop["propUUID"]
                     self.magicWeaponList[weaponMap["index"]] = weaponMap
-        DEBUG_MSG(self.magicWeaponList)
-        self.magicWeaponList = self.magicWeaponList
 
 
     def onGetMagicWeapon(self, magicWeaponTypeID, weaponData):
