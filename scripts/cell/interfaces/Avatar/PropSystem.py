@@ -5,7 +5,7 @@ from PROP_LIST import TProp
 from PROP_LIST import TPropList
 import json
 import uuid
-import prop_data
+import PyDatas.prop_config_Table as prop_config_Table
 
 
 
@@ -23,7 +23,7 @@ class PropSystem:
 
     def newPropByID(self, propID):
         DEBUG_MSG("PropSystem:newPropByID")
-        propData = prop_data.data[propID]
+        propData = prop_config_Table.datas[propID]
         propData = json.dumps(propData)
         return self.newPropByData(propData)
 

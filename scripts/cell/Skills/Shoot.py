@@ -31,15 +31,5 @@ class Shoot(Skill):
         params["lifeSpans"] = 4.0
         params["triggerSize"] = 4
         params["triggerStrategy"] = self.triggerStrategy
-        # DEBUG_MSG(self.spellCaster.spaceID)
-        # DEBUG_MSG(self.spellCaster.position)
-        # DEBUG_MSG(self.spellCaster.direction)
-        # DEBUG_MSG(params)
         trigger = KBEngine.createEntity("Trigger", self.spellCaster.spaceID, self.spellCaster.position, (0.0, 0.0, 0.0), params)
         trigger.moveToPointSample(self.skillPoint, 80)
-        # params['entityName'] = "GateWayTrigger"
-        # params['owner'] = self
-        # params['lifeSpans'] = 0.0
-        # params['triggerSize'] = 4
-        # params['triggerStrategy'] = self.triggerStrategy
-        # trigger = KBEngine.createEntity("Trigger", self.spellCaster.spaceID, (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), params)

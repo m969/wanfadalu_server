@@ -109,9 +109,7 @@ class DialogSystem:
 
     def deleteGoods(self, goodsID):
         """
-        郑晓飞----删除背包中的物品
-        :param goodID: 物品ID
-        :return:
+        删除背包中的物品
         """
         DEBUG_MSG("DialogSystem:deleteGoods")
         tempBag = self.avatarBag
@@ -158,9 +156,6 @@ class DialogSystem:
         """
         任务完成度监视脚本会监测任务是否已完成，如果任务完成了就会调用这个函数，设置角色任务信息为已完成状态，
         并且删除任务完成度监视脚本。
-        :param npcName:
-        :param taskIndex:
-        :return:
         """
         DEBUG_MSG("DialogSystem:setTaskFinish")
         for (key, taskInfo) in self.taskInfoList.items():
@@ -181,9 +176,6 @@ class DialogSystem:
     def giveAward(self, npcName, taskIndex):
         """
         任务完成给予奖励，由npc调用，成功给予奖励后设置角色任务信息为已提交。
-        :param npcName:
-        :param taskIndex:
-        :return:
         """
         DEBUG_MSG("DialogSystem:giveAward")
         self.goldCount += npc_data.data[npcName][taskIndex]["金币奖励"]
@@ -214,9 +206,6 @@ class DialogSystem:
     def giveTask(self, npcName, taskIndex):
         """
         赋予任务，由npc调用。
-        :param npcName:
-        :param taskIndex:
-        :return:
         """
         DEBUG_MSG("DialogSystem:giveTask")
         taskInfo = TTaskInfo()
