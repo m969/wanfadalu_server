@@ -10,10 +10,8 @@ class ArenaSystem:
         DEBUG_MSG("ArenaSystem:__init__")
 
 
-    def requestRankingList(self, exposed):
+    def requestRankingList(self):
         DEBUG_MSG("ArenaSystem:requestRankingList")
-        if exposed != self.id:
-            return
         KBEngine.globalData["RankingListManager"].requestRankingList(self)
 
 
@@ -22,10 +20,8 @@ class ArenaSystem:
         self.client.OnRequestRankingListReturn(rankingList)
 
 
-    def requestSelfRanking(self, exposed):
+    def requestSelfRanking(self):
         DEBUG_MSG("ArenaSystem:requestSelfRanking")
-        if exposed != self.id:
-            return
         KBEngine.globalData["RankingListManager"].requestAvatarRanking(self, self.id)
 
 

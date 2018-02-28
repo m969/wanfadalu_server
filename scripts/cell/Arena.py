@@ -94,7 +94,9 @@ class Arena(KBEngine.Entity, EntityObject):
         matchResult["winnerInfo"] = {}
         matchResult["loserInfo"] = {}
         matchResult["winnerInfo"]["dbid"] = winnerDBID
+        matchResult["winnerInfo"]["name"] = self.contestantList[winnerDBID].entityName
         matchResult["loserInfo"]["dbid"] = loserDBID
+        matchResult["loserInfo"]["name"] = self.contestantList[loserDBID].entityName
         KBEngine.globalData["SpacesManager"].addNewMatchResult(matchResult)
         self.endMatch()
 

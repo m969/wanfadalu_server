@@ -3,6 +3,8 @@ import KBEngine
 from KBEDebug import *
 
 
+
+
 class HealthSystem:
     def __init__(self):
         DEBUG_MSG("HealthSystem:__init__")
@@ -10,6 +12,7 @@ class HealthSystem:
         self.canDamage = True
         self.canHealth = True
         self.HP = self.HP_Max
+
 
     def onTimer(self, timerHandle, userData):
         if userData == 21:  # 重生定时器
@@ -22,6 +25,7 @@ class HealthSystem:
             self.allClients.OnRespawn(respawnPosition)
             self.delTimer(timerHandle)
 
+
     def receiveDamage(self, attackerMailbox, damage):
         DEBUG_MSG("HealthSystem:receiveDamage")
         oldHP = self.HP
@@ -32,12 +36,15 @@ class HealthSystem:
         if oldHP != self.HP:
             self.onHPChange(attackerMailbox)
 
+
     def onHPChange(self, murderer):
         if self.HP <= 0:
             self.dieSelf(murderer)
 
+
     def dieSelf(self, murderer):
         self.onDead(murderer)
+
 
     def onDead(self, murderer):
         DEBUG_MSG("HealthSystem:onDead")

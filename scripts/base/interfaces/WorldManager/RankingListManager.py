@@ -20,12 +20,15 @@ class RankingListManager:
     def addNewMatchResult(self, matchResult):
         DEBUG_MSG("RankingListManager:addNewMatchResult")
         winnerDBID = matchResult["winnerInfo"]["dbid"]
+        winnerName = matchResult["winnerInfo"]["name"]
         loserDBID = matchResult["loserInfo"]["dbid"]
+        loserName = matchResult["loserInfo"]["name"]
         winnerMatchInfo = self.rankingList.get(winnerDBID)
         loserMatchInfo = self.rankingList.get(loserDBID)
         if winnerMatchInfo is None:
             winnerMatchInfo = TAvatarMatchInfo()
             winnerMatchInfo["avatarDBID"] = winnerDBID
+            winnerMatchInfo["avatarName"] = winnerName
             winnerMatchInfo["matchAmount"] = 1
             winnerMatchInfo["winAmount"] = 1
             self.rankingList[winnerDBID] = winnerMatchInfo
@@ -35,6 +38,7 @@ class RankingListManager:
         if loserMatchInfo is None:
             loserMatchInfo = TAvatarMatchInfo()
             loserMatchInfo["avatarDBID"] = loserDBID
+            loserMatchInfo["avatarName"] = loserName
             loserMatchInfo["matchAmount"] = 1
             loserMatchInfo["winAmount"] = 0
             self.rankingList[loserDBID] = loserMatchInfo

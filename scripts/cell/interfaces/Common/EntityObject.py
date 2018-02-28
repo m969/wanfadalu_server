@@ -34,7 +34,7 @@ class EntityObject(EventAggregator):
         """
         获得当前space的entity baseMailbox
         """
-        return KBEngine.globalData["space_%i" % self.spaceID]
+        return KBEngine.globalData["space_base_spaceID_%i" % self.spaceID]
 
     def getCurrentSpace(self):
         """

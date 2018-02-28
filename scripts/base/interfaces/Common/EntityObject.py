@@ -3,9 +3,12 @@ import KBEngine
 from KBEDebug import *
 
 
+
+
 class EntityObject:
     def __init__(self):
         pass
+
 
     def setAttr(self, attr, value):
         if hasattr(self, attr):
@@ -13,14 +16,18 @@ class EntityObject:
         else:
             exec("self." + attr + "= value")
 
+
     def delAttr(self, attr):
         delattr(self, attr)
+
 
     def getDatabaseID(self):
         return self.databaseID
 
+
     def getScriptName(self):
         return self.__class__.__name__()
+
 
     def getCell(self):
         return self.cell

@@ -18,7 +18,6 @@ class PropSystem:
             self.addPropByID(1002)
             self.addPropByID(1003)
             self.addPropByID(1004)
-        DEBUG_MSG(self.propList)
 
 
     def newPropByID(self, propID):
@@ -45,7 +44,6 @@ class PropSystem:
     def addProp(self, prop):
         DEBUG_MSG("PropSystem:addProp")
         self.propList[prop["propUUID"]] = prop
-        self.propList = self.propList
 
 
     def removeProp(self, propUUID):
