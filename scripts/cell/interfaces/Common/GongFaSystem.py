@@ -3,6 +3,8 @@ import KBEngine
 from KBEDebug import *
 from KTween.KTweenEnum import KTweenEnum
 import gongfa_data
+import PyDatas.gongFa_config_Table as gongFa_config_Table
+import PyDatas.skill_config_Table as skill_config_Table
 from GONGFA_LIST import TGongFaList
 from GONGFA_LIST import TGongFa
 from GONGFA_LIST import TSkill

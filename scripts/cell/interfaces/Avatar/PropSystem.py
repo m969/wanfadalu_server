@@ -6,6 +6,7 @@ from PROP_LIST import TPropList
 import json
 import uuid
 import PyDatas.prop_config_Table as prop_config_Table
+import PyDatas.store_config_Table as store_config_Table
 
 
 
@@ -44,8 +45,37 @@ class PropSystem:
     def addProp(self, prop):
         DEBUG_MSG("PropSystem:addProp")
         self.propList[prop["propUUID"]] = prop
+        self.onAddProp(prop)
+
+
+    def onAddProp(self, prop):
+        DEBUG_MSG("PropSystem:onAddProp")
 
 
     def removeProp(self, propUUID):
         DEBUG_MSG("PropSystem:removeProp")
         del self.propList[propUUID]
+
+
+    def requestPullStorePropList(self, storeNpcID):
+        DEBUG_MSG("PropSystem:requestPullStorePropList")
+        self.client.onPullStorePropListReturn(store_config_Table.datas[storeNpcID]["propList"])
+
+
+    def requestBuyProp(self, storeNpcID, propIndex):
+        DEBUG_MSG("PropSystem:requestBuyProp")
+        storeNpc = KBEngine.entities.get(storeNpcID)
+        if not storeNpc:
+            return
+        storePropList = store_config_Table.datas[storeNpcID]["propList"]
+        if propIndex not in storePropList:
+            return
+        self.buyProp(storePropList[propIndex][0], storePropList[propIndex][1])
+
+
+    def buyProp(self, propID, lingshiNum):
+        DEBUG_MSG("PropSystem:buyProp")
+        if lingshiNum > self.lingshiAmount:
+            return
+        self.lingshiAmount = self.lingshiAmount - lingshiNum
+        self.addPropByID(propID)
