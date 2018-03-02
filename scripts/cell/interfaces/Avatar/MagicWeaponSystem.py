@@ -24,9 +24,8 @@ class MagicWeaponSystem:
         DEBUG_MSG("MagicWeaponSystem:calculateFreeIndexSet")
         freeIndexSet = []
         removeIndexSet = []
-        for i in range(0, 9):
+        for i in range(8, -1, -1):
             freeIndexSet.append(i)
-        freeIndexSet.reverse()
         for index, weaponMap in self.magicWeaponList.items():
             if weaponMap["propUUID"] not in self.propList:
                 removeIndexSet.append(index)
