@@ -18,6 +18,17 @@
 			<Flags>CELL_PRIVATE</Flags>
 			<Persistent>true</Persistent>
 		</avatarInfoKeepDict>
+		<npcType>
+			<Type>INT32</Type>
+			<Default>0</Default>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</npcType>
+		<arenaID>
+			<Type>INT32</Type>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</arenaID>
 	</Properties>
 	<ClientMethods>
 		<NpcMethod>

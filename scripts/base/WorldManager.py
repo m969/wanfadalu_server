@@ -26,4 +26,5 @@ class WorldManager(KBEngine.Base, SpacesManager, CombatBulletinManager, RankingL
 
 
     def onTimer(self, timerHandle, userData):
-        CombatBulletinManager.onTimer(self, timerHandle, userData)
+        #CombatBulletinManager.onTimer(self, timerHandle, userData)
+        pass

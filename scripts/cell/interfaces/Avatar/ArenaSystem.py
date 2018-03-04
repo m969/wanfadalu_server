@@ -21,7 +21,7 @@ class ArenaSystem:
     def onEnterArena(self, arena):
         DEBUG_MSG("ArenaSystem:onEnterArena")
         self.arenaID = arena.arenaID
-        self.client.OnEnterArena(arena.centerPosition)
+        self.client.OnEnterArena(arena.position)
 
 
     def requestExitArena(self, exposed):
@@ -33,7 +33,7 @@ class ArenaSystem:
 
     def onExitArena(self, arena):
         DEBUG_MSG("ArenaSystem:onExitArena")
-        self.client.OnExitArena(arena.outPosition)
+        self.client.OnExitArena(arena.arenaNpc.position)
 
 
     def onMatchEnd(self, iswin):
