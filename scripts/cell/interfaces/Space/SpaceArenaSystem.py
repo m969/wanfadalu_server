@@ -26,8 +26,8 @@ class SpaceArenaSystem:
         params = {}
         params["entityName"] = "ArenaNpcView"
         params["arenaID"] = arenaID
-        npcPosition = (arenaPosition.x - 2, arenaPosition.y, arenaPosition.z - 2)
-        self.arenaNpc = KBEngine.createEntity("Npc", self.spaceID, arenaPosition, (0.0, 0.0, 0.0), params)
+        npcPosition = (arenaPosition[0] - 14, arenaPosition[1], arenaPosition[2] - 14)
+        self.arenaNpc = KBEngine.createEntity("Npc", self.spaceID, npcPosition, (0.0, 0.0, 0.0), params)
         self.arena.arenaNpc = self.arenaNpc
 
 
