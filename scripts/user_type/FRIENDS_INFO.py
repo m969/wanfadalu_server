@@ -2,16 +2,15 @@
 import KBEngine
 from KBEDebug import *
 
+
+
+
 class TFriendsInfo(dict):
     def __init__(self):
         dict.__init__(self)
         pass
 
     def asDict(self):
-        """
-        
-        :return: 
-        """
         datas = []
         dic = {"values":datas}
         for key, value in self.items():

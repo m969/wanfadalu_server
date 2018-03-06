@@ -22,6 +22,7 @@ class Npc(KBEngine.Entity, EntityObject, NpcDialogSystem, NpcStoreSystem, NpcTas
         self.npcType = 1
         if self.npcType == 1:
             NpcStoreSystem.__init__(self)
+        responseItems = {}
         # KBEngine.globalData["space_%i" % self.spaceID].cell.onNpcEnter(self)
         # if (self.entityName == "新手引导") | (self.entityName == "上水村长") | (self.entityName == "守村人") | \
         #     (self.entityName == "工匠") | (self.entityName == "神秘人") | (self.entityName == "店小二") | \
