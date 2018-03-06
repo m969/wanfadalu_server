@@ -2,6 +2,7 @@
 import KBEngine
 from KBEDebug import *
 import space_data
+import PyDatas.npc_config_Table as npc_config_Table
 
 
 
@@ -9,18 +10,16 @@ import space_data
 class SpaceNpcSystem:
     def __init__(self):
         DEBUG_MSG("SpaceNpcSystem:__init__")
-        # self.npcList = {}
-        # self.npcsData = self.spaceData["Npc数据"]      # 取出场景Npc数据
-        # for npcName, npcData in self.npcsData.items():
-        #     self.npcList[npcName] = KBEngine.createEntity("Npc",
-        #                                                   self.spaceID,
-        #                                                   npcData["坐标"],
-        #                                                   (0.0, 0.0, 0.0),
-        #                                                   {
-        #                                                       "npcID": npcData["id"],
-        #                                                       "entityName": npcName,
-        #                                                       'modelName': npcData["模型名称"]
-        #                                                   })     # 创建Npc
+        self.npcDatas = {}
+        for npcID, npcData in npc_config_Table.datas.items():
+            if npcData["spaceUID"] == self.spaceUID:
+                self.npcDatas[npcID] = npcData
+                params = {}
+                params["npcID"] = npcID
+                params["npcType"] = npcData["type"]
+                params["store"] = npcData["store"]
+                params["entityName"] = npcData["name"]
+                KBEngine.createEntity("Npc", self.spaceID, npcData["pos"], (0.0, 0.0, 0.0), params)
 
 
     def requestNpc(self, npcName):

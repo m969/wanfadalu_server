@@ -131,18 +131,25 @@ class DialogSystem:
         self.goldCount -= num
         pass
 
-    def requestDialog(self, exposed, spaceID, npcName):
+    def requestDialog(self, exposed, npcEntityID):
         """
         此函数由客户端调用，此函数会向指定npc请求返回对话的内容。
         """
         if exposed != self.id:
             return
-        npcMailbox = KBEngine.globalData["space_cell_%i" % self.spaceID].requestNpc(npcName)
-        if npcMailbox:
-            dialog = npcMailbox.requestTask(self)
-            self.client.DoDialog(npcMailbox.name, dialog)
-        else:
-            DEBUG_MSG("npcMailbox is None")
+        npc = KBEngine.entities.get(npcEntityID)
+        if npc is None:
+            return
+        if npc.npcType == 1:
+            self.client.OnDialogOpen()
+        elif npc.npcType == 2:
+            self.client.OnStoreOpen({})
+        # npcMailbox = KBEngine.globalData["space_cell_%i" % self.spaceID].requestNpc(npcName)
+        # if npcMailbox:
+        #     dialog = npcMailbox.requestTask(self)
+        #     self.client.DoDialog(npcMailbox.name, dialog)
+        # else:
+        #     DEBUG_MSG("npcMailbox is None")
 
     def getTaskInfo(self, npcName):
         DEBUG_MSG("DialogSystem:getTaskInfo")
