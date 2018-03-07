@@ -18,4 +18,4 @@ class ArenaStrategy(TriggerStrategy):
         super().execute()
         if self.otherEntity.arenaID != self.trigger.owner.id:
             if self.otherEntity.id != self.trigger.owner.id:
-                self.otherEntity.position = self.trigger.owner.outPosition
+                self.otherEntity.position = self.trigger.owner.arenaNpc.position
