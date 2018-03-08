@@ -22,7 +22,7 @@ class ArenaSystem:
 
     def requestSelfRanking(self):
         DEBUG_MSG("ArenaSystem:requestSelfRanking")
-        KBEngine.globalData["RankingListManager"].requestAvatarRanking(self, self.id)
+        KBEngine.globalData["RankingListManager"].requestAvatarRanking(self, self.databaseID)
 
 
     def onRequestSelfRankingReturn(self, rankingInfo):
