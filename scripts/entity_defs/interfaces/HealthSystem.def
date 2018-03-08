@@ -2,13 +2,13 @@
 	<Properties>
 		<HP>
 			<Type>INT32</Type>
-			<Default>100</Default>
+			<Default>10000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</HP>
 		<HP_Max>
 			<Type>INT32</Type>
-			<Default>100</Default>
+			<Default>10000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</HP_Max>
