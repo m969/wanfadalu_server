@@ -25,16 +25,13 @@ class Arena(KBEngine.Entity, EntityObject):
         self.triggerStrategy = ArenaStrategy()
         self.triggerStrategy.initializeStrategy({})
         if self.arenaTrigger is None:
-            self.arenaTrigger = KBEngine.createEntity("Trigger",
-                                                     self.spaceID,
-                                                     self.position,
-                                                     (0.0, 0.0, 0.0),
-                                                     {
-                                                         "entityName": "ArenaTrigger",
-                                                         "owner": self,
-                                                         "triggerSize": 50,
-                                                         "triggerStrategy": self.triggerStrategy,
-                                                     })  # 创建擂台触发器
+            params = {
+                "entityName": "ArenaTrigger",
+                "owner": self,
+                "triggerSize": 50,
+                "triggerStrategy": self.triggerStrategy,
+            }
+            self.arenaTrigger = KBEngine.createEntity("Trigger", self.spaceID, self.position, (0.0, 0.0, 0.0), params)  # 创建擂台触发器
         else:
             self.arenaTrigger.setAttr("position", self.position)
 
@@ -90,13 +87,18 @@ class Arena(KBEngine.Entity, EntityObject):
         self.contestantList[loserDBID].onExitArena(self)
         self.contestantList[winnerDBID].onMatchEnd(iswin=True)
         self.contestantList[winnerDBID].onExitArena(self)
-        matchResult = {}
-        matchResult["winnerInfo"] = {}
-        matchResult["loserInfo"] = {}
-        matchResult["winnerInfo"]["dbid"] = winnerDBID
-        matchResult["winnerInfo"]["name"] = self.contestantList[winnerDBID].entityName
-        matchResult["loserInfo"]["dbid"] = loserDBID
-        matchResult["loserInfo"]["name"] = self.contestantList[loserDBID].entityName
+        matchResult = {
+            "winnerInfo": {},
+            "loserInfo": {}
+        }
+        matchResult["winnerInfo"] = {
+            "dbid": winnerDBID,
+            "name": self.contestantList[winnerDBID].entityName
+        }
+        matchResult["loserInfo"] = {
+            "dbid": loserDBID,
+            "name": self.contestantList[loserDBID].entityName
+        }
         KBEngine.globalData["SpacesManager"].addNewMatchResult(matchResult)
         self.endMatch()
 

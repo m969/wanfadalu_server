@@ -4,7 +4,6 @@ from KBEDebug import *
 from PROP_LIST import TProp
 from PROP_LIST import TPropList
 import json
-import uuid
 import PyDatas.prop_config_Table as prop_config_Table
 import PyDatas.store_config_Table as store_config_Table
 
@@ -31,7 +30,7 @@ class PropSystem:
     def newPropByData(self, propData):
         DEBUG_MSG("PropSystem:newPropByData")
         prop = TProp()
-        prop["propUUID"] = str(uuid.uuid1())
+        prop["propUUID"] = KBEngine.genUUID64()
         prop["propData"] = propData
         return prop
 

@@ -19,6 +19,8 @@ from taskScripts.Xunzhaobaoma import Xunzhaobaoma
 from taskScripts.Pobudeyi import Pobudeyi
 
 
+
+
 class DialogSystem:
     def __init__(self):
         DEBUG_MSG("DialogSystem:__init__")
@@ -44,8 +46,8 @@ class DialogSystem:
                         nextTaskScriptKey) +
                          ", avatarTaskInfo[0], avatarTaskInfo[1])")
         self.addTimer(1, 1, 31)  # 添加 任务监视检测 定时器
-
         #self.giveTask("TestNpc", 1)
+
 
     def onTimer(self, timerHandle, userData):
         if userData == 31:  # 任务监视检测 定时器
@@ -65,6 +67,7 @@ class DialogSystem:
             self.taskScriptList = tempDict
             self.finishTaskScriptList.clear()
 
+
     def requestBuyGoods(self, exposed, spaceID, npcName, goodsID):
         if exposed != self.id:
             return
@@ -72,7 +75,7 @@ class DialogSystem:
         npcMailbox = KBEngine.globalData["space_cell_%i" % spaceID].requestNpc(npcName)
         result = npcMailbox.requestBuyGoods(self, goodsID)
         self.client.BuyResult(result)
-        pass
+
 
     def giveGoods(self, goodsID):
         DEBUG_MSG("DialogSystem:giveGoods")
@@ -105,7 +108,7 @@ class DialogSystem:
                              self.Xunzhaobaoma_TaskCounter + 1)
             else:
                 self.setAttr("Xunzhaobaoma_TaskCounter", 1)
-        pass
+
 
     def deleteGoods(self, goodsID):
         """
@@ -124,7 +127,7 @@ class DialogSystem:
                              self.Qianlisongqing_TaskCounter + 1)
             else:
                 self.setAttr("Qianlisongqing_TaskCounter", 1)
-        pass
+
 
     def deductMoney(self, num):
         DEBUG_MSG("getMoney")
@@ -151,6 +154,7 @@ class DialogSystem:
         # else:
         #     DEBUG_MSG("npcMailbox is None")
 
+
     def getTaskInfo(self, npcName):
         DEBUG_MSG("DialogSystem:getTaskInfo")
         specificNpcTaskInfo = []
@@ -158,6 +162,7 @@ class DialogSystem:
             if aTaskInfo[0] == npcName:
                 specificNpcTaskInfo.append(aTaskInfo)
         return specificNpcTaskInfo
+
 
     def setTaskFinish(self, npcName, taskIndex, watcherIndex):
         """
@@ -172,6 +177,7 @@ class DialogSystem:
                 self.taskInfoList[key] = taskInfo
                 self.finishTaskScriptList.append(watcherIndex)
 
+
     def isTaskFinish(self, npcName, taskIndex):
         DEBUG_MSG("DialogSystem:isTaskFinish")
         for taskInfo in self.taskInfoList.values():
@@ -179,6 +185,7 @@ class DialogSystem:
                 DEBUG_MSG("return isTaskFinish")
                 return taskInfo[2]
         return False
+
 
     def giveAward(self, npcName, taskIndex):
         """
@@ -209,6 +216,7 @@ class DialogSystem:
             if value[0] == npcName and value[1] == taskIndex:
                 self.taskInfoList[key][3] = True
                 return
+
 
     def giveTask(self, npcName, taskIndex):
         """
