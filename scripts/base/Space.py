@@ -32,7 +32,7 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
         if not hasattr(self, "cityName"):
             self.cityName = self.cellData["cityName"]
         KBEngine.globalData["space_base_spaceUID_%i" % self.spaceUID] = self
-        KBEngine.globalData["space_base_spaceName_%s" % self.spaceName] = self
+        # KBEngine.globalData["space_base_spaceName_%s" % self.spaceName] = self
         self.loginQueue = []
         self.createInNewSpace(None)
 
@@ -59,9 +59,9 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
         self.onLeave(entityID)
 
 
-    def requestTeleport(self, entityBaseCall):
+    def requestTeleport(self, entityBaseCall, position):
         DEBUG_MSG("Space:requestTeleport")
-        entityBaseCall.cell.teleportToSpace(self.cell, self.spaceData["触发器数据"]["传送门入口点"], (0.0, 0.0, 0.0))
+        entityBaseCall.cell.teleportToSpace(self.cell, position, (0.0, 0.0, 0.0))
 
 
     def onEnter(self, entityBaseCall):

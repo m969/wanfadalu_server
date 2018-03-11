@@ -78,8 +78,8 @@ class Avatar(KBEngine.Entity,
         ArenaSystem.__init__(self)
         SectSystem.__init__(self)
         LingshiSystem.__init__(self)
-        PropSystem.__init__(self)
         MagicWeaponSystem.__init__(self)
+        PropSystem.__init__(self)
 
 
     def onTimer(self, timerHandle, userData):

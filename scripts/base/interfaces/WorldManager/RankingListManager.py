@@ -12,9 +12,10 @@ from RANKING_LIST import TRankingList
 class RankingListManager:
     def __init__(self):
         DEBUG_MSG("RankingListManager:__init__")
-        if not hasattr(self, "rankingList"):
-            self.rankingList = TRankingList()
         KBEngine.globalData["RankingListManager"] = self
+        self.rankingMapList = {}
+        for key, value in self.rankingList.items():
+            self.rankingMapList[value["ranking"]] = value["avatarDBID"]
 
 
     def addNewMatchResult(self, matchResult):
@@ -31,19 +32,28 @@ class RankingListManager:
             winnerMatchInfo["avatarName"] = winnerName
             winnerMatchInfo["matchAmount"] = 1
             winnerMatchInfo["winAmount"] = 1
+            winnerMatchInfo["ranking"] = len(self.rankingList) + 1
             self.rankingList[winnerDBID] = winnerMatchInfo
         else:
             winnerMatchInfo["matchAmount"] = winnerMatchInfo["matchAmount"] + 1
             winnerMatchInfo["winAmount"] = winnerMatchInfo["winAmount"] + 1
+        previousRanking = winnerMatchInfo["ranking"] - 1
+        if previousRanking > 0:
+            previousAvatarMatchInfo = self.rankingList.get(self.rankingMapList[previousRanking])
+            if winnerMatchInfo["winAmount"] > previousAvatarMatchInfo["winAmount"]:
+                winnerMatchInfo["ranking"] = winnerMatchInfo["ranking"] - 1
+                previousAvatarMatchInfo["ranking"] = previousAvatarMatchInfo["ranking"] + 1
         if loserMatchInfo is None:
             loserMatchInfo = TAvatarMatchInfo()
             loserMatchInfo["avatarDBID"] = loserDBID
             loserMatchInfo["avatarName"] = loserName
             loserMatchInfo["matchAmount"] = 1
             loserMatchInfo["winAmount"] = 0
+            loserMatchInfo["ranking"] = len(self.rankingList) + 1
             self.rankingList[loserDBID] = loserMatchInfo
         else:
             loserMatchInfo["matchAmount"] = loserMatchInfo["matchAmount"] + 1
+        DEBUG_MSG(self.rankingList)
 
 
     def requestRankingList(self, avatarCall):
@@ -53,4 +63,5 @@ class RankingListManager:
 
     def requestAvatarRanking(self, avatarCall, avatarDBID):
         DEBUG_MSG("RankingListManager:requestAvatarRanking")
+        DEBUG_MSG(self.rankingList)
         avatarCall.onRequestSelfRankingReturn(self.rankingList[avatarDBID])

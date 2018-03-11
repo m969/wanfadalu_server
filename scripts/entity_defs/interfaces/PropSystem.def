@@ -6,4 +6,15 @@
 			<Persistent>true</Persistent>
 		</propList>
 	</Properties>
+	<ClientMethods>
+		<OnPullStorePropListReturn>
+			<Arg>STORE_PROP_LIST</Arg>
+		</OnPullStorePropListReturn>
+	</ClientMethods>
+	<CellMethods>
+		<requestPullStorePropList>
+			<Exposed />
+			<Arg>INT32</Arg>
+		</requestPullStorePropList>
+	</CellMethods>
 </root>

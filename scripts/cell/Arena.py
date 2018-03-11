@@ -14,8 +14,10 @@ class Arena(KBEngine.Entity, EntityObject):
         KBEngine.Entity.__init__(self)
         EntityObject.__init__(self)
         DEBUG_MSG("Arena:__init__")
+        self.contestEnd = True
         self.arenaTrigger = None
         self.contestantList = {}
+        self.subscribtionList = []
         self.onEvent("requestEnterArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestEnterArena)
         self.onEvent("requestExitArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestExitArena)
 
@@ -55,7 +57,10 @@ class Arena(KBEngine.Entity, EntityObject):
             return
         self.contestantList[evt["avatar"].dbid] = evt["avatar"]
         evt["avatar"].onEnterArena(self)
-        self.onEvent("avatarDeadEvent").filter(lambda et: et["avatarID"] == evt["avatar"].id).subscribe(on_next=self.onAvatarDead)
+        subscribtion = self.onEvent("avatarDeadEvent").filter(lambda et: et["avatarID"] == evt["avatar"].id).subscribe(on_next=self.onAvatarDead)
+        self.subscribtionList.append(subscribtion)
+        if len(self.contestantList) == 2:
+            self.contestEnd = False
 
 
     def requestExitArena(self, evt):
@@ -70,8 +75,10 @@ class Arena(KBEngine.Entity, EntityObject):
 
 
     def onAvatarDead(self, evt):
-        DEBUG_MSG("Arena:onAvatarDead")
-        self.setMatchResult(evt["avatar"].dbid)
+        DEBUG_MSG("Arena:onAvatarDead avatar:" + str(evt["avatar"].id))
+        if self.contestEnd == False:
+            self.contestEnd = True
+            self.setMatchResult(evt["avatar"].dbid)
 
 
     def setMatchResult(self, loserDBID):
@@ -106,3 +113,6 @@ class Arena(KBEngine.Entity, EntityObject):
     def endMatch(self):
         DEBUG_MSG("Arena:endMatch")
         self.contestantList = {}
+        for subscribtion in self.subscribtionList:
+            subscribtion.dispose()
+        self.subscribtionList = []

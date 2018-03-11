@@ -14,8 +14,6 @@ class SectsManager:
     def __init__(self):
         DEBUG_MSG("SectsManager:__init__")
         KBEngine.globalData["SectsManager"] = self
-        if not hasattr(self, "sectDBIDList"):
-            self.sectDBIDList = TIdDbidMapList()
         self.sectList = {}
 
 
@@ -25,7 +23,7 @@ class SectsManager:
             if sectID in self.sectDBIDList.keys():
                 KBEngine.createBaseFromDBID("Sect", self.sectDBIDList[sectID]["dbid"], self.__sectCreateCallback)
             else:
-                sect = KBEngine.createBaseLocally("Sect", {"sectName": sectData["sectName"], "sectID": sectID, "position": sectData["position"]})
+                sect = KBEngine.createBaseLocally("Sect", {"entityName": sectData["sectName"], "sectID": sectID, "position": sectData["position"]})
                 sect.writeToDB(self.__onSectSaved)
                 self.sectList[sect.sectID] = sect
 

@@ -17,6 +17,7 @@ class TAvatarMatchInfo(dict):
         self["avatarName"] = dictData["avatarName"]
         self["matchAmount"] = dictData["matchAmount"]
         self["winAmount"] = dictData["winAmount"]
+        self["ranking"] = dictData["ranking"]
         return self
 
 class AVATAR_MATCH_INFO_PICKLER:

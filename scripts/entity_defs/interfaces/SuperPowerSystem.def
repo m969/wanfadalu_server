@@ -2,43 +2,43 @@
 	<Properties>
 		<MSP>
 			<Type>INT32</Type>
-			<Default>200</Default>
+			<Default>2000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</MSP>
 		<MSP_Max>
 			<Type>INT32</Type>
-			<Default>200</Default>
+			<Default>2000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</MSP_Max>
 		<SP>
 			<Type>INT32</Type>
-			<Default>10000</Default>
+			<Default>100000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</SP>
 		<SP_Max>
 			<Type>INT32</Type>
-			<Default>10000</Default>
+			<Default>100000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</SP_Max>
 		<spMaxIncreaseStrength>
 			<Type>INT32</Type>
-			<Default>5</Default>
+			<Default>50</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</spMaxIncreaseStrength>
 		<spRevertStrength>
 			<Type>INT32</Type>
-			<Default>2</Default>
+			<Default>20</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</spRevertStrength>
 		<mspRevertStrength>
 			<Type>INT32</Type>
-			<Default>20</Default>
+			<Default>200</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</mspRevertStrength>

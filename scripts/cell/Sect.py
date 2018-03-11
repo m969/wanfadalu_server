@@ -13,7 +13,7 @@ class Sect(KBEngine.Entity, EntityObject):
 	def __init__(self):
 		DEBUG_MSG("Sect:__init__")
 		KBEngine.Entity.__init__(self)
-		KBEngine.globalData["space_cell_spaceID_%i" % self.spaceID].onEnter(self)
+		KBEngine.globalData["space_base_spaceID_%i" % self.spaceID].cell.onEnter(self)
 
 
 	def onEntityEnterSpace(self, spaceID, spaceName):

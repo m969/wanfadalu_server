@@ -12,13 +12,13 @@
 	<CellMethods>
 		<onEntityEnterSpace>
 			<Arg>INT32</Arg>
-			<Arg>UNICODE</Arg>
+			<Arg>INT32</Arg>
 		</onEntityEnterSpace>
 		<onLeaveSpaceClientInputInValid>
 			<Exposed />
 		</onLeaveSpaceClientInputInValid>
 		<isGoingToTeleport>
-			<Arg>UNICODE</Arg>
+			<Arg>INT32</Arg>
 			<Arg>VECTOR3</Arg>
 		</isGoingToTeleport>
 		<teleportToSpace>

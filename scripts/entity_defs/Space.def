@@ -47,6 +47,7 @@
 		</logoutSpace>
 		<requestTeleport>
 			<Arg>MAILBOX</Arg>
+			<Arg>VECTOR3</Arg>
 		</requestTeleport>
 		<onEnter>
 			<Arg>MAILBOX</Arg>

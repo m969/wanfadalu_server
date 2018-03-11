@@ -14,7 +14,7 @@
 			<Arg>AVATAR_FRIENDS</Arg>
 		</OnShowAllFriends>
 	</ClientMethods>
-	<CellMethods>
+	<BaseMethods>
 		<findFriends>
 			<Exposed />
 		</findFriends>
@@ -29,5 +29,5 @@
 		<showAllFriends>
 			<Exposed />
 		</showAllFriends>
-	</CellMethods>
+	</BaseMethods>
 </root>

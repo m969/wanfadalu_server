@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
+import PyDatas.space_config_Table as space_config_Table
 
 
 
@@ -8,17 +9,17 @@ from KBEDebug import *
 class TeleportSystem:
     def __init__(self):
         DEBUG_MSG("TeleportSystem:__init__")
-        KBEngine.globalData["space_cell_spaceID_%i" % self.spaceID].onEnter(self)
+        KBEngine.globalData["space_base_spaceID_%i" % self.spaceID].cell.onEnter(self)
 
 
     def onTimer(self, timerHandle, userData):
         pass
 
 
-    def isGoingToTeleport(self, spaceName, gateWayEntrancePosition):
+    def isGoingToTeleport(self, spaceUID, gateWayEntrancePosition):
         DEBUG_MSG("TeleportSystem:isGoingToTeleport")
         self.client.onMainAvatarLeaveSpace()
-        self.newSpaceName = spaceName
+        self.newSpaceUID = spaceUID
         self.newSpacePosition = gateWayEntrancePosition
 
 
@@ -29,26 +30,21 @@ class TeleportSystem:
         DEBUG_MSG("TeleportSystem:teleportToSpace")
         self.getCurrentSpaceBase().onLeave(self.id)
         self.teleport(spaceCellMailbox, position, direction)
-        #self.base.onTeleportSuccess(self.newSpaceName)
-        #self.counter = 0
-        #self.resetPositionTimerHandle = self.addTimer(0.1, 0.2, 41)  # 重置角色坐标计数器
-        #self.onAvatarEnterSpace(spaceCellMailbox.spaceID, spaceCellMailbox.spaceName)
 
 
     def onTeleportSuccess(self, nearbyEntity):
         DEBUG_MSG("TeleportSystem:onTeleportSuccess")
-        #self.base.onTeleportSuccess(self.newSpaceName)
-        #self.teleport(None, self.newSpacePosition, (0.0, 0.0, 0.0))
         self.teleporting = False
-        self.onAvatarEnterSpace(self.spaceID, self.newSpaceName)
+        self.spaceUID = self.newSpaceUID
+        self.onEntityEnterSpace(self.spaceID, self.newSpaceUID)
         self.client.Teleport(self.newSpacePosition)
 
 
     def onLeaveSpaceClientInputInValid(self, exposed):
         DEBUG_MSG("TeleportSystem:onLeaveSpaceClientInputInValid")
-        KBEngine.globalData["space_" + self.newSpaceName].requestTeleport(self.base)
+        KBEngine.globalData["space_base_spaceUID_" + str(self.newSpaceUID)].requestTeleport(self.base, self.newSpacePosition)
 
 
-    def onEntityEnterSpace(self, spaceID, spaceName):
+    def onEntityEnterSpace(self, spaceID, spaceUID):
         DEBUG_MSG("TeleportSystem:onEntityEnterSpace")
-        self.client.onMainAvatarEnterSpace(spaceID, spaceName)
+        self.client.onMainAvatarEnterSpace(spaceID, space_config_Table.datas[spaceUID]["spaceName"])

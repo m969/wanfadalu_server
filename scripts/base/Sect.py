@@ -17,8 +17,6 @@ class Sect(KBEngine.Base, EntityObject):
         KBEngine.Base.__init__(self)
         KBEngine.globalData["sect_%i" % self.sectID] = self
         self.sectData = sect_data.data[self.sectID]
-        if not hasattr(self, "memberDBIDList"):
-            self.memberDBIDList = TDBIDList()
         KBEngine.globalData["space_base_spaceUID_%i" % self.sectData["spaceUID"]].loginSpace(self)
 
 

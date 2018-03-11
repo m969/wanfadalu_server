@@ -3,6 +3,8 @@ import KBEngine
 from KBEDebug import *
 from PROP_LIST import TProp
 from PROP_LIST import TPropList
+from STORE_PROP_LIST import TStoreProp
+from STORE_PROP_LIST import TStorePropList
 import json
 import PyDatas.prop_config_Table as prop_config_Table
 import PyDatas.store_config_Table as store_config_Table
@@ -13,6 +15,12 @@ import PyDatas.store_config_Table as store_config_Table
 class PropSystem:
     def __init__(self):
         DEBUG_MSG("PropSystem:__init__")
+        self.freePropIndexSet = []
+        for i in range(0, 16):
+            self.freePropIndexSet.insert(0, i)
+        for propUUID, prop in self.propList.items():
+            self.freePropIndexSet.remove(prop["index"])
+        DEBUG_MSG(self.freePropIndexSet)
         if len(self.propList) == 0:
             self.addPropByID(1001)
             self.addPropByID(1002)
@@ -31,6 +39,7 @@ class PropSystem:
         DEBUG_MSG("PropSystem:newPropByData")
         prop = TProp()
         prop["propUUID"] = KBEngine.genUUID64()
+        prop["index"] = self.freePropIndexSet.pop()
         prop["propData"] = propData
         return prop
 
@@ -54,11 +63,20 @@ class PropSystem:
     def removeProp(self, propUUID):
         DEBUG_MSG("PropSystem:removeProp")
         del self.propList[propUUID]
+        self.onRemoveProp(propUUID)
 
 
-    def requestPullStorePropList(self, storeNpcID):
+    def onRemoveProp(self, propUUID):
+        DEBUG_MSG("PropSystem:onRemoveProp")
+
+
+    def requestPullStorePropList(self, exposed, storeNpcID):
         DEBUG_MSG("PropSystem:requestPullStorePropList")
-        self.client.onPullStorePropListReturn(store_config_Table.datas[storeNpcID]["propList"])
+        if exposed != self.id:
+            return
+        storePropList = TStorePropList()
+        storePropList.extend(store_config_Table.datas[storeNpcID]["propList"])
+        self.client.OnPullStorePropListReturn(store_config_Table.datas[storeNpcID]["propList"])
 
 
     def requestBuyProp(self, storeNpcID, propIndex):
