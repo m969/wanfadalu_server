@@ -132,27 +132,42 @@ class DialogSystem:
     def deductMoney(self, num):
         DEBUG_MSG("getMoney")
         self.goldCount -= num
-        pass
+
 
     def requestDialog(self, exposed, npcEntityID):
-        """
-        此函数由客户端调用，此函数会向指定npc请求返回对话的内容。
-        """
+        DEBUG_MSG("DialogSystem:requestDialog")
         if exposed != self.id:
             return
         npc = KBEngine.entities.get(npcEntityID)
         if npc is None:
             return
+        dialogItems = {}
         if npc.npcType == 1:
-            self.client.OnDialogOpen()
+            dialogItems[0] = {"dialogIndex":0, "dialogID":1001, "content":"我要上擂台"}
+            dialogItems[1] = {"dialogIndex":1, "dialogID":0, "content":"算了，怂"}
+            self.client.OnDialogItemsReturn(dialogItems)
         elif npc.npcType == 2:
-            self.client.OnStoreOpen({})
+            dialogItems[0] = {"dialogIndex":0, "dialogID":1002, "content":"我要购买道具"}
+            dialogItems[1] = {"dialogIndex":1, "dialogID":0, "content":"算了，穷"}
+            self.client.OnDialogItemsReturn(dialogItems)
+        elif npc.npcType == 3:
+            dialogItems[0] = {"dialogIndex":0, "dialogID":1003, "content":"我要加入宗门"}
+            dialogItems[1] = {"dialogIndex":1, "dialogID":0, "content":"算了，流浪挺好"}
+            self.client.OnDialogItemsReturn(dialogItems)
         # npcMailbox = KBEngine.globalData["space_cell_%i" % self.spaceID].requestNpc(npcName)
         # if npcMailbox:
         #     dialog = npcMailbox.requestTask(self)
         #     self.client.DoDialog(npcMailbox.name, dialog)
         # else:
         #     DEBUG_MSG("npcMailbox is None")
+
+
+    def selectDialogItem(self, exposed, dialogID):
+        DEBUG_MSG("DialogSystem:selectDialogItem")
+        if exposed != self.id:
+            return
+        if dialogID == 0:
+            return
 
 
     def getTaskInfo(self, npcName):

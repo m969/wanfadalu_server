@@ -14,6 +14,12 @@ class Sect(KBEngine.Entity, EntityObject):
 		DEBUG_MSG("Sect:__init__")
 		KBEngine.Entity.__init__(self)
 		KBEngine.globalData["space_base_spaceID_%i" % self.spaceID].cell.onEnter(self)
+		params = {}
+		params["npcID"] = 0
+		params["npcType"] = 3
+		params["store"] = 0
+		params["entityName"] = self.entityName
+		KBEngine.createEntity("Npc", self.spaceID, (80, 0, 90), (0.0, 0.0, 0.0), params)
 
 
 	def onEntityEnterSpace(self, spaceID, spaceName):
