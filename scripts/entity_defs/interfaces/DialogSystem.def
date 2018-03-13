@@ -29,6 +29,9 @@
 		<BuyResult>
 			<Arg>INT32</Arg>
 		</BuyResult>
+		<OnDialogItemsReturn>
+			<Arg>DIALOG_ITEM_LIST</Arg>
+		</OnDialogItemsReturn>
 	</ClientMethods>
 	<CellMethods>
 		<requestDialog>
@@ -63,5 +66,9 @@
 		<deductMoney>
 			<Arg>INT32</Arg>
 		</deductMoney>
+		<selectDialogItem>
+			<Exposed />
+			<Arg>INT32</Arg>
+		</selectDialogItem>
 	</CellMethods>
 </root>

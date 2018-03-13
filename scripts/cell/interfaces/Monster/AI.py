@@ -4,7 +4,7 @@ import random
 import KBEngine
 from KBEDebug import *
 import monster_data
-from triggerStrategies import *
+from strategy.trigger_strategy import *
 
 
 

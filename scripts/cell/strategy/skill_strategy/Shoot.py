@@ -2,9 +2,8 @@
 import KBEngine
 from KBEDebug import *
 import avatar_skill_data
-import trigger_strategy
-from Skills import *
-from triggerStrategies import *
+from strategy.skill_strategy import *
+from strategy.trigger_strategy import *
 
 
 

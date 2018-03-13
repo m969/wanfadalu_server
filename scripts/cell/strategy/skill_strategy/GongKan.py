@@ -2,9 +2,10 @@
 import KBEngine
 from KBEDebug import *
 import avatar_skill_data
-import trigger_strategy
-from Skills import *
-from triggerStrategies import *
+from strategy.skill_strategy import *
+from strategy.trigger_strategy import *
+
+
 
 
 class GongKan(Skill):
@@ -12,11 +13,12 @@ class GongKan(Skill):
         Skill.__init__(self, spellCaster, argsString, gongFaID, skillIndex)
         args = argsString.split(":")
         self.skillPoint = (float(args[0]), float(args[1]), float(args[2]))
-        #self.enemyId = int(args[0])
+
 
     def startSing(self):
         self.spellCaster.moveToPoint(self.skillPoint, 0.01, 0.1, {}, True, True)
         return super().startSing()
+
 
     def cast(self):
         damage = int(self.skillSpAmount * self.skillQuality)

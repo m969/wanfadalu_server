@@ -1,37 +1,11 @@
 # -*- coding: utf-8 -*-
-from triggerStrategies.TriggerStrategy import *
-from Skills import *
+from strategy.skill_strategy import *
 import avatar_skill_data
 import gongfa_data
 from GONGFA_LIST import TGongFaList
 from GONGFA_LIST import TSkill
 from interfaces.Common.GongFaSystem import GongFaSystem
 from rx import Observable, Observer
-
-
-
-
-def push_five_strings(observer):
-    observer.on_next("Alpha")
-    observer.on_next("Beta")
-    observer.on_next("Gamma")
-    observer.on_next("Delta")
-    observer.on_next("Epsilon")
-    observer.on_completed()
-
-
-
-
-class PrintObserver(Observer):
-
-    def on_next(self, value):
-        DEBUG_MSG("Received {0}".format(value))
-
-    def on_completed(self):
-        DEBUG_MSG("Done!")
-
-    def on_error(self, error):
-        DEBUG_MSG("Error Occurred: {0}".format(error))
 
 
 
@@ -45,13 +19,6 @@ class SkillSystem(GongFaSystem):
         self.nameToTimerIdsDict = {}
         self.timerIdToNameDict = {}
         self.lastUserData = 100
-        # source = Observable.create(push_five_strings)
-        # source.subscribe(PrintObserver())
-        # self.onEvent("testEvent", lambda evt: DEBUG_MSG("onEvent " + str(evt["eventName"])))
-        # self.publish({
-        #     "eventName": "testEvent",
-        #     "arg1": "arg"
-        #     })
 
 
     def requestCastSkill(self, exposed, gongFaID, skillIndex, argsString):

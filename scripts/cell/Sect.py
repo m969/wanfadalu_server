@@ -17,7 +17,7 @@ class Sect(KBEngine.Entity, EntityObject):
 		params = {}
 		params["npcID"] = 0
 		params["npcType"] = 3
-		params["store"] = 0
+		params["sectID"] = self.cell_sectID
 		params["entityName"] = self.entityName
 		KBEngine.createEntity("Npc", self.spaceID, (80, 0, 90), (0.0, 0.0, 0.0), params)
 

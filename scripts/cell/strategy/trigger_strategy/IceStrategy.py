@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import KBEngine, time
 from KBEDebug import *
-from triggerStrategies.TriggerStrategy import TriggerStrategy
+from strategy.trigger_strategy.TriggerStrategy import TriggerStrategy
 
 
-class ImprisonStrategy(TriggerStrategy):
+class IceStrategy(TriggerStrategy):
     """
-    禁锢策略
+    冰霜策略
     """
     def __init__(self):
         TriggerStrategy.__init__(self)
@@ -22,16 +22,11 @@ class ImprisonStrategy(TriggerStrategy):
         if not hasattr(self.otherEntity, "canDamage"):
             return
         if self.otherEntity.canReceiveSkill is True:
-            if self.otherEntity.canMove is not None:
-                self.otherEntity.moveToPointSample(self.otherEntity.position, 20)
-                self.otherEntity.canMove = False
-            if self.otherEntity.canCastSkill is not None:
-                self.otherEntity.canCastSkill = False
+            self.otherEntity.isIceFreezing = True
             self.otherEntity.addSkillControlTimer(
-                "ImprisonCancelTimer",
+                "IceCancelTimer",
                 3,
                 0,
-                "self.canMove = True\n" +
-                "self.canCastSkill = True\n" +
-                "DEBUG_MSG('ImprisonCancelTimer scriptString')",
+                "self.isIceFreezing = False\n" +
+                "DEBUG_MSG('IceCancelTimer scriptString')",
                 "onceOperation")

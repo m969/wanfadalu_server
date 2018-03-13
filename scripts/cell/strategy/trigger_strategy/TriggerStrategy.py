@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine, time
 from KBEDebug import *
-from triggerStrategies.Strategy import Strategy
+from strategy.Strategy import Strategy
 
 
 

@@ -2,7 +2,7 @@
 import KBEngine
 from KBEDebug import *
 import space_data
-from triggerStrategies import *
+from strategy.trigger_strategy import *
 
 
 

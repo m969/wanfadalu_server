@@ -3,9 +3,9 @@ import KBEngine
 from KBEDebug import *
 import avatar_skill_data
 import gongfa_data
-import trigger_strategy
-from Skills import *
-from triggerStrategies import *
+import script_map_Table
+from strategy.skill_strategy import *
+from strategy.trigger_strategy import *
 
 
 
@@ -49,6 +49,6 @@ class Skill:
         # DEBUG_MSG(self.__class__.__name__ + ":cast")
         self.triggerStrategy = {}
         for strategyName in self.skillData["strategies"]:
-            exec("self.strategy = " + trigger_strategy.data[strategyName] + "()")
+            exec("self.strategy = " + script_map_Table.data[strategyName] + "()")
             self.strategy.initializeStrategy(self.strategyData)
-            self.triggerStrategy[trigger_strategy.data[strategyName]] = self.strategy
+            self.triggerStrategy[script_map_Table.data[strategyName]] = self.strategy

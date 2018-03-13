@@ -29,6 +29,11 @@
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>false</Persistent>
 		</arenaID>
+		<sectID>
+			<Type>INT32</Type>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</sectID>
 	</Properties>
 	<ClientMethods>
 		<NpcMethod>

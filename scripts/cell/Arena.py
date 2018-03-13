@@ -2,7 +2,7 @@
 import KBEngine
 from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject
-from triggerStrategies import *
+from strategy.trigger_strategy import *
 from rx import Observable, Observer
 from rx.subjects import Subject
 

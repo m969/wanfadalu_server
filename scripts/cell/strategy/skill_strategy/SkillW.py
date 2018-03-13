@@ -2,9 +2,10 @@
 import KBEngine
 from KBEDebug import *
 import avatar_skill_data
-import trigger_strategy
-from Skills import *
-from triggerStrategies import *
+from strategy.skill_strategy import *
+from strategy.trigger_strategy import *
+
+
 
 
 class SkillW(Skill):
@@ -13,9 +14,11 @@ class SkillW(Skill):
         args = argsString.split(":")
         self.skillPoint = (float(args[0]), float(args[1]), float(args[2]))
 
+
     def startSing(self):
         self.spellCaster.moveToPoint(self.skillPoint, 0.01, 0.1, {}, True, True)
         return super().startSing()
+
 
     def cast(self):
         damage = int(self.skillSpAmount * self.skillQuality)

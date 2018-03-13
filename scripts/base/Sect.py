@@ -16,6 +16,7 @@ class Sect(KBEngine.Base, EntityObject):
         DEBUG_MSG("Sect:__init__")
         KBEngine.Base.__init__(self)
         KBEngine.globalData["sect_%i" % self.sectID] = self
+        self.cellData["cell_sectID"] = self.sectID
         self.sectData = sect_data.data[self.sectID]
         KBEngine.globalData["space_base_spaceUID_%i" % self.sectData["spaceUID"]].loginSpace(self)
 

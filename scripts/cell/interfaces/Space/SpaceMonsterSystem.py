@@ -3,7 +3,7 @@ import KBEngine
 from KBEDebug import *
 import monster_data
 import space_data
-from triggerStrategies import *
+from strategy.trigger_strategy import *
 
 
 

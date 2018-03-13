@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine, time
 from KBEDebug import *
-from triggerStrategies.TriggerStrategy import TriggerStrategy
+from strategy.trigger_strategy.TriggerStrategy import TriggerStrategy
 
 
 class CampStrategy(TriggerStrategy):

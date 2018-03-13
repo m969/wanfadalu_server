@@ -8,5 +8,5 @@ class Strategy:
         pass
 
     def execute(self):
-        # DEBUG_MSG("TriggerStrategy:excute")
+        DEBUG_MSG("Strategy:excute")
         pass
