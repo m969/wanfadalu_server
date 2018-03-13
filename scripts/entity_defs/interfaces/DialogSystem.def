@@ -37,7 +37,6 @@
 		<requestDialog>
 			<Exposed />
 			<Arg>INT32</Arg>
-			<Arg>UNICODE</Arg>
 		</requestDialog>
 		<requestBuyGoods>
 			<Exposed />

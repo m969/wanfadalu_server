@@ -14,6 +14,11 @@
 			<Flags>BASE_AND_CLIENT</Flags>
 			<Persistent>true</Persistent>
 		</memberDBIDList>
+		<cell_sectID>
+			<Type>INT32</Type>
+			<Flags>CELL_PRIVATE</Flags>
+			<Persistent>true</Persistent>
+		</cell_sectID>
 	</Properties>
 	<CellMethods>
 		<onEntityEnterSpace>
