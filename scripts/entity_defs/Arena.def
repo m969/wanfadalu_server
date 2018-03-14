@@ -8,5 +8,11 @@
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>false</Persistent>
 		</arenaID>
+		<lingshiAward>
+			<Type>INT32</Type>
+			<Default>0</Default>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</lingshiAward>
 	</Properties>
 </root>

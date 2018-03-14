@@ -76,7 +76,7 @@ class PropSystem:
             return
         storePropList = TStorePropList()
         storePropList.extend(store_config_Table.datas[storeNpcID]["propList"])
-        self.client.OnPullStorePropListReturn(store_config_Table.datas[storeNpcID]["propList"])
+        self.client.OnPullStorePropListReturn(storePropList)
 
 
     def requestBuyProp(self, storeNpcID, propIndex):

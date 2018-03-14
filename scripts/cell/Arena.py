@@ -35,7 +35,7 @@ class Arena(KBEngine.Entity, EntityObject):
             }
             self.arenaTrigger = KBEngine.createEntity("Trigger", self.spaceID, self.position, (0.0, 0.0, 0.0), params)  # 创建擂台触发器
         else:
-            self.arenaTrigger.setAttr("position", self.position)
+            self.arenaTrigger.position = self.position
 
 
     def startShield(self):
@@ -52,12 +52,15 @@ class Arena(KBEngine.Entity, EntityObject):
             self.createArenaTrigger()
         if self.contestantList.__len__() >= 2:
             return
-        if evt["avatar"].dbid in self.contestantList.keys():
+        requestAvatar = evt["avatar"]
+        if requestAvatar.dbid in self.contestantList.keys():
             DEBUG_MSG("avatar has in arena")
             return
-        self.contestantList[evt["avatar"].dbid] = evt["avatar"]
-        evt["avatar"].onEnterArena(self)
-        subscribtion = self.onEvent("avatarDeadEvent").filter(lambda et: et["avatarID"] == evt["avatar"].id).subscribe(on_next=self.onAvatarDead)
+        self.contestantList[requestAvatar.dbid] = requestAvatar
+        requestAvatar.onEnterArena(self)
+        requestAvatar.lingshiAmount = requestAvatar.lingshiAmount - 10
+        self.lingshiAward = self.lingshiAward + 10
+        subscribtion = self.onEvent("avatarDeadEvent").filter(lambda et: et["avatarID"] == requestAvatar.id).subscribe(on_next=self.onAvatarDead)
         self.subscribtionList.append(subscribtion)
         if len(self.contestantList) == 2:
             self.contestEnd = False
@@ -90,21 +93,24 @@ class Arena(KBEngine.Entity, EntityObject):
                 loserDBID = dbid
             else:
                 winnerDBID = dbid
-        self.contestantList[loserDBID].onMatchEnd(iswin=False)
-        self.contestantList[loserDBID].onExitArena(self)
-        self.contestantList[winnerDBID].onMatchEnd(iswin=True)
-        self.contestantList[winnerDBID].onExitArena(self)
+        loseAvatar = self.contestantList[loserDBID]
+        winAvatar = self.contestantList[winnerDBID]
+        loseAvatar.onMatchEnd(iswin=False)
+        loseAvatar.onExitArena(self)
+        winAvatar.onMatchEnd(iswin=True)
+        winAvatar.onExitArena(self)
+        winAvatar.lingshiAmount = winAvatar.lingshiAmount + self.lingshiAward
         matchResult = {
             "winnerInfo": {},
             "loserInfo": {}
         }
         matchResult["winnerInfo"] = {
             "dbid": winnerDBID,
-            "name": self.contestantList[winnerDBID].entityName
+            "name": winAvatar.entityName
         }
         matchResult["loserInfo"] = {
             "dbid": loserDBID,
-            "name": self.contestantList[loserDBID].entityName
+            "name": loseAvatar.entityName
         }
         KBEngine.globalData["SpacesManager"].addNewMatchResult(matchResult)
         self.endMatch()
@@ -112,6 +118,7 @@ class Arena(KBEngine.Entity, EntityObject):
 
     def endMatch(self):
         DEBUG_MSG("Arena:endMatch")
+        self.lingshiAward = 0
         self.contestantList = {}
         for subscribtion in self.subscribtionList:
             subscribtion.dispose()
