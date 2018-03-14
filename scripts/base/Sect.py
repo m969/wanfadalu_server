@@ -41,3 +41,4 @@ class Sect(KBEngine.Base, EntityObject):
             return
         self.memberDBIDList.append(avatarCall.id)
         avatarCall.onJoinSectResult(self.sectID, 1)
+        self.writeToDB()

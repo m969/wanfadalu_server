@@ -23,11 +23,11 @@ class SectSystem:
     def onJoinSectResult(self, sectID, result):
         DEBUG_MSG("SectSystem:onJoinSectResult")
         self.sectID_b = sectID
-        self.client.onJoinSectResult(sectID, result)
+        self.client.OnJoinSectResult(sectID, result)
 
 
     def requestSelfSectData(self):
         DEBUG_MSG("SectSystem:requestSelfSectData")
         if self.sectID_b == 0:
             return
-        self.client.onRequestSelfSectDataReturn(self.sectData)
+        self.client.OnRequestSelfSectDataReturn(self.sectData)

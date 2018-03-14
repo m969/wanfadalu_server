@@ -13,4 +13,26 @@
 			<Persistent>true</Persistent>
 		</sectID_b>
 	</Properties>
+	<ClientMethods>
+		<OnJoinSectResult>
+			<Arg>INT32</Arg>
+			<Arg>INT32</Arg>
+		</OnJoinSectResult>
+	</ClientMethods>
+	<BaseMethods>
+		<requestJoinSect>
+			<Exposed />
+			<Arg>INT32</Arg>
+		</requestJoinSect>
+		<onJoinSectResult>
+			<Arg>INT32</Arg>
+			<Arg>INT32</Arg>
+		</onJoinSectResult>
+	</BaseMethods>
+	<CellMethods>
+		<onJoinSectResult>
+			<Arg>INT32</Arg>
+			<Arg>INT32</Arg>
+		</onJoinSectResult>
+	</CellMethods>
 </root>

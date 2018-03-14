@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 import prop_data
-import npc_data
-import store_data
-import zuanshi_data
 from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Npc.NpcDialogSystem import NpcDialogSystem
@@ -18,8 +15,6 @@ class Npc(KBEngine.Entity, EntityObject, NpcDialogSystem, NpcStoreSystem, NpcTas
         # DEBUG_MSG("Npc:__init__")
         KBEngine.Entity.__init__(self)
         EntityObject.__init__(self)
-        self.npcID = 1001
-        self.npcType = 1
         if self.npcType == 1:
             NpcStoreSystem.__init__(self)
         responseItems = {}

@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-import avatar_skill_data
-import npc_data
+import GlobalConst
 import prop_data
 import level_data
 import PyDatas.dialog_config_Table as dialog_config_Table
@@ -59,7 +58,7 @@ class DialogSystem:
             return
         self.dialogNpc = npc
         dialogItems = TDialogItemList()
-        if npc.npcType == 1:
+        if npc.npcType == GlobalConst.NpcType_Arena:
             item = TDialogItem()
             item["id"] = 1001
             item["content"] = "我要上擂台"
@@ -69,7 +68,7 @@ class DialogSystem:
             item["content"] = "算了，怂"
             dialogItems[item["id"]] = item
             self.client.OnDialogItemsReturn(dialogItems)
-        elif npc.npcType == 2:
+        elif npc.npcType == GlobalConst.NpcType_Store:
             item = TDialogItem()
             item["id"] = 1002
             item["content"] = "我要购买道具"
@@ -79,7 +78,7 @@ class DialogSystem:
             item["content"] = "算了，穷"
             dialogItems[item["id"]] = item
             self.client.OnDialogItemsReturn(dialogItems)
-        elif npc.npcType == 3:
+        elif npc.npcType == GlobalConst.NpcType_Sect:
             item = TDialogItem()
             item["id"] = 1002
             item["content"] = "我要加入宗门"
@@ -101,11 +100,12 @@ class DialogSystem:
         dialogType = dialogData["type"]
         # dialogScript = eval(dialogTypeMap[dialogType])()
         # dialogScript.execute(self)
-        if dialogType == 1:
+        npcType = self.dialogNpc.npcType
+        if npcType == GlobalConst.NpcType_Arena:
             self.requestEnterArena(self.id, self.dialogNpc.arenaID)
-        elif dialogType == 2:
+        elif npcType == GlobalConst.NpcType_Store:
             self.requestPullStorePropList(self.id, self.dialogNpc.id)
-        elif dialogType == 3:
+        elif npcType == GlobalConst.NpcType_Sect:
             self.base.requestJoinSect(self.dialogNpc.sectID)
 
 

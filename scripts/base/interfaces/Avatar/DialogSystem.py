@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-import avatar_skill_data
-import npc_data
 import level_data
 
 

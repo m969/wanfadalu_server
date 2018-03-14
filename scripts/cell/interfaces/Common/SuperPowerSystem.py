@@ -2,7 +2,6 @@
 import KBEngine
 from KBEDebug import *
 import level_data
-import avatar_skill_data
 
 
 
@@ -17,7 +16,6 @@ class SuperPowerSystem:
         self.canUseSP = True
         self.canRevertSP = True
         self.canIncreaseSPMax = True
-        self.skillPool = avatar_skill_data.data
         self.levelInfoData = level_data.level_info_data
         self.levelName = level_data.level_name_data[self.level]
         self.levelPeriodName = level_data.level_period_name_data[self.levelPeriod]

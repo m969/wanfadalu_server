@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-import avatar_skill_data
 from strategy.skill_strategy import *
 from strategy.trigger_strategy import *
 

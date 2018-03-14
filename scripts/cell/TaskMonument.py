@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 import prop_data
-import npc_data
 import store_data
 import zuanshi_data
 from KBEDebug import *

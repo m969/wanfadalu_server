@@ -2,7 +2,6 @@
 import KBEngine
 from KBEDebug import *
 import monster_data
-import npc_data
 import space_data
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Space.SpaceGateWaySystem import SpaceGateWaySystem

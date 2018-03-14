@@ -2,7 +2,6 @@
 import KBEngine
 from KBEDebug import *
 from strategy.skill_strategy import *
-import avatar_skill_data
 import gongfa_data
 from GONGFA_LIST import TGongFaList
 from GONGFA_LIST import TSkill

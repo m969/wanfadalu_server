@@ -44,6 +44,9 @@
 		<publishBulletin>
 			<Arg>UNICODE</Arg>
 		</publishBulletin>
+		<onTeleportSuccess>
+			<Arg>INT32</Arg>
+		</onTeleportSuccess>
 	</BaseMethods>
 	<CellMethods>
 		<setAvatarName>

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-import avatar_skill_data
 import gongfa_data
 import script_map_Table
 from strategy.skill_strategy import *

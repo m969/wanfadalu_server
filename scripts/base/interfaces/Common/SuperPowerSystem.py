@@ -2,7 +2,6 @@
 import KBEngine
 from KBEDebug import *
 import level_data
-import avatar_skill_data
 
 
 class SuperPowerSystem:

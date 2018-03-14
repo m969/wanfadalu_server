@@ -35,8 +35,8 @@ class TeleportSystem:
     def onTeleportSuccess(self, nearbyEntity):
         DEBUG_MSG("TeleportSystem:onTeleportSuccess")
         self.teleporting = False
-        self.spaceUID = self.newSpaceUID
         self.onEntityEnterSpace(self.spaceID, self.newSpaceUID)
+        self.base.onTeleportSuccess(self.newSpaceUID)
         self.client.Teleport(self.newSpacePosition)
 
 

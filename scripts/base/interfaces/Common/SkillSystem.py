@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import avatar_skill_data
 from KBEDebug import *
 
 
