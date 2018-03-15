@@ -14,11 +14,10 @@ class SpaceArenaSystem:
 			arenaDatas = self.spaceData["擂台数据"]
 			arenaPosition = arenaDatas["擂台坐标"]
 			arenaID = arenaDatas["擂台ID"]
-			outPosition = arenaDatas["排异强制坐标"]
-			self.createArena(arenaPosition, arenaID, outPosition)
+			self.createArena(arenaPosition, arenaID)
 
 
-	def createArena(self, arenaPosition, arenaID, outPosition):
+	def createArena(self, arenaPosition, arenaID):
 		DEBUG_MSG("SpaceArenaSystem:createArena")
 		params = {}
 		params["entityName"] = "ArenaView"

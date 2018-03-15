@@ -39,7 +39,7 @@ class SkillSystem(GongFaSystem):
         skillMinSp = skillData["levelSpLimit"][mySkillData["skillLevel"] - 1]     # 使用这个技能最少需要的灵力值
         if self.MSP < skillMinSp:
             return
-        exec("self.skill = " + skillData["class"] + "(self, argsString, gongFaID, skillIndex)")
+        exec("self.skill = " + skillData["script"] + "(self, argsString, gongFaID, skillIndex)")
         self.canMove = False
         self.moveToPointSample(self.position, 20)
         singTime = self.skill.startSing()
