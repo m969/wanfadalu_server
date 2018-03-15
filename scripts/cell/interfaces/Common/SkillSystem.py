@@ -3,6 +3,8 @@ import KBEngine
 from KBEDebug import *
 from strategy.skill_strategy import *
 import gongfa_data
+import PyDatas.skill_config_Table as skill_config_Table
+import PyDatas.gongFa_config_Table as gongFa_config_Table
 from GONGFA_LIST import TGongFaList
 from GONGFA_LIST import TSkill
 from interfaces.Common.GongFaSystem import GongFaSystem
@@ -32,8 +34,9 @@ class SkillSystem(GongFaSystem):
             DEBUG_MSG("Error! You have not learned the skill.")
             return
         mySkillData = self.gongFaList[gongFaID][skillIndex]
-        skillData = gongfa_data.data[gongFaID]["skillList"][skillIndex]              # 技能信息
-        skillMinSp = skillData["levelSpLimit"][mySkillData["skillLevel"]]     # 使用这个技能最少需要的灵力值
+        skillID = gongFaID * 10 + skillIndex
+        skillData = skill_config_Table.datas[skillID]              # 技能信息
+        skillMinSp = skillData["levelSpLimit"][mySkillData["skillLevel"] - 1]     # 使用这个技能最少需要的灵力值
         if self.MSP < skillMinSp:
             return
         exec("self.skill = " + skillData["class"] + "(self, argsString, gongFaID, skillIndex)")
