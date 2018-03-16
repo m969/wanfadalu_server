@@ -6,13 +6,12 @@ from interfaces.Common.EntityObject import EntityObject
 from interfaces.Space.SpaceGateWaySystem import SpaceGateWaySystem
 from interfaces.Space.SpaceMonsterSystem import SpaceMonsterSystem
 from interfaces.Space.SpaceNpcSystem import SpaceNpcSystem
-from interfaces.Space.SpaceResourceWarSystem import SpaceResourceWarSystem
 from interfaces.Space.SpaceArenaSystem import SpaceArenaSystem
 
 
 
 
-class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, SpaceResourceWarSystem, SpaceGateWaySystem, SpaceArenaSystem):
+class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, SpaceGateWaySystem, SpaceArenaSystem):
     """
     游戏场景，在这里代表野外大地图
     """
@@ -24,7 +23,6 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
         EntityObject.__init__(self)
         SpaceMonsterSystem.__init__(self)
         SpaceNpcSystem.__init__(self)
-        #SpaceResourceWarSystem.__init__(self)
         SpaceGateWaySystem.__init__(self)
         SpaceArenaSystem.__init__(self)
         KBEngine.globalData["space_base_spaceID_%i" % self.spaceID] = self.base

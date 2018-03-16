@@ -2,7 +2,7 @@
 import KBEngine
 from KBEDebug import *
 import datetime
-from interfaces.Avatar.CampSystem import CampSystem
+from interfaces.Avatar.ForgeSystem import ForgeSystem
 from interfaces.Avatar.ChatChannelSystem import ChatChannelSystem
 from interfaces.Avatar.DialogSystem import DialogSystem
 from interfaces.Avatar.FriendSystem import FriendSystem
@@ -31,7 +31,7 @@ class Avatar(KBEngine.Proxy,
              TeleportSystem,
              FriendSystem,
              ChatChannelSystem,
-             CampSystem,
+             ForgeSystem,
              TaskSystem,
              MagicWeaponSystem,
              ArenaSystem,
@@ -49,7 +49,7 @@ class Avatar(KBEngine.Proxy,
         TeleportSystem.__init__(self)
         FriendSystem.__init__(self)
         ChatChannelSystem.__init__(self)
-        CampSystem.__init__(self)
+        ForgeSystem.__init__(self)
         TaskSystem.__init__(self)
         MagicWeaponSystem.__init__(self)
         ArenaSystem.__init__(self)

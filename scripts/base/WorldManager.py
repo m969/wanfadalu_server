@@ -8,12 +8,11 @@ from interfaces.WorldManager.SpacesManager import SpacesManager
 from interfaces.WorldManager.CombatBulletinManager import CombatBulletinManager
 from interfaces.WorldManager.RankingListManager import RankingListManager
 from interfaces.WorldManager.SectsManager import SectsManager
-from interfaces.WorldManager.PropManager import PropManager
 
 
 
 
-class WorldManager(KBEngine.Base, SpacesManager, CombatBulletinManager, RankingListManager, SectsManager, PropManager):
+class WorldManager(KBEngine.Base, SpacesManager, CombatBulletinManager, RankingListManager, SectsManager):
     def __init__(self):
         DEBUG_MSG("WorldManager:__init__")
         KBEngine.Base.__init__(self)
@@ -21,7 +20,6 @@ class WorldManager(KBEngine.Base, SpacesManager, CombatBulletinManager, RankingL
         CombatBulletinManager.__init__(self)
         RankingListManager.__init__(self)
         SectsManager.__init__(self)
-        PropManager.__init__(self)
         KBEngine.globalData["WorldManager"] = self
 
 

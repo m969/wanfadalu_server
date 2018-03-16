@@ -13,7 +13,7 @@
 	<ID_DBID_MAP>FIXED_DICT<implementedBy>ID_DBID_MAP_LIST.id_dbid_map_inst</implementedBy><Properties><id><Type>UINT32</Type></id><dbid><Type>UINT64</Type></dbid></Properties></ID_DBID_MAP>
 	<ID_DBID_MAP_LIST>FIXED_DICT<implementedBy>ID_DBID_MAP_LIST.id_dbid_map_list_inst</implementedBy><Properties><values><Type>ARRAY <of> ID_DBID_MAP </of></Type></values></Properties></ID_DBID_MAP_LIST>
 	<MEMBER_LIST>FIXED_DICT<implementedBy>MEMBER_LIST.member_list_inst</implementedBy><Properties><values><Type>ARRAY <of> UINT64 </of></Type></values></Properties></MEMBER_LIST>
-	<PROP>FIXED_DICT<implementedBy>PROP_LIST.prop_inst</implementedBy><Properties><propUUID><Type>UINT64</Type></propUUID><index><Type>INT32</Type></index><propData><Type>UNICODE</Type></propData></Properties></PROP>
+	<PROP>FIXED_DICT<implementedBy>PROP_LIST.prop_inst</implementedBy><Properties><propUUID><Type>UINT64</Type></propUUID><id><Type>INT32</Type></id><index><Type>INT32</Type></index><propData><Type>UNICODE</Type></propData></Properties></PROP>
 	<PROP_LIST>FIXED_DICT<implementedBy>PROP_LIST.prop_list_inst</implementedBy><Properties><values><Type>ARRAY <of> PROP </of></Type></values></Properties></PROP_LIST>
 	<RANKING_LIST>FIXED_DICT<implementedBy>RANKING_LIST.ranking_list_inst</implementedBy><Properties><values><Type>ARRAY <of> AVATAR_MATCH_INFO </of></Type></values></Properties></RANKING_LIST>
 	<STORE_GOODS_ID_LIST>FIXED_DICT<implementedBy>DBID_LIST.dbid_list_inst</implementedBy><Properties><values><Type>ARRAY <of> INT32 </of></Type></values></Properties></STORE_GOODS_ID_LIST>
@@ -21,6 +21,4 @@
 	<STORE_PROP_LIST>FIXED_DICT<implementedBy>STORE_PROP_LIST.store_prop_list_inst</implementedBy><Properties><values><Type>ARRAY <of> STORE_PROP </of></Type></values></Properties></STORE_PROP_LIST>
 	<TASK_INFO>FIXED_DICT<implementedBy>TASK_INFO.task_info_inst</implementedBy><Properties><taskNpcName><Type>UNICODE</Type></taskNpcName><taskIndex><Type>INT32</Type></taskIndex><isTaskFinish><Type>INT32</Type></isTaskFinish><isTaskCommit><Type>INT32</Type></isTaskCommit></Properties></TASK_INFO>
 	<TASK_INFO_LIST>FIXED_DICT<implementedBy>TASK_INFO.task_info_list_inst</implementedBy><Properties><values><Type>ARRAY <of> TASK_INFO </of></Type></values></Properties></TASK_INFO_LIST>
-	<WEAPON_MAP>FIXED_DICT<implementedBy>WEAPON_MAP_LIST.weapon_map_inst</implementedBy><Properties><index><Type>INT32</Type></index><propUUID><Type>UINT64</Type></propUUID></Properties></WEAPON_MAP>
-	<WEAPON_MAP_LIST>FIXED_DICT<implementedBy>WEAPON_MAP_LIST.weapon_map_list_inst</implementedBy><Properties><values><Type>ARRAY <of> WEAPON_MAP </of></Type></values></Properties></WEAPON_MAP_LIST>
 </root>

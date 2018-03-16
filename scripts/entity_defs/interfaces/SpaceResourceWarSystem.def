@@ -1,9 +1,0 @@
-﻿<root>
-	<Properties>
-		<SpaceResourceWarSystem>
-			<Type>BLOB</Type>
-			<Flags>CELL_PRIVATE</Flags>
-			<Persistent>false</Persistent>
-		</SpaceResourceWarSystem>
-	</Properties>
-</root>

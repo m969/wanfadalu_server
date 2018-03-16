@@ -1,0 +1,29 @@
+﻿<root>
+	<Properties>
+		<campName>
+			<Type>UNICODE</Type>
+			<Default>None</Default>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>true</Persistent>
+		</campName>
+	</Properties>
+	<ClientMethods>
+		<OnTargetItemListReturn>
+			<Arg>UNICODE</Arg>
+		</OnTargetItemListReturn>
+		<OnRequestForgeResult>
+			<Arg>INT32</Arg>
+		</OnRequestForgeResult>
+	</ClientMethods>
+	<CellMethods>
+		<requestTargetItemList>
+			<Exposed />
+			<Arg>UNICODE</Arg>
+		</requestTargetItemList>
+		<requestForge>
+			<Exposed />
+			<Arg>UNICODE</Arg>
+			<Arg>INT32</Arg>
+		</requestForge>
+	</CellMethods>
+</root>

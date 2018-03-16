@@ -21,36 +21,6 @@ class MagicWeaponSystem:
         for propUUID, prop in self.magicWeaponList.items():
             self.freeIndexSet.remove(prop["index"])
         DEBUG_MSG(self.freeIndexSet)
-    #     propUUIDList = self.getPropUUIDList()
-    #     for propUUID, prop in self.propList.items():
-    #         propData = json.loads(prop["propData"])
-    #         if propData["type"] == 2:
-    #             if propUUID not in propUUIDList:
-    #                 self.addMagicWeapon(propUUID, prop["propData"])
-
-
-    # def calculateFreeIndexSet(self):
-    #     DEBUG_MSG("MagicWeaponSystem:calculateFreeIndexSet")
-    #     freeIndexSet = []
-    #     removeIndexSet = []
-    #     for i in range(8, -1, -1):
-    #         freeIndexSet.append(i)
-    #     for index, weaponProp in self.magicWeaponList.items():
-    #         if weaponProp["propUUID"] not in self.propList:
-    #             removeIndexSet.append(index)
-    #             continue
-    #         freeIndexSet.remove(index)
-    #     for index in removeIndexSet:
-    #         del self.magicWeaponList[index]
-    #     return freeIndexSet
-
-
-    # def getPropUUIDList(self):
-    #     DEBUG_MSG("MagicWeaponSystem:getPropUUIDList")
-    #     propUUIDList = []
-    #     for index, weaponProp in self.magicWeaponList.items():
-    #         propUUIDList.append(weaponProp["propUUID"])
-    #     return propUUIDList
 
 
     def onAddProp(self, prop):

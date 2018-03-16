@@ -39,6 +39,7 @@ class PropSystem:
         DEBUG_MSG("PropSystem:newPropByData")
         prop = TProp()
         prop["propUUID"] = KBEngine.genUUID64()
+        prop["id"] = propData["id"]
         prop["index"] = self.freePropIndexSet.pop()
         prop["propData"] = propData
         return prop

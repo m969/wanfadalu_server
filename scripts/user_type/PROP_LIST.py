@@ -11,14 +11,16 @@ class TProp(dict):
 
     def asDict(self):
         fixedDict = {}
-        fixedDict["index"] = self["index"]
         fixedDict["propUUID"] = self["propUUID"]
+        fixedDict["id"] = self["id"]
+        fixedDict["index"] = self["index"]
         fixedDict["propData"] = self["propData"]
         return fixedDict
 
     def createFromDict(self, dictData):
-        self["index"] = dictData["index"]
         self["propUUID"] = dictData["propUUID"]
+        self["id"] = dictData["id"]
+        self["index"] = dictData["index"]
         self["propData"] = dictData["propData"]
         return self
 
