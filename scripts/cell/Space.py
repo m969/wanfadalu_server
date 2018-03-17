@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-import space_data
+import PyDatas.space_config_Table as space_config_Table
 from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Space.SpaceGateWaySystem import SpaceGateWaySystem
@@ -18,8 +18,8 @@ class Space(KBEngine.Entity, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, S
     def __init__(self):
         DEBUG_MSG("Space:cell:__init__ " + str(self.spaceID) + " " + str(self.id) + " " + self.spaceName)
         KBEngine.Entity.__init__(self)
-        self.spaceData = space_data.data[self.spaceUID]     # 取出自身的场景数据
-        self.respawnPoint = self.spaceData["重生点"]
+        self.spaceData = space_config_Table.datas[self.spaceUID]     # 取出自身的场景数据
+        self.respawnPoint = self.spaceData["spawnPos"]
         EntityObject.__init__(self)
         SpaceMonsterSystem.__init__(self)
         SpaceNpcSystem.__init__(self)

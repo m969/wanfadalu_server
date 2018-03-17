@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-import space_data
+import PyDatas.sect_config_Table as sect_config_Table
 from KBEDebug import *
 import GlobalConst
 import datetime
@@ -21,7 +21,8 @@ class Sect(KBEngine.Entity, EntityObject):
 		params["sectID"] = self.cell_sectID
 		params["arenaID"] = 0
 		params["entityName"] = self.entityName
-		KBEngine.createEntity("Npc", self.spaceID, (80, 0, 90), (0.0, 0.0, math.radians(45)), params)
+		z = sect_config_Table.datas[self.cell_sectID]["gateDir"][1]
+		KBEngine.createEntity("Npc", self.spaceID, sect_config_Table.datas[self.cell_sectID]["gatePos"], (0.0, 0.0, math.radians(z)), params)
 
 
 	def onEntityEnterSpace(self, spaceID, spaceName):

@@ -1,10 +1,8 @@
 ﻿# -*- coding utf-8 -* -
 
 datas={
-1:{ "spaceUID":1, "spaceName":"MuLingCunSpace", "spawnPos":[1,1,1]},
-2:{ "spaceUID":2, "spaceName":"YunLingZongSpace", "spawnPos":[2,1,1]},
-3:{ "spaceUID":3, "spaceName":"YunLingZongSpace", "spawnPos":[1,1,1]},
-4:{ "spaceUID":4, "spaceName":"YunLingZongSpace", "spawnPos":[1,1,1]}
+1:{ "spaceUID":1, "spaceName":"MuLingCunSpace", "cityName":"木灵村", "spawnPos":[200.0,0.0,120.0]},
+2:{ "spaceUID":2, "spaceName":"YunLingZongSpace", "cityName":"云灵宗", "spawnPos":[70.0,22.0,60.0]}
 }
 
 allDatas = {

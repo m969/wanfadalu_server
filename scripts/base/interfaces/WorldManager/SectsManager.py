@@ -3,7 +3,7 @@ import KBEngine
 from KBEDebug import *
 import datetime
 import math
-import sect_data
+import PyDatas.sect_config_Table as sect_config_Table
 from ID_DBID_MAP_LIST import TIdDbidMap
 from ID_DBID_MAP_LIST import TIdDbidMapList
 
@@ -19,11 +19,11 @@ class SectsManager:
 
     def onAllSpacesGetCell(self):
         DEBUG_MSG("SectsManager:onAllSpacesGetCell")
-        for (sectID, sectData) in sect_data.data.items():
+        for (sectID, sectData) in sect_config_Table.datas.items():
             if sectID in self.sectDBIDList.keys():
                 KBEngine.createBaseFromDBID("Sect", self.sectDBIDList[sectID]["dbid"], self.__sectCreateCallback)
             else:
-                sect = KBEngine.createBaseLocally("Sect", {"entityName": sectData["sectName"], "sectID": sectID, "position": sectData["position"]})
+                sect = KBEngine.createBaseLocally("Sect", {"entityName": sectData["sectName"], "sectID": sectID, "position": sectData["pos"]})
                 sect.writeToDB(self.__onSectSaved)
                 self.sectList[sect.sectID] = sect
 

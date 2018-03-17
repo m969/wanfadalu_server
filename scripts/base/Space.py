@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-import monster_data
-import space_data
+import PyDatas.space_config_Table as space_config_Table
 from interfaces.Common.EntityObject import EntityObject
 from interfaces.Space.SpaceGateWaySystem import SpaceGateWaySystem
 from interfaces.Space.SpaceMonsterSystem import SpaceMonsterSystem
@@ -19,7 +18,7 @@ class Space(KBEngine.Base, EntityObject, SpaceMonsterSystem, SpaceNpcSystem, Spa
         EntityObject.__init__(self)
         if not hasattr(self, "spaceUID"):
             self.spaceUID = self.cellData["spaceUID"]
-        self.spaceData = space_data.data[self.spaceUID]
+        self.spaceData = space_config_Table.datas[self.spaceUID]
         SpaceMonsterSystem.__init__(self)
         SpaceNpcSystem.__init__(self)
         SpaceGateWaySystem.__init__(self)

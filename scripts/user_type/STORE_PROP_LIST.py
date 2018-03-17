@@ -10,7 +10,7 @@ class TStoreProp(list):
         list.__init__(self)
 
     def asDict(self):
-        fixedDict = []
+        fixedDict = {}
         fixedDict["propID"] = self[0]
         fixedDict["propPrice"] = self[1]
         return fixedDict
@@ -48,13 +48,19 @@ class TStorePropList(list):
         #     propList.append(prop)
         fixedDict = {}
         fixedDict["values"] = self
+        # for item in self:
+        #     prop = TStoreProp()
+        #     prop.extend(item)
+        #     fixedDict["values"].append(prop.asDict())
         return fixedDict
 
     def createFromDict(self, dictData):
         # propList = dictData["values"]
         # for prop in propList:
         #     self[prop["propUUID"]] = prop
-        return dictData["values"]
+        for item in dictData["values"]:
+            self.append(item)
+        return self
 
 class PROP_LIST_PICKLER:
     def __init__(self):

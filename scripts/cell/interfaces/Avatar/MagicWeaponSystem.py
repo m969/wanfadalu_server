@@ -2,7 +2,7 @@
 import KBEngine
 from KBEDebug import *
 from KTween.KTweenEnum import KTweenEnum
-from PROP_LIST import TProp
+# from PROP_LIST import TProp
 from PROP_LIST import TPropList
 import json
 import PyDatas.prop_config_Table as prop_config_Table
@@ -27,7 +27,7 @@ class MagicWeaponSystem:
         DEBUG_MSG("MagicWeaponSystem:onAddProp")
         propData = json.loads(prop["propData"])
         if propData["type"] == 2:
-            self.addMagicWeapon(prop["propUUID"], prop["propData"])
+            self.addMagicWeapon(prop)
 
 
     def onRemoveProp(self, propUUID):
@@ -35,13 +35,16 @@ class MagicWeaponSystem:
         self.removeMagicWeapon(propUUID)
 
 
-    def addMagicWeapon(self, propUUID, jsonData):
+    def addMagicWeapon(self, prop):
         DEBUG_MSG("MagicWeaponSystem:addMagicWeapon")
-        weaponProp = TProp()
+        # weaponProp = TProp()
+        weaponProp = copy.deepcopy(prop)
         weaponProp["index"] = self.freeIndexSet.pop()
-        weaponProp["propUUID"] = propUUID
-        weaponProp["propData"] = jsonData
-        self.magicWeaponList[propUUID] = weaponProp
+        # weaponProp["id"] = self.freeIndexSet.pop()
+        # weaponProp["propUUID"] = propUUID
+        # weaponProp["propData"] = jsonData
+        self.magicWeaponList[weaponProp["propUUID"]] = weaponProp
+        self.magicWeaponList = self.magicWeaponList
 
 
     def removeMagicWeapon(self, propUUID):

@@ -2,7 +2,6 @@
 import os
 import KBEngine
 from KBEDebug import *
-import space_data
 
 
 def onAutoLoadEntityCreate(entityType, dbid):

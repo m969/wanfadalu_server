@@ -3,6 +3,7 @@ import KBEngine
 from KBEDebug import *
 import Math
 import GlobalConst
+import PyDatas.arena_config_Table as arena_config_Table
 
 
 
@@ -10,11 +11,10 @@ import GlobalConst
 class SpaceArenaSystem:
 	def __init__(self):
 		DEBUG_MSG("SpaceArenaSystem:__init__")
-		if "擂台数据" in self.spaceData.keys():
-			arenaDatas = self.spaceData["擂台数据"]
-			arenaPosition = arenaDatas["擂台坐标"]
-			arenaID = arenaDatas["擂台ID"]
-			self.createArena(arenaPosition, arenaID)
+		for arenaID, arenaData in arena_config_Table.datas.items():
+			if arenaData["spaceUID"] == self.spaceUID:
+				arenaPosition = arenaData["pos"]
+				self.createArena(arenaPosition, arenaID)
 
 
 	def createArena(self, arenaPosition, arenaID):

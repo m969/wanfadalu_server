@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-import space_data
 from KBEDebug import *
 import datetime
 import math

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-import space_data
-import sect_data
+import PyDatas.sect_config_Table as sect_config_Table
 from KBEDebug import *
 import datetime
 import math
@@ -17,7 +16,7 @@ class Sect(KBEngine.Base, EntityObject):
         KBEngine.Base.__init__(self)
         KBEngine.globalData["sect_%i" % self.sectID] = self
         self.cellData["cell_sectID"] = self.sectID
-        self.sectData = sect_data.data[self.sectID]
+        self.sectData = sect_config_Table.datas[self.sectID]
         KBEngine.globalData["space_base_spaceUID_%i" % self.sectData["spaceUID"]].loginSpace(self)
 
 

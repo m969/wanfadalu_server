@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-import monster_data
-import space_data
 from strategy.trigger_strategy import *
 
 

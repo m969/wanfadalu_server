@@ -2,7 +2,6 @@
 import KBEngine
 from KBEDebug import *
 from strategy.skill_strategy import *
-import gongfa_data
 import PyDatas.skill_config_Table as skill_config_Table
 import PyDatas.gongFa_config_Table as gongFa_config_Table
 from GONGFA_LIST import TGongFaList

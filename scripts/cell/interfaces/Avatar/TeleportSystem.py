@@ -10,6 +10,7 @@ class TeleportSystem:
     def __init__(self):
         DEBUG_MSG("TeleportSystem:__init__")
         KBEngine.globalData["space_base_spaceID_%i" % self.spaceID].cell.onEnter(self)
+        self.teleporting = False
 
 
     def onTimer(self, timerHandle, userData):

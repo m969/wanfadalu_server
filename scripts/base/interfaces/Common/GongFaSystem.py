@@ -2,7 +2,8 @@
 import KBEngine
 from KBEDebug import *
 from KTween.KTweenEnum import KTweenEnum
-import gongfa_data
+
+
 
 
 class GongFaSystem:

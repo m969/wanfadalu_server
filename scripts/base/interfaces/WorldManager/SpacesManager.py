@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-import space_data
+import PyDatas.space_config_Table as space_config_Table
 from KBEDebug import *
 import datetime
 import math
@@ -15,11 +15,11 @@ class SpacesManager:
         DEBUG_MSG("SpacesManager:__init__")
         KBEngine.globalData["SpacesManager"] = self
         KBEngine.globalData["allAvatarBases"] = {}
-        if not hasattr(self, "spaceDBIDList"):
-            self.spaceDBIDList = TIdDbidMapList()
+        # if not hasattr(self, "spaceDBIDList"):
+        #     self.spaceDBIDList = TIdDbidMapList()
         self.spaceList = {}
         self.spaceCreateCounter = 0
-        for spaceUID, spaceData in space_data.data.items():
+        for spaceUID, spaceData in space_config_Table.datas.items():
             if spaceUID in self.spaceDBIDList.keys():
                 KBEngine.createBaseFromDBID("Space", self.spaceDBIDList[spaceUID]["dbid"], self.__onSpaceCreateCallback)
             else:
@@ -49,7 +49,7 @@ class SpacesManager:
     def onSpaceGetCell(self, spaceUID):
         DEBUG_MSG("SpacesManager:onSpaceGetCell")
         self.spaceCreateCounter = self.spaceCreateCounter + 1
-        if self.spaceCreateCounter >= len(space_data.data):
+        if self.spaceCreateCounter >= len(space_config_Table.datas):
             self.onAllSpacesGetCell()
 
 

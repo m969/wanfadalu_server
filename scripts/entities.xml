@@ -2,7 +2,6 @@
 	<Account hasClient="true" />
 	<Arena hasClient="true" />
 	<Avatar hasClient="true" />
-	<Camp hasClient="true" />
 	<Monster hasClient="true" />
 	<Npc hasClient="true" />
 	<Sect hasClient="true" />

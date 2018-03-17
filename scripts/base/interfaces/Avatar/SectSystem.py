@@ -23,6 +23,7 @@ class SectSystem:
     def onJoinSectResult(self, sectID, result):
         DEBUG_MSG("SectSystem:onJoinSectResult")
         self.sectID_b = sectID
+        self.cell.onJoinSectResult(sectID, result)
         self.client.OnJoinSectResult(sectID, result)
 
 

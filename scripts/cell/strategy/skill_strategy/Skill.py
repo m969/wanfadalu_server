@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-import gongfa_data
+import PyDatas.skill_config_Table as skill_config_Table
 import script_map_Table
 from strategy.skill_strategy import *
 from strategy.trigger_strategy import *
@@ -20,7 +20,7 @@ class Skill:
 
 
     def initSkillData(self):
-        self.skillData = gongfa_data.data[self.gongFaID]["skillList"][self.skillIndex]              # 技能信息
+        self.skillData = skill_config_Table.datas[self.gongFaID * 10 + self.skillIndex]              # 技能信息
         self.skillMinSp = self.skillData["levelSpLimit"][1]     # 使用这个技能最少需要的灵力值
         self.skillMaxSp = self.skillData["levelSpLimit"][1]     # 使用这个技能最多可以使用的灵力值
         self.skillQuality = self.skillData["quality"]  # 技能品质，即将灵力转化为技能效果的效率

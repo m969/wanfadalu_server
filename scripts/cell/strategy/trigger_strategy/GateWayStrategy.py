@@ -16,15 +16,14 @@ class GateWayStrategy(TriggerStrategy):
 
     def initializeStrategy(self, strategyData):
         super().initializeStrategy(strategyData)
-        self.targetSpaceUID = strategyData["spaceUID"]
-        self.gateWayEntrancePosition = strategyData["enterPos"]
+        triggerConfig = strategyData["triggerConfig"]
+        self.targetSpaceUID = int(triggerConfig[0][0])
+        self.gateWayEntrancePosition = triggerConfig[1]
 
 
     def execute(self):
         super().execute()
         if self.otherEntity.getScriptName() is "Avatar":
-            if not hasattr(self.otherEntity, "teleporting"):
-                self.otherEntity.teleporting = False
             if self.otherEntity.teleporting == True:
                 return
             self.otherEntity.teleporting = True

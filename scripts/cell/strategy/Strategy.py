@@ -8,5 +8,4 @@ class Strategy:
         pass
 
     def execute(self):
-        DEBUG_MSG("Strategy:excute")
         pass

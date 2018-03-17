@@ -10,19 +10,19 @@ class TProp(dict):
         dict.__init__(self)
 
     def asDict(self):
-        fixedDict = {}
-        fixedDict["propUUID"] = self["propUUID"]
-        fixedDict["id"] = self["id"]
-        fixedDict["index"] = self["index"]
-        fixedDict["propData"] = self["propData"]
-        return fixedDict
+        # fixedDict = {}
+        # fixedDict["propUUID"] = self["propUUID"]
+        # fixedDict["id"] = self["id"]
+        # fixedDict["index"] = self["index"]
+        # fixedDict["propData"] = self["propData"]
+        return self
 
     def createFromDict(self, dictData):
-        self["propUUID"] = dictData["propUUID"]
-        self["id"] = dictData["id"]
-        self["index"] = dictData["index"]
-        self["propData"] = dictData["propData"]
-        return self
+        # self["propUUID"] = dictData["propUUID"]
+        # self["id"] = dictData["id"]
+        # self["index"] = dictData["index"]
+        # self["propData"] = dictData["propData"]
+        return dictData
 
 class PROP_PICKLER:
     def __init__(self):

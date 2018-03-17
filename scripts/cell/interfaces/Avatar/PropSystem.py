@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-from PROP_LIST import TProp
+# from PROP_LIST import TProp
 from PROP_LIST import TPropList
 from STORE_PROP_LIST import TStoreProp
 from STORE_PROP_LIST import TStorePropList
 import json
 import PyDatas.prop_config_Table as prop_config_Table
+import PyDatas.npc_config_Table as npc_config_Table
 import PyDatas.store_config_Table as store_config_Table
 
 
@@ -32,14 +33,15 @@ class PropSystem:
         DEBUG_MSG("PropSystem:newPropByID")
         propData = prop_config_Table.datas[propID]
         propData = json.dumps(propData)
-        return self.newPropByData(propData)
+        return self.newPropByData(propID, propData)
 
 
-    def newPropByData(self, propData):
+    def newPropByData(self, propID, propData):
         DEBUG_MSG("PropSystem:newPropByData")
-        prop = TProp()
+        # prop = TProp()
+        prop = {}
         prop["propUUID"] = KBEngine.genUUID64()
-        prop["id"] = propData["id"]
+        prop["id"] = propID
         prop["index"] = self.freePropIndexSet.pop()
         prop["propData"] = propData
         return prop
@@ -54,6 +56,7 @@ class PropSystem:
     def addProp(self, prop):
         DEBUG_MSG("PropSystem:addProp")
         self.propList[prop["propUUID"]] = prop
+        self.propList = self.propList
         self.onAddProp(prop)
 
 
@@ -71,12 +74,15 @@ class PropSystem:
         DEBUG_MSG("PropSystem:onRemoveProp")
 
 
-    def requestPullStorePropList(self, exposed, storeNpcID):
+    def requestPullStorePropList(self, exposed, storeID):
         DEBUG_MSG("PropSystem:requestPullStorePropList")
         if exposed != self.id:
             return
         storePropList = TStorePropList()
-        storePropList.extend(store_config_Table.datas[storeNpcID]["propList"])
+        for item in store_config_Table.datas[storeID]["propList"]:
+            prop = TStoreProp()
+            prop.extend(item)
+            storePropList.append(prop)
         self.client.OnPullStorePropListReturn(storePropList)
 
 
@@ -85,7 +91,7 @@ class PropSystem:
         storeNpc = KBEngine.entities.get(storeNpcID)
         if not storeNpc:
             return
-        storePropList = store_config_Table.datas[storeNpcID]["propList"]
+        storePropList = store_config_Table.datas[storeNpc.store]["propList"]
         if propIndex not in storePropList:
             return
         self.buyProp(storePropList[propIndex][0], storePropList[propIndex][1])

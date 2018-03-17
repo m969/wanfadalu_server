@@ -6,7 +6,8 @@ import json
 import PyDatas.forge_config_Table as forge_config_Table
 
 local_materialTable = {}
-for itemID, materialList in forge_config_Table.datas.items():
+for itemID, itemForgeInfo in forge_config_Table.datas.items():
+    materialList = itemForgeInfo["materialList"]
     materialList.sort()
     materialList_json = json.dumps(materialList)
     if materialList_json not in local_materialTable:
