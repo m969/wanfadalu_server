@@ -74,25 +74,31 @@ class PropSystem:
         DEBUG_MSG("PropSystem:onRemoveProp")
 
 
-    def requestPullStorePropList(self, exposed, storeID):
+    def requestPullStorePropList(self, exposed, storeNpcID):
         DEBUG_MSG("PropSystem:requestPullStorePropList")
         if exposed != self.id:
             return
+        storeNpc = KBEngine.entities.get(storeNpcID)
+        if not storeNpc:
+            return
+        storeID = storeNpc.store
         storePropList = TStorePropList()
         for item in store_config_Table.datas[storeID]["propList"]:
             prop = TStoreProp()
             prop.extend(item)
             storePropList.append(prop)
-        self.client.OnPullStorePropListReturn(storePropList)
+        self.client.OnPullStorePropListReturn(storeNpcID, storePropList)
 
 
-    def requestBuyProp(self, storeNpcID, propIndex):
+    def requestBuyProp(self, exposed, storeNpcID, propIndex):
         DEBUG_MSG("PropSystem:requestBuyProp")
+        if exposed != self.id:
+            return
         storeNpc = KBEngine.entities.get(storeNpcID)
         if not storeNpc:
             return
         storePropList = store_config_Table.datas[storeNpc.store]["propList"]
-        if propIndex not in storePropList:
+        if propIndex >= len(storePropList):
             return
         self.buyProp(storePropList[propIndex][0], storePropList[propIndex][1])
 

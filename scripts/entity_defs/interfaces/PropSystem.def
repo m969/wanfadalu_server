@@ -8,6 +8,7 @@
 	</Properties>
 	<ClientMethods>
 		<OnPullStorePropListReturn>
+			<Arg>INT32</Arg>
 			<Arg>STORE_PROP_LIST</Arg>
 		</OnPullStorePropListReturn>
 	</ClientMethods>
@@ -16,5 +17,10 @@
 			<Exposed />
 			<Arg>INT32</Arg>
 		</requestPullStorePropList>
+		<requestBuyProp>
+			<Exposed />
+			<Arg>INT32</Arg>
+			<Arg>INT32</Arg>
+		</requestBuyProp>
 	</CellMethods>
 </root>

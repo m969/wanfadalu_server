@@ -103,7 +103,7 @@ class DialogSystem:
         if npcType == GlobalConst.NpcType_Arena:
             self.requestEnterArena(self.id, self.dialogNpc.arenaID)
         elif npcType == GlobalConst.NpcType_Store:
-            self.requestPullStorePropList(self.id, self.dialogNpc.store)
+            self.requestPullStorePropList(self.id, self.dialogNpc.id)
         elif npcType == GlobalConst.NpcType_Sect:
             self.base.requestJoinSect(self.dialogNpc.sectID)
 
