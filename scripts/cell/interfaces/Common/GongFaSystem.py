@@ -46,6 +46,7 @@ class GongFaSystem:
                     aSkill = { 'skillLevel': 1 }
                     temp_gangFa[skillID % 10] = aSkill
                 self.gongFaList[gongFaID] = temp_gangFa
+                self.gongFaList = self.gongFaList
 
 
     def haveLearnedGongFa(self, gongFaID):

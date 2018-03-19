@@ -77,6 +77,7 @@ class Avatar(KBEngine.Proxy,
 
     def onGetCell(self):
         DEBUG_MSG("Avatar:onGetCell")
+        self.cell.setAvatarDBID(self.databaseID)
 
 
     def onLoseCell(self):

@@ -24,18 +24,18 @@ class Arena(KBEngine.Entity, EntityObject):
 
     def createArenaTrigger(self):
         DEBUG_MSG("Arena:createArenaTrigger")
-        self.triggerStrategy = ArenaStrategy()
-        self.triggerStrategy.initializeStrategy({})
-        if self.arenaTrigger is None:
-            params = {
-                "entityName": "ArenaTrigger",
-                "owner": self,
-                "triggerSize": 50,
-                "triggerStrategy": self.triggerStrategy,
-            }
-            self.arenaTrigger = KBEngine.createEntity("Trigger", self.spaceID, self.position, (0.0, 0.0, 0.0), params)  # 创建擂台触发器
-        else:
-            self.arenaTrigger.position = self.position
+        # self.triggerStrategy = ArenaStrategy()
+        # self.triggerStrategy.initializeStrategy({})
+        # if self.arenaTrigger is None:
+        #     params = {
+        #         "entityName": "ArenaTrigger",
+        #         "owner": self,
+        #         "triggerSize": 50,
+        #         "triggerStrategy": self.triggerStrategy,
+        #     }
+        #     self.arenaTrigger = KBEngine.createEntity("Trigger", self.spaceID, self.position, (0.0, 0.0, 0.0), params)  # 创建擂台触发器
+        # else:
+        #     self.arenaTrigger.position = self.position
 
 
     def startShield(self):
@@ -53,9 +53,11 @@ class Arena(KBEngine.Entity, EntityObject):
         if self.contestantList.__len__() >= 2:
             return
         requestAvatar = evt["avatar"]
+        DEBUG_MSG(requestAvatar.dbid)
+        DEBUG_MSG(self.contestantList.keys())
         if requestAvatar.dbid in self.contestantList.keys():
             DEBUG_MSG("avatar has in arena")
-            return
+            # return
         self.contestantList[requestAvatar.dbid] = requestAvatar
         requestAvatar.onEnterArena(self)
         requestAvatar.lingshiAmount = requestAvatar.lingshiAmount - 10
