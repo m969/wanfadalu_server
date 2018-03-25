@@ -18,13 +18,14 @@
 			<Flags>ALL_CLIENTS</Flags>
 		</triggerType>
 		<triggerSize>
-			<Type>INT32</Type>
-			<Default>1</Default>
+			<Type>FLOAT</Type>
+			<Default>1.0</Default>
 			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
 		</triggerSize>
 		<lifeSpans>
 			<Type>FLOAT</Type>
-			<Default>4.0</Default>
+			<Default>4</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>false</Persistent>
 		</lifeSpans>
@@ -32,15 +33,33 @@
 			<Type>PYTHON</Type>
 			<Flags>CELL_PRIVATE</Flags>
 		</triggerStrategy>
-		<campName>
-			<Type>UNICODE</Type>
-			<Default>None</Default>
-			<Flags>ALL_CLIENTS</Flags>
-		</campName>
 		<circleTrigger>
 			<Type>INT32</Type>
 			<Default>0</Default>
 			<Flags>ALL_CLIENTS</Flags>
 		</circleTrigger>
+		<rectangleTrigger>
+			<Type>INT32</Type>
+			<Default>0</Default>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</rectangleTrigger>
+		<triggerDirection>
+			<Type>VECTOR3</Type>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</triggerDirection>
+		<triggerLength>
+			<Type>FLOAT</Type>
+			<Default>1.0</Default>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</triggerLength>
+		<triggerWidth>
+			<Type>FLOAT</Type>
+			<Default>1.0</Default>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>false</Persistent>
+		</triggerWidth>
 	</Properties>
 </root>

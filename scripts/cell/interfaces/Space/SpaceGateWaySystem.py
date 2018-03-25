@@ -18,6 +18,6 @@ class SpaceGateWaySystem:
                 params['entityName'] = "GateWayTrigger"
                 params['owner'] = self
                 params['lifeSpans'] = 0.0
-                params['triggerSize'] = 4
+                params['triggerSize'] = 4.0
                 params['triggerStrategy'] = self.triggerStrategy
                 trigger = KBEngine.createEntity("Trigger", self.spaceID, triggerData["pos"], (0.0, 0.0, 0.0), params)

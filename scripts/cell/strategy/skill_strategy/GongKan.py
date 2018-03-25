@@ -23,16 +23,13 @@ class GongKan(Skill):
         damage = int(self.skillSpAmount * self.skillQuality)
         self.strategyData = {"伤害": damage}
         super().cast()
-        trigger = KBEngine.createEntity("Trigger",
-                                        self.spellCaster.spaceID,
-                                        self.skillPoint,
-                                        self.spellCaster.direction,
-                                        {
-                                            'entityName': "GongKan_Trigger",
-                                            'owner': self.spellCaster,
-                                            "campName": self.spellCaster.campName,
-                                            'lifeSpans': 0.2,
-                                            'triggerID': 2,
-                                            'triggerSize': 4,
-                                            'triggerStrategy': self.triggerStrategy
-                                        })
+        params = {
+            'entityName': "GongKan_Trigger",
+            'owner': self.spellCaster,
+            "campName": self.spellCaster.campName,
+            'lifeSpans': 0.2,
+            'triggerID': 2,
+            'triggerSize': 4.0,
+            'triggerStrategy': self.triggerStrategy
+        }
+        trigger = KBEngine.createEntity("Trigger", self.spellCaster.spaceID, self.skillPoint, self.spellCaster.direction, params)
