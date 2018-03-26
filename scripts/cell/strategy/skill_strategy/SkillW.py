@@ -23,15 +23,12 @@ class SkillW(Skill):
         damage = int(self.skillSpAmount * self.skillQuality)
         self.strategyData = {"伤害": damage}
         super().cast()
-        trigger = KBEngine.createEntity("Trigger",
-                                        self.spellCaster.spaceID,
-                                        self.skillPoint,
-                                        (0.0, 0.0, 0.0),
-                                        {
-                                            'entityName': "SkillW_Trigger",
-                                            'owner': self.spellCaster,
-                                            "campName": self.spellCaster.campName,
-                                            'triggerID': 2,
-                                            'triggerSize': 4,
-                                            'triggerStrategy': self.triggerStrategy
-                                        })
+        params = {
+            'entityName': "SkillW_Trigger",
+            'owner': self.spellCaster,
+            "campName": self.spellCaster.campName,
+            'triggerID': 2,
+            'triggerSize': 4.0,
+            'triggerStrategy': self.triggerStrategy
+        }
+        trigger = KBEngine.createEntity("Trigger", self.spellCaster.spaceID, self.skillPoint, (0.0, 0.0, 0.0), params)

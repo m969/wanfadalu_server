@@ -27,19 +27,16 @@ class SkillE(Skill):
         midPoint = self.midPoint(self.spellCaster.position, self.skillPoint)
         pointList = [self.spellCaster.position, midPoint, self.skillPoint]
         for point in pointList:
-            trigger = KBEngine.createEntity("Trigger",
-                                            self.spellCaster.spaceID,
-                                            point,
-                                            (0.0, 0.0, 0.0),
-                                            {
-                                                'entityName': "SkillE_Trigger",
-                                                'owner': self.spellCaster,
-                                                'campName': self.spellCaster.campName,
-                                                'lifeSpans': 2.0,
-                                                'triggerID': 2,
-                                                'triggerSize': 4,
-                                                'triggerStrategy': self.triggerStrategy
-                                            })
+            params = {
+                'entityName': "SkillE_Trigger",
+                'owner': self.spellCaster,
+                'campName': self.spellCaster.campName,
+                'lifeSpans': 2.0,
+                'triggerID': 2,
+                'triggerSize': 4.0,
+                'triggerStrategy': self.triggerStrategy
+            }
+            trigger = KBEngine.createEntity("Trigger", self.spellCaster.spaceID, point, (0.0, 0.0, 0.0), params)
 
 
     def midPoint(self, point1, point2):

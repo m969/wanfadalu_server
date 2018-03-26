@@ -2,74 +2,101 @@
 import KBEngine
 from KBEDebug import *
 from interfaces.Common.EntityObject import EntityObject
+import Math
 
 
 
 
 class Trigger(KBEngine.Entity, EntityObject):
     def __init__(self):
+        #DEBUG_MSG("Trigger:__init__")
         KBEngine.Entity.__init__(self)
         EntityObject.__init__(self)
-        # DEBUG_MSG("Trigger:__init__")
         self.isTrigger = True
+        self.delEntityList = []
         if self.lifeSpans > 0.0:
             self.addTimer(self.lifeSpans, 0, 0)
-        if self.circleTrigger is True:
-            self.entityList = {}
-            self.delEntityList = []
-            self.addTimer(0, 0.1, 1)
+        if self.circleTrigger:
+            self.entityList = []
+            self.inEntityList = []
+            self.addTimer(0, 0.01, 1)
+        if self.rectangleTrigger:
+            z = self.triggerDirection.x / (0 - self.triggerDirection.z)
+            self.triggerDirection2 = Math.Vector3(1, 0, z)
+            self.triggerDirection2.normalise()
+            self.entityList = []
+            self.inEntityList = []
+            self.addTimer(0, 0.01, 2)
 
 
     def onTimer(self, tid, userArg):
         if userArg == 0:
             self.destroy()
         elif userArg == 1:
-            for entityId, entityInfo in self.entityList.items():
-                entity = entityInfo["entity"]
-                hasEntered = entityInfo["hasEntered"]
-                if entity is not None:
-                    dist = self.position.distTo(entity.position)
-                    if dist < self.triggerSize:
-                        if hasEntered is False:
-                            entityInfo["hasEntered"] = True
-                            if self.triggerStrategy.__class__.__name__ is "dict":
-                                for strategy in self.triggerStrategy.values():
-                                    strategy.setInfo(self, entity, self.triggerSize, self.triggerSize,
-                                                     self.triggerControllerID, userArg)
-                                    strategy.execute()
-                            if self.triggerStrategy.__class__.__name__ is not "dict":
-                                self.triggerStrategy.setInfo(self, entity, self.triggerSize, self.triggerSize,
-                                                 self.triggerControllerID, userArg)
-                                self.triggerStrategy.execute()
-                    else:
-                        if hasEntered is True:
-                            entityInfo["hasEntered"] = False
-                else:
-                    DEBUG_MSG("entity is None")
-            tempDelEntityList = self.delEntityList.copy()
-            for entityId in tempDelEntityList:
-                if entityId in self.entityList:
-                    del self.entityList[entityId]
-                    self.delEntityList.remove(entityId)
+            for entityId in self.entityList:
+                entity = KBEngine.entities.get(entityId, None)
+                if entity is None:
+                    self.delEntityList.append(entityId)
+                    return
+                dist = self.position.distTo(entity.position)
+                if dist <= self.triggerSize and (entityId not in self.inEntityList):
+                    self.inEntityList.append(entityId)
+                    self.executeStrategy(entity)
+                elif dist > self.triggerSize and (entityId in self.inEntityList):
+                    del self.inEntityList[entityId]
+        elif userArg == 2:
+            for entityId in self.entityList:
+                otherEntity = KBEngine.entities.get(entityId, None)
+                if otherEntity is None:
+                    self.delEntityList.append(entityId)
+                    return
+                direct = otherEntity.position - self.position
+                S = abs(self.triggerDirection.cross2D(direct))
+                S2 = abs(self.triggerDirection2.cross2D(direct))
+                if S <= self.triggerWidth and S2 <= self.triggerLength and (entityId not in self.inEntityList):
+                    self.inEntityList.append(entityId)
+                    self.executeStrategy(otherEntity)
+                elif (S > self.triggerWidth or S2 > self.triggerLength) and (entityId in self.inEntityList):
+                    del self.inEntityList[entityId]
+        for entityId in self.delEntityList:
+            if entityId in self.entityList:
+                self.entityList.remove(entityId)
+            if entityId in self.inEntityList:
+                self.inEntityList.remove(entityId)
+        self.delEntityList = []
+
+
+    def executeStrategy(self, entity):
+        if self.triggerStrategy is None:
+            return
+        if isinstance(self.triggerStrategy, dict):
+            for strategy in self.triggerStrategy.values():
+                strategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
+                strategy.execute()
+        else:
+            self.triggerStrategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
+            self.triggerStrategy.execute()
 
 
     def onEnterTrap(self, other, rangeXZ, rangeY, controllerID, userArg):
         """
         当进入触发器时
         """
-        if self.circleTrigger is True:
+        #DEBUG_MSG("Trigger:onEnterTrap")
+        if self.circleTrigger or self.rectangleTrigger:
             if other.id == self.owner.id:
                 return
-            if self.entityList.get(other.id, None) is not None:
+            if other.id in self.entityList:
                 return
-            self.entityList[other.id] = {"entity": other, "hasEntered": False}
+            self.entityList.append(other.id)
             self.triggerControllerID = controllerID
         else:
-            if self.triggerStrategy.__class__.__name__ == "dict":
+            DEBUG_MSG("not circleTrigger and rectangleTrigger")
+            if isinstance(self.triggerStrategy, dict):
                 for strategy in self.triggerStrategy.values():
                     strategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
                     strategy.execute()
-            if self.triggerStrategy.__class__.__name__ != "dict":
+            else:
                 self.triggerStrategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
                 self.triggerStrategy.execute()
 
@@ -78,17 +105,16 @@ class Trigger(KBEngine.Entity, EntityObject):
         """
         当离开触发器时
         """
-        if self.circleTrigger is True:
-            if self.entityList.get(other.id, None) is None:
-                return
-            self.delEntityList.append(other.id)
+        if self.circleTrigger or self.rectangleTrigger:
+            if other.id in self.entityList:
+                self.delEntityList.append(other.id)
 
 
     def onWitnessed(self, isWitnessed):
         """
         当被看到时
         """
-        # DEBUG_MSG("Trigger:onWitnessed")
+        #DEBUG_MSG("Trigger:onWitnessed")
         self.proximityID = self.addProximity(self.triggerSize, self.triggerSize, 0)
 
 

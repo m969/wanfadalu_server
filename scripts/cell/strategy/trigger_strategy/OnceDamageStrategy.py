@@ -22,10 +22,13 @@ class OnceDamageStrategy(TriggerStrategy):
 
     def execute(self):
         super().execute()
+        # DEBUG_MSG("self.otherEntity " + str(self.otherEntity))
+        # DEBUG_MSG("self.trigger " + str(self.trigger))
+        # DEBUG_MSG("self.trigger.owner " + str(self.trigger.owner))
         if self.otherEntity.id == self.trigger.owner.id:
             return
         if not hasattr(self.otherEntity, "canDamage"):
             return
         if self.otherEntity.canDamage is True:
             self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
-            self.trigger.destroy()
+            # self.trigger.destroy()
