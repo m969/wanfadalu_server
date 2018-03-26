@@ -8,7 +8,7 @@
 	<DBID_LIST>FIXED_DICT<implementedBy>DBID_LIST.dbid_list_inst</implementedBy><Properties><values><Type>ARRAY <of> UINT64 </of></Type></values></Properties></DBID_LIST>
 	<DIALOG_ITEM>FIXED_DICT<implementedBy>DIALOG_ITEM.dialog_item_inst</implementedBy><Properties><id><Type>INT32</Type></id><content><Type>UNICODE</Type></content></Properties></DIALOG_ITEM>
 	<DIALOG_ITEM_LIST>FIXED_DICT<implementedBy>DIALOG_ITEM.dialog_item_list_inst</implementedBy><Properties><values><Type>ARRAY <of> DIALOG_ITEM </of></Type></values></Properties></DIALOG_ITEM_LIST>
-	<GONGFA>FIXED_DICT<implementedBy>GONGFA_LIST.gongfa_inst</implementedBy><Properties><values><Type>ARRAY <of> ASKILL </of></Type></values><gongFaID><Type>INT32</Type></gongFaID></Properties></GONGFA>
+	<GONGFA>FIXED_DICT<implementedBy>GONGFA_LIST.gongfa_inst</implementedBy><Properties><values><Type>ARRAY <of> ASKILL </of></Type></values><gongFaID><Type>INT32</Type></gongFaID><index><Type>INT32</Type></index></Properties></GONGFA>
 	<GONGFA_LIST>FIXED_DICT<implementedBy>GONGFA_LIST.gongfa_list_inst</implementedBy><Properties><values><Type>ARRAY <of> GONGFA </of></Type></values></Properties></GONGFA_LIST>
 	<ID_DBID_MAP>FIXED_DICT<implementedBy>ID_DBID_MAP_LIST.id_dbid_map_inst</implementedBy><Properties><id><Type>UINT32</Type></id><dbid><Type>UINT64</Type></dbid></Properties></ID_DBID_MAP>
 	<ID_DBID_MAP_LIST>FIXED_DICT<implementedBy>ID_DBID_MAP_LIST.id_dbid_map_list_inst</implementedBy><Properties><values><Type>ARRAY <of> ID_DBID_MAP </of></Type></values></Properties></ID_DBID_MAP_LIST>

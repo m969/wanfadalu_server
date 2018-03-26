@@ -23,6 +23,11 @@ for skillID, skillInfo in skill_config_Table.datas.items():
 class GongFaSystem:
     def __init__(self):
         DEBUG_MSG("GongFaSystem:__init__")
+        self.gongFaIndexList = []
+        for i in range(0, 9):
+            self.gongFaIndexList.insert(0, i)
+        for gongFaID, gongFa in self.gongFaList.items():
+            self.gongFaIndexList.remove(gongFa["index"])
         if not self.haveLearnedGongFa(1001):
             self.learnGongFa(1001)
         if not self.haveLearnedGongFa(1002):
@@ -42,9 +47,11 @@ class GongFaSystem:
             DEBUG_MSG("learned this gongFa")
             if gongFaID in gongFa_config_Table.datas.keys():
                 temp_gangFa = {}
+                temp_gangFa["index"] = self.gongFaIndexList.pop()
+                temp_gangFa["skillList"] = {}
                 for skillID in local_gongFaMap[gongFaID]:
                     aSkill = { 'skillLevel': 1 }
-                    temp_gangFa[skillID % 10] = aSkill
+                    temp_gangFa["skillList"][skillID % 10] = aSkill
                 self.gongFaList[gongFaID] = temp_gangFa
                 self.gongFaList = self.gongFaList
 
