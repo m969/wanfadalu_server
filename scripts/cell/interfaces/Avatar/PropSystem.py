@@ -24,9 +24,6 @@ class PropSystem:
         DEBUG_MSG(self.freePropIndexSet)
         if len(self.propList) == 0:
             self.addPropByID(1001)
-            self.addPropByID(1002)
-            self.addPropByID(1003)
-            self.addPropByID(1004)
 
 
     def newPropByID(self, propID):
