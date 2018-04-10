@@ -28,12 +28,12 @@ class GongFaSystem:
             self.gongFaIndexList.insert(0, i)
         for gongFaID, gongFa in self.gongFaList.items():
             self.gongFaIndexList.remove(gongFa["index"])
-        if not self.haveLearnedGongFa(1001):
-            self.learnGongFa(1001)
-        if not self.haveLearnedGongFa(1002):
-            self.learnGongFa(1002)
-        if not self.haveLearnedGongFa(1003):
-            self.learnGongFa(1003)
+        # if not self.haveLearnedGongFa(1001):
+        #     self.learnGongFa(1001)
+        # if not self.haveLearnedGongFa(1002):
+        #     self.learnGongFa(1002)
+        # if not self.haveLearnedGongFa(1003):
+        #     self.learnGongFa(1003)
 
 
     def learnGongFa(self, gongFaID):
@@ -42,9 +42,9 @@ class GongFaSystem:
         """
         DEBUG_MSG("GaongFaSystem:learnGongFa")
         if self.haveLearnedGongFa(gongFaID):
-            DEBUG_MSG("You have learned this gongFa")
+            DEBUG_MSG("You have learned gongFa " + str(gongFaID))
         else:
-            DEBUG_MSG("learned this gongFa")
+            DEBUG_MSG("learn gongFa " + str(gongFaID))
             if gongFaID in gongFa_config_Table.datas.keys():
                 temp_gangFa = {}
                 temp_gangFa["index"] = self.gongFaIndexList.pop()
@@ -64,6 +64,6 @@ class GongFaSystem:
 
     def haveLearnedSkill(self, gongFaID, skillName):
         if gongFaID in self.gongFaList.keys():
-            if skillName in self.gongFaList[gongFaID].keys():
+            if skillName in self.gongFaList[gongFaID]["skillList"].keys():
                 return True
         return False

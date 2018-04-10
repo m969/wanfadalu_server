@@ -30,9 +30,10 @@ class SkillSystem(GongFaSystem):
         if self.canCastSkill is False:
             return
         if self.haveLearnedSkill(gongFaID, skillIndex) is False:
-            DEBUG_MSG("Error! You have not learned the skill.")
+            DEBUG_MSG("Error! You have not learned gongFa %i skill %i" % (gongFaID, skillIndex))
+            DEBUG_MSG(self.gongFaList)
             return
-        mySkillData = self.gongFaList[gongFaID][skillIndex]
+        mySkillData = self.gongFaList[gongFaID]["skillList"][skillIndex]
         skillID = gongFaID * 10 + skillIndex
         skillData = skill_config_Table.datas[skillID]              # 技能信息
         skillMinSp = skillData["levelSpLimit"][mySkillData["skillLevel"] - 1]     # 使用这个技能最少需要的灵力值

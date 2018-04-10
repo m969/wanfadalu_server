@@ -45,6 +45,8 @@ class MagicWeaponSystem:
         # weaponProp["propData"] = jsonData
         self.magicWeaponList[weaponProp["propUUID"]] = weaponProp
         self.magicWeaponList = self.magicWeaponList
+        weaponInfo = prop_config_Table.datas[weaponProp["id"]]
+        self.learnGongFa(weaponInfo["gongFa"])
 
 
     def removeMagicWeapon(self, propUUID):
