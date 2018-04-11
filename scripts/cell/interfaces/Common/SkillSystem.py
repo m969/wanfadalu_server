@@ -69,14 +69,14 @@ class SkillSystem(GongFaSystem):
 
     def onTimer(self, timerHandle, userData):
         if userData == 98:      # 吟唱定时器
-            self.allClients.OnSkillStartCast(str(self.skill.gongFaID) + ":" + str(self.skill.skillIndex), self.skill.argsString, self.skill.startCast())
+            self.allClients.OnSkillStartCast(self.skill.gongFaID * 10 + self.skill.skillIndex, self.skill.argsString, self.skill.startCast())
             castTime = self.skill.startCast()
             self.addTimer(castTime, 0, 99)
             self.delTimer(timerHandle)
         if userData == 99:      # 施法定时器
             self.skill.cast()
             self.canMove = True
-            self.allClients.OnSkillEndCast(str(self.skill.gongFaID) + ":" + str(self.skill.skillIndex), self.skill.argsString)
+            self.allClients.OnSkillEndCast(self.skill.gongFaID * 10 + self.skill.skillIndex, self.skill.argsString)
             self.delTimer(timerHandle)
         # 持续状态效果、瞬时性效果
         if userData > 100:
