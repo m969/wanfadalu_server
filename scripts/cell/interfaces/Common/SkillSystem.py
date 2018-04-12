@@ -78,8 +78,7 @@ class SkillSystem(GongFaSystem):
             self.canMove = True
             self.allClients.OnSkillEndCast(self.skill.gongFaID * 10 + self.skill.skillIndex, self.skill.argsString)
             self.delTimer(timerHandle)
-        # 持续状态效果、瞬时性效果
-        if userData > 100:
+        if userData > 100:      # 持续状态效果、瞬时性效果
             timerType = self.timerIdToNameDict[timerHandle]
             exec(self.nameToTimerIdsDict[timerType]["scriptString"])
             timerIdList = self.nameToTimerIdsDict[timerType]["timerIdList"]

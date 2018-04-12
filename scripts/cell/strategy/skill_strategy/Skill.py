@@ -2,7 +2,7 @@
 import KBEngine
 from KBEDebug import *
 import PyDatas.skill_config_Table as skill_config_Table
-import script_map_Table
+import PyDatas.script_map_Table as script_map_Table
 from strategy.skill_strategy import *
 from strategy.trigger_strategy import *
 

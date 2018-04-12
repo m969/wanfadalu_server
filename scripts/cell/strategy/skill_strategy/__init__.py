@@ -4,6 +4,7 @@ from strategy.skill_strategy.Shoot import Shoot
 from strategy.skill_strategy.SkillW import SkillW
 from strategy.skill_strategy.SkillE import SkillE
 from strategy.skill_strategy.GongKan import GongKan
+from strategy.skill_strategy.ArrowExplode import ArrowExplode
 
 
 __all__ = \
@@ -12,5 +13,6 @@ __all__ = \
         "Shoot",
         "SkillW",
         "SkillE",
-        "GongKan"
+        "GongKan",
+        "ArrowExplode"
     ]

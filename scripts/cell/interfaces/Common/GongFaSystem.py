@@ -9,6 +9,10 @@ from GONGFA_LIST import TGongFa
 from GONGFA_LIST import TSkill
 from rx import Observable, Observer
 from rx.subjects import Subject
+import json
+
+
+
 
 local_gongFaMap = {}
 for skillID, skillInfo in skill_config_Table.datas.items():
@@ -28,6 +32,20 @@ class GongFaSystem:
             self.gongFaIndexList.insert(0, i)
         for gongFaID, gongFa in self.gongFaList.items():
             self.gongFaIndexList.remove(gongFa["index"])
+        self.keyPriority = ["113", "119", "101", "97", "115", "100", "122", "120", "99"]
+        if self.skillKeyOptions == "None":
+            temp_skillKeyOptions = {
+                "113": 0,
+                "119": 0,
+                "101": 0,
+                "97": 0,
+                "115": 0,
+                "100": 0,
+                "122": 0,
+                "120": 0,
+                "99": 0
+            }
+            self.skillKeyOptions = json.dumps(temp_skillKeyOptions)
         # if not self.haveLearnedGongFa(1001):
         #     self.learnGongFa(1001)
         # if not self.haveLearnedGongFa(1002):
@@ -46,12 +64,19 @@ class GongFaSystem:
         else:
             DEBUG_MSG("learn gongFa " + str(gongFaID))
             if gongFaID in gongFa_config_Table.datas.keys():
+                temp_skillKeyOptions = json.loads(self.skillKeyOptions)
+                DEBUG_MSG("temp_skillKeyOptions " + str(temp_skillKeyOptions))
                 temp_gangFa = {}
                 temp_gangFa["index"] = self.gongFaIndexList.pop()
                 temp_gangFa["skillList"] = {}
                 for skillID in local_gongFaMap[gongFaID]:
                     aSkill = { 'skillLevel': 1 }
                     temp_gangFa["skillList"][skillID % 10] = aSkill
+                    for key in self.keyPriority:
+                        if temp_skillKeyOptions[key] == 0:
+                            temp_skillKeyOptions[key] = skillID
+                            break
+                self.skillKeyOptions = json.dumps(temp_skillKeyOptions)
                 self.gongFaList[gongFaID] = temp_gangFa
                 self.gongFaList = self.gongFaList
 
