@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 from KBEDebug import *
-import level_data
+import PyDatas.level_data as level_data
 
 
 class SuperPowerSystem:

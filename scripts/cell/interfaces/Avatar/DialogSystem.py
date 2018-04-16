@@ -2,7 +2,7 @@
 import KBEngine
 from KBEDebug import *
 import GlobalConst
-import level_data
+import PyDatas.level_data as level_data
 import PyDatas.dialog_config_Table as dialog_config_Table
 from DIALOG_ITEM import TDialogItem
 from DIALOG_ITEM import TDialogItemList
