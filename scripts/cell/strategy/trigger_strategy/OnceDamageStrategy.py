@@ -31,4 +31,5 @@ class OnceDamageStrategy(TriggerStrategy):
             return
         if self.otherEntity.canDamage is True:
             self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
-            # self.trigger.destroy()
+            if not self.trigger.isDestroyed:
+                self.trigger.destroy()
