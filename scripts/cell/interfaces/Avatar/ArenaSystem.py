@@ -21,6 +21,7 @@ class ArenaSystem:
     def onEnterArena(self, arena):
         DEBUG_MSG("ArenaSystem:onEnterArena")
         self.arenaID = arena.arenaID
+        self.position = arena.position
         self.client.OnEnterArena(arena.position)
 
 
@@ -33,6 +34,7 @@ class ArenaSystem:
 
     def onExitArena(self, arena):
         DEBUG_MSG("ArenaSystem:onExitArena")
+        self.position = arena.arenaNpc.position
         self.client.OnExitArena(arena.arenaNpc.position)
 
 

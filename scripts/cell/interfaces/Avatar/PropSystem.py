@@ -31,13 +31,12 @@ class PropSystem:
     def newPropByID(self, propID):
         DEBUG_MSG("PropSystem:newPropByID")
         propData = prop_config_Table.datas[propID]
-        propData = json.dumps(propData)
         return self.newPropByData(propID, propData)
 
 
     def newPropByData(self, propID, propData):
         DEBUG_MSG("PropSystem:newPropByData")
-        # prop = TProp()
+        propData = json.dumps(propData)
         prop = {}
         prop["propUUID"] = KBEngine.genUUID64()
         prop["id"] = propID

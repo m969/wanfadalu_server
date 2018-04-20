@@ -5,7 +5,7 @@ datas={
 1002:{ "id":1002, "name":"冰霜大剑", "type":2, "gongFa":1002},
 1003:{ "id":1003, "name":"岩土盾", "type":2, "gongFa":1003},
 1004:{ "id":1004, "name":"秘术法杖", "type":2, "gongFa":1004},
-1005:{ "id":1005, "name":"宗门令牌", "type":1, "gongFa":0}
+1005:{ "id":1005, "name":"云灵宗宗门令牌", "type":1, "gongFa":0}
 }
 
 allDatas = {

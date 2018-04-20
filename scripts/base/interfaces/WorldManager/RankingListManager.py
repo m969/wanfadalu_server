@@ -63,6 +63,11 @@ class RankingListManager:
 
     def requestAvatarRanking(self, avatarCall, avatarDBID):
         DEBUG_MSG("RankingListManager:requestAvatarRanking")
-        avatarMatchInfo = self.rankingMapList.get(avatarDBID)
+        avatarRanking = self.rankingMapList.get(avatarDBID)
+        avatarMatchInfo = self.rankingList.get(avatarRanking)
         if avatarMatchInfo:
+            DEBUG_MSG(self.rankingMapList)
+            DEBUG_MSG(avatarMatchInfo)
             avatarCall.onRequestSelfRankingReturn(avatarMatchInfo)
+        else:
+            DEBUG_MSG(str(avatarDBID) + " matchInfo not found!")
