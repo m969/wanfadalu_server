@@ -43,17 +43,24 @@ class TDialogItemList(dict):
         dict.__init__(self)
 
     def asDict(self):
-        itemList = []
-        for key, item in self.items():
-            itemList.append(item)
+        # itemList = []
+        # for key, item in self.items():
+        #     itemList.append(item)
+        # fixedDict = {}
+        # fixedDict["values"] = itemList
         fixedDict = {}
-        fixedDict["values"] = itemList
+        fixedDict["values"] = self["values"]
+        fixedDict["npcName"] = self["npcName"]
+        fixedDict["npcDialog"] = self["npcDialog"]
         return fixedDict
 
     def createFromDict(self, dictData):
-        itemList = dictData["values"]
-        for item in itemList:
-            self[item["id"]] = item
+        # itemList = dictData["values"]
+        # for item in itemList:
+        #     self[item["id"]] = item
+        self["values"] = dictData["values"]
+        self["npcName"] = dictData["npcName"]
+        self["npcDialog"] = dictData["npcDialog"]
         return self
 
 class PICKLER2:

@@ -57,35 +57,50 @@ class DialogSystem:
             return
         self.dialogNpc = npc
         dialogItems = TDialogItemList()
+        dialogItems["values"] = []
+        dialogItems["npcName"] = ""
+        dialogItems["npcDialog"] = ""
         if npc.npcType == GlobalConst.NpcType_Arena:
+            dialogItems["npcName"] = "守擂人"
+            dialogItems["npcDialog"] = "你要上擂台吗？"
             item = TDialogItem()
             item["id"] = 1001
             item["content"] = "我要上擂台"
-            dialogItems[item["id"]] = item
+            dialogItems["values"].append(item)
+            # dialogItems[item["id"]] = item
             item = TDialogItem()
             item["id"] = 0
             item["content"] = "算了，怂"
-            dialogItems[item["id"]] = item
+            dialogItems["values"].append(item)
+            # dialogItems[item["id"]] = item
             self.client.OnDialogItemsReturn(dialogItems)
         elif npc.npcType == GlobalConst.NpcType_Store:
+            dialogItems["npcName"] = "商人"
+            dialogItems["npcDialog"] = "你要购买道具吗？"
             item = TDialogItem()
             item["id"] = 1002
             item["content"] = "我要购买道具"
-            dialogItems[item["id"]] = item
+            dialogItems["values"].append(item)
+            # dialogItems[item["id"]] = item
             item = TDialogItem()
             item["id"] = 0
             item["content"] = "算了，穷"
-            dialogItems[item["id"]] = item
+            dialogItems["values"].append(item)
+            # dialogItems[item["id"]] = item
             self.client.OnDialogItemsReturn(dialogItems)
         elif npc.npcType == GlobalConst.NpcType_Sect:
+            dialogItems["npcName"] = "守宗人"
+            dialogItems["npcDialog"] = "你要加入云灵宗吗？"
             item = TDialogItem()
             item["id"] = 1002
             item["content"] = "我要加入宗门"
-            dialogItems[item["id"]] = item
+            dialogItems["values"].append(item)
+            # dialogItems[item["id"]] = item
             item = TDialogItem()
             item["id"] = 0
             item["content"] = "算了，流浪挺好"
-            dialogItems[item["id"]] = item
+            dialogItems["values"].append(item)
+            # dialogItems[item["id"]] = item
             self.client.OnDialogItemsReturn(dialogItems)
 
 
