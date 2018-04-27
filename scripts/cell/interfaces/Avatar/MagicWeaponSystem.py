@@ -20,7 +20,7 @@ class MagicWeaponSystem:
             self.freeIndexSet.insert(0, i)
         for propUUID, prop in self.magicWeaponList.items():
             self.freeIndexSet.remove(prop["index"])
-        DEBUG_MSG(self.freeIndexSet)
+        # DEBUG_MSG(self.freeIndexSet)
 
 
     def onAddProp(self, prop):

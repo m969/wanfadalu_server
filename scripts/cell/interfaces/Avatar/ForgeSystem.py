@@ -8,6 +8,8 @@ import PyDatas.forge_config_Table as forge_config_Table
 local_materialTable = {}
 for itemID, itemForgeInfo in forge_config_Table.datas.items():
     materialList = itemForgeInfo["materialList"]
+    if len(materialList) == 0:
+        continue
     materialList.sort()
     materialList_json = json.dumps(materialList)
     if materialList_json not in local_materialTable:
@@ -27,17 +29,23 @@ class ForgeSystem:
         if exposed != self.id:
             return
         itemUUIDList = json.loads(itemUUIDList_json)
+        DEBUG_MSG("itemUUIDList " + str(itemUUIDList))
         itemIDList = []
-        for index, itemUUID in enumerate(itemUUIDList):
+        for index, itemUUID in itemUUIDList.items():
             if itemUUID not in self.propList:
                 return
             itemID = self.propList[itemUUID]["id"]
             itemIDList.append(itemID)
         itemIDList.sort()
+        DEBUG_MSG("itemIDList " + str(itemIDList))
         itemIDList_json = json.dumps(itemIDList)
         targetItemList = local_materialTable.get(itemIDList_json, [])
-        targetItemList_json = json.dumps(targetItemList)
-        self.client.OnTargetItemListReturn(targetItemList_json)
+        targetItemDict = {}
+        for index, itemID in enumerate(targetItemList):
+            targetItemDict[index] = itemID
+        DEBUG_MSG("targetItemDict " + str(targetItemDict))
+        targetItemDict_json = json.dumps(targetItemDict)
+        self.client.OnTargetItemListReturn(targetItemDict_json)
 
 
     def requestForge(self, exposed, itemUUIDList_json, targetItemID):
@@ -45,6 +53,7 @@ class ForgeSystem:
         if exposed != self.id:
             return
         itemUUIDList = json.loads(itemUUIDList_json)
+        DEBUG_MSG("itemUUIDList " + str(itemUUIDList))
         itemIDList = []
         for index, itemUUID in enumerate(itemUUIDList):
             if itemUUID not in self.propList:

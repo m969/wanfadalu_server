@@ -21,7 +21,7 @@ class PropSystem:
             self.freePropIndexSet.insert(0, i)
         for propUUID, prop in self.propList.items():
             self.freePropIndexSet.remove(prop["index"])
-        DEBUG_MSG(self.freePropIndexSet)
+        # DEBUG_MSG(self.freePropIndexSet)
         if len(self.propList) == 0:
             self.addPropByID(1001)
             self.addPropByID(1002)

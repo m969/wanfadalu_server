@@ -2,6 +2,7 @@
 import random
 import KBEngine
 from KBEDebug import *
+import PyDatas.space_config_Table as space_config_Table
 
 
 
@@ -21,7 +22,7 @@ class Account(KBEngine.Proxy):
             self.avatar = KBEngine.createBaseLocally("Avatar", {})
             if self.avatar:
                 self.avatar.accountEntity = self
-                self.avatar.cellData["position"] = (200.0, 0.44, 120.0)
+                self.avatar.cellData["position"] = tuple(space_config_Table.datas[1]["spawnPos"])
                 self.avatar.cellData["direction"] = (0.0, 0.0, 0.0)
                 self.avatar.cellData["entityName"] = self.__ACCOUNT_NAME__
                 self.avatar.writeToDB(self._onAvatarSaved)
