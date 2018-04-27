@@ -22,5 +22,9 @@
 			<Arg>INT32</Arg>
 			<Arg>INT32</Arg>
 		</requestBuyProp>
+		<requestSellProp>
+			<Exposed />
+			<Arg>UINT64</Arg>
+		</requestSellProp>
 	</CellMethods>
 </root>

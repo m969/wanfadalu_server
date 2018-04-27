@@ -107,3 +107,12 @@ class PropSystem:
             return
         self.lingshiAmount = self.lingshiAmount - lingshiNum
         self.addPropByID(propID)
+
+
+    def requestSellProp(self, exposed, propUUID):
+        DEBUG_MSG("PropSystem:requestSellProp")
+        if exposed != self.id:
+            return
+        prop = self.propList[propUUID]
+        self.lingshiAmount =  self.lingshiAmount + prop_config_Table.datas[prop["id"]]["sellPrice"]
+        del self.propList[propUUID]

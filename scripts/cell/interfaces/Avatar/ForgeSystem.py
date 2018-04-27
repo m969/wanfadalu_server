@@ -22,8 +22,10 @@ class ForgeSystem:
         DEBUG_MSG("ForgeSystem:__init__")
 
 
-    def requestTargetItemList(self, itemUUIDList_json):
+    def requestTargetItemList(self, exposed, itemUUIDList_json):
         DEBUG_MSG("ForgeSystem:requestTargetItemList")
+        if exposed != self.id:
+            return
         itemUUIDList = json.loads(itemUUIDList_json)
         itemIDList = []
         for index, itemUUID in enumerate(itemUUIDList):
@@ -33,12 +35,15 @@ class ForgeSystem:
             itemIDList.append(itemID)
         itemIDList.sort()
         itemIDList_json = json.dumps(itemIDList)
-        materialList = local_materialTable.get(itemIDList_json, [])
-        self.client.OnTargetItemListReturn(materialList)
+        targetItemList = local_materialTable.get(itemIDList_json, [])
+        targetItemList_json = json.dumps(targetItemList)
+        self.client.OnTargetItemListReturn(targetItemList_json)
 
 
-    def requestForge(self, itemUUIDList_json, targetItemID):
+    def requestForge(self, exposed, itemUUIDList_json, targetItemID):
         DEBUG_MSG("ForgeSystem:requestForge")
+        if exposed != self.id:
+            return
         itemUUIDList = json.loads(itemUUIDList_json)
         itemIDList = []
         for index, itemUUID in enumerate(itemUUIDList):
