@@ -65,6 +65,7 @@ class PropSystem:
     def removeProp(self, propUUID):
         DEBUG_MSG("PropSystem:removeProp")
         del self.propList[propUUID]
+        self.propList = self.propList
         self.onRemoveProp(propUUID)
 
 

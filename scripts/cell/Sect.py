@@ -20,7 +20,7 @@ class Sect(KBEngine.Entity, EntityObject):
 		params["npcType"] = GlobalConst.NpcType_Sect
 		params["sectID"] = self.cell_sectID
 		params["arenaID"] = 0
-		params["entityName"] = self.entityName
+		params["entityName"] = "守宗人"
 		z = sect_config_Table.datas[self.cell_sectID]["gateDir"][1]
 		KBEngine.createEntity("Npc", self.spaceID, sect_config_Table.datas[self.cell_sectID]["gatePos"], (0.0, 0.0, math.radians(z)), params)
 

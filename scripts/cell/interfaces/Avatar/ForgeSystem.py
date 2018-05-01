@@ -53,17 +53,23 @@ class ForgeSystem:
         if exposed != self.id:
             return
         itemUUIDList = json.loads(itemUUIDList_json)
-        DEBUG_MSG("itemUUIDList " + str(itemUUIDList))
+        # DEBUG_MSG("itemUUIDList " + str(itemUUIDList))
+        # DEBUG_MSG("targetItemID " + str(targetItemID))
         itemIDList = []
+        # DEBUG_MSG(self.propList)
         for index, itemUUID in enumerate(itemUUIDList):
+            # DEBUG_MSG(int(itemUUID))
             if itemUUID not in self.propList:
+                # DEBUG_MSG("not in " + itemUUID)
                 return
             itemID = self.propList[itemUUID]["id"]
             itemIDList.append(itemID)
         materialList = forge_config_Table.datas[targetItemID]
         setList = list(set(itemIDList)^set(materialList))      #   求差集
-        if setList != []:
+        if len(setList) == 0:
+            # DEBUG_MSG("len(setList) = 0")
             return
+        # DEBUG_MSG("addPropByID " + str(targetItemID))
         self.addPropByID(targetItemID)
         for itemUUID in itemUUIDList:
             self.removeProp(itemUUID)
