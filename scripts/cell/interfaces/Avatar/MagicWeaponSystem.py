@@ -37,12 +37,8 @@ class MagicWeaponSystem:
 
     def addMagicWeapon(self, prop):
         DEBUG_MSG("MagicWeaponSystem:addMagicWeapon")
-        # weaponProp = TProp()
         weaponProp = copy.deepcopy(prop)
         weaponProp["index"] = self.freeIndexSet.pop()
-        # weaponProp["id"] = self.freeIndexSet.pop()
-        # weaponProp["propUUID"] = propUUID
-        # weaponProp["propData"] = jsonData
         self.magicWeaponList[weaponProp["propUUID"]] = weaponProp
         self.magicWeaponList = self.magicWeaponList
         weaponInfo = prop_config_Table.datas[weaponProp["id"]]
