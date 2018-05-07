@@ -29,7 +29,6 @@ class ForgeSystem:
         if exposed != self.id:
             return
         itemUUIDList = json.loads(itemUUIDList_json)
-        DEBUG_MSG("itemUUIDList " + str(itemUUIDList))
         itemIDList = []
         for index, itemUUID in itemUUIDList.items():
             if itemUUID not in self.propList:
@@ -37,13 +36,11 @@ class ForgeSystem:
             itemID = self.propList[itemUUID]["id"]
             itemIDList.append(itemID)
         itemIDList.sort()
-        DEBUG_MSG("itemIDList " + str(itemIDList))
         itemIDList_json = json.dumps(itemIDList)
         targetItemList = local_materialTable.get(itemIDList_json, [])
         targetItemDict = {}
         for index, itemID in enumerate(targetItemList):
             targetItemDict[index] = itemID
-        DEBUG_MSG("targetItemDict " + str(targetItemDict))
         targetItemDict_json = json.dumps(targetItemDict)
         self.client.OnTargetItemListReturn(targetItemDict_json)
 
@@ -53,23 +50,16 @@ class ForgeSystem:
         if exposed != self.id:
             return
         itemUUIDList = json.loads(itemUUIDList_json)
-        # DEBUG_MSG("itemUUIDList " + str(itemUUIDList))
-        # DEBUG_MSG("targetItemID " + str(targetItemID))
         itemIDList = []
-        # DEBUG_MSG(self.propList)
         for index, itemUUID in enumerate(itemUUIDList):
-            # DEBUG_MSG(int(itemUUID))
             if itemUUID not in self.propList:
-                # DEBUG_MSG("not in " + itemUUID)
                 return
             itemID = self.propList[itemUUID]["id"]
             itemIDList.append(itemID)
         materialList = forge_config_Table.datas[targetItemID]
         setList = list(set(itemIDList)^set(materialList))      #   求差集
         if len(setList) == 0:
-            # DEBUG_MSG("len(setList) = 0")
             return
-        # DEBUG_MSG("addPropByID " + str(targetItemID))
         self.addPropByID(targetItemID)
         for itemUUID in itemUUIDList:
             self.removeProp(itemUUID)
