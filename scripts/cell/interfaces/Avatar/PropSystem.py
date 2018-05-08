@@ -116,4 +116,4 @@ class PropSystem:
             return
         prop = self.propList[propUUID]
         self.lingshiAmount =  self.lingshiAmount + prop_config_Table.datas[prop["id"]]["sellPrice"]
-        del self.propList[propUUID]
+        self.removeProp(propUUID)

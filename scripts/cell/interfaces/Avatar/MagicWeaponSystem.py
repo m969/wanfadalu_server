@@ -32,7 +32,8 @@ class MagicWeaponSystem:
 
     def onRemoveProp(self, propUUID):
         DEBUG_MSG("MagicWeaponSystem:onRemoveProp")
-        self.removeMagicWeapon(propUUID)
+        if propUUID in self.magicWeaponList:
+            self.removeMagicWeapon(propUUID)
 
 
     def addMagicWeapon(self, prop):
@@ -49,4 +50,8 @@ class MagicWeaponSystem:
         DEBUG_MSG("MagicWeaponSystem:addMagicWeapon")
         index = self.magicWeaponList[propUUID]["index"]
         self.freeIndexSet.insert(0, index)
+        weaponProp = self.magicWeaponList[propUUID]
+        weaponInfo = prop_config_Table.datas[weaponProp["id"]]
         del self.magicWeaponList[propUUID]
+        self.magicWeaponList = self.magicWeaponList
+        self.wasteGongFa(weaponInfo["gongFa"])

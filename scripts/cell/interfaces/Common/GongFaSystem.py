@@ -46,12 +46,6 @@ class GongFaSystem:
                 "99": 0
             }
             self.skillKeyOptions = json.dumps(temp_skillKeyOptions)
-        # if not self.haveLearnedGongFa(1001):
-        #     self.learnGongFa(1001)
-        # if not self.haveLearnedGongFa(1002):
-        #     self.learnGongFa(1002)
-        # if not self.haveLearnedGongFa(1003):
-        #     self.learnGongFa(1003)
 
 
     def learnGongFa(self, gongFaID):
@@ -79,6 +73,28 @@ class GongFaSystem:
                 self.skillKeyOptions = json.dumps(temp_skillKeyOptions)
                 self.gongFaList[gongFaID] = temp_gangFa
                 self.gongFaList = self.gongFaList
+
+
+    def wasteGongFa(self, gongFaID):
+        """
+        废弃功法
+        """
+        DEBUG_MSG("GaongFaSystem:wasteGongFa")
+        if not self.haveLearnedGongFa(gongFaID):
+            DEBUG_MSG("You have not learned gongFa " + str(gongFaID))
+        else:
+            DEBUG_MSG("waste gongFa " + str(gongFaID))
+            temp_skillKeyOptions = json.loads(self.skillKeyOptions)
+            temp_gangFa = self.gongFaList[gongFaID]
+            self.gongFaIndexList.insert(temp_gangFa["index"])
+            for skillID in local_gongFaMap[gongFaID]:
+                for keyCode, _skillID in temp_skillKeyOptions.items():
+                    if skillID == _skillID:
+                        temp_skillKeyOptions[keyCode] = 0
+                        break
+            self.skillKeyOptions = json.dumps(temp_skillKeyOptions)
+            del self.gongFaList[gongFaID]
+            self.gongFaList = self.gongFaList
 
 
     def haveLearnedGongFa(self, gongFaID):
