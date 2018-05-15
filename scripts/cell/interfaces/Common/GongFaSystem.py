@@ -86,7 +86,7 @@ class GongFaSystem:
             DEBUG_MSG("waste gongFa " + str(gongFaID))
             temp_skillKeyOptions = json.loads(self.skillKeyOptions)
             temp_gangFa = self.gongFaList[gongFaID]
-            self.gongFaIndexList.insert(temp_gangFa["index"])
+            self.gongFaIndexList.insert(0, temp_gangFa["index"])
             for skillID in local_gongFaMap[gongFaID]:
                 for keyCode, _skillID in temp_skillKeyOptions.items():
                     if skillID == _skillID:
