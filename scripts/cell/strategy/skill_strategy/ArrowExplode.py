@@ -15,7 +15,7 @@ class ArrowExplode(Skill):
 
 
     def startSing(self):
-        self.spellCaster.moveToPoint(self.skillPoint, 0.01, 0.1, {}, True, True)
+        # self.spellCaster.moveToPoint(self.skillPoint, 0.01, 0.1, {}, True, True)
         return super().startSing()
 
 

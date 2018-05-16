@@ -15,10 +15,12 @@ class SpaceGateWaySystem:
                 # exec("self.triggerStrategy = " + triggerData["type"] + "Strategy()")
                 # self.triggerStrategy.initializeStrategy(triggerData)
                 strategyName = triggerData["type"] + "Strategy"
+                strategy = eval(strategyName + "()")
+                strategy.initializeStrategy(triggerData)
                 params = {}
                 params['entityName'] = "GateWayTrigger"
                 params['owner'] = self
                 params['lifeSpans'] = 0.0
                 params['triggerSize'] = 4.0
-                params['triggerStrategy'] = {strategyName: eval(strategyName + "()")}
+                params['triggerStrategy'] = {strategyName: strategy}
                 trigger = KBEngine.createEntity("Trigger", self.spaceID, triggerData["pos"], (0.0, 0.0, 0.0), params)

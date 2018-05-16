@@ -41,7 +41,7 @@ class SkillSystem(GongFaSystem):
             return
         exec("self.skill = " + skillData["script"] + "(self, argsString, gongFaID, skillIndex)")
         self.canMove = False
-        self.moveToPointSample(self.position, 20)
+        # self.moveToPointSample(self.position, 20)
         singTime = self.skill.startSing()
         self.allClients.OnSkillStartSing(singTime)
         self.addTimer(singTime, 0, 98)
