@@ -21,10 +21,9 @@ class GateWayStrategy(TriggerStrategy):
         self.gateWayEntrancePosition = triggerConfig[1]
 
 
-    def execute(self):
-        super().execute()
-        if self.otherEntity.getScriptName() is "Avatar":
-            if self.otherEntity.teleporting == True:
+    def execute(self, trigger=None, otherEntity=None):
+        if otherEntity.getScriptName() is "Avatar":
+            if otherEntity.teleporting == True:
                 return
-            self.otherEntity.teleporting = True
-            KBEngine.globalData["SpacesManager"].teleportToSpace(self.targetSpaceUID, self.gateWayEntrancePosition, self.otherEntity.base)
+            otherEntity.teleporting = True
+            KBEngine.globalData["SpacesManager"].teleportToSpace(self.targetSpaceUID, self.gateWayEntrancePosition, otherEntity.base)

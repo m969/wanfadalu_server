@@ -15,13 +15,12 @@ class DecelerateStrategy(TriggerStrategy):
         super().initializeStrategy(strategyData)
         self.damage = strategyData["伤害"]
 
-    def execute(self):
-        super().execute()
-        DEBUG_MSG("topSpeed " + str(self.otherEntity.topSpeed))
-        if self.otherEntity.canReceiveSkill is True:
-            if self.otherEntity.canMove is not None:
-                self.otherEntity.setAttr("topSpeed", self.otherEntity.topSpeed - 4)
-            self.otherEntity.addSkillControlTimer(
+    def execute(self, trigger=None, otherEntity=None):
+        # DEBUG_MSG("topSpeed " + str(otherEntity.topSpeed))
+        if otherEntity.canReceiveSkill is True:
+            if otherEntity.canMove is not None:
+                otherEntity.setAttr("topSpeed", otherEntity.topSpeed - 4)
+            otherEntity.addSkillControlTimer(
                 "DecelerateCancelTimer",
                 3,
                 0,

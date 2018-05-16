@@ -15,19 +15,18 @@ class ImprisonStrategy(TriggerStrategy):
         super().initializeStrategy(strategyData)
         self.damage = strategyData["伤害"]
 
-    def execute(self):
-        super().execute()
-        if self.otherEntity.id == self.trigger.owner.id:
+    def execute(self, trigger=None, otherEntity=None):
+        if otherEntity.id == trigger.owner.id:
             return
-        if not hasattr(self.otherEntity, "canDamage"):
+        if not hasattr(otherEntity, "canDamage"):
             return
-        if self.otherEntity.canReceiveSkill is True:
-            if self.otherEntity.canMove is not None:
-                self.otherEntity.moveToPointSample(self.otherEntity.position, 20)
-                self.otherEntity.canMove = False
-            if self.otherEntity.canCastSkill is not None:
-                self.otherEntity.canCastSkill = False
-            self.otherEntity.addSkillControlTimer(
+        if otherEntity.canReceiveSkill is True:
+            if otherEntity.canMove is not None:
+                otherEntity.moveToPointSample(otherEntity.position, 20)
+                otherEntity.canMove = False
+            if otherEntity.canCastSkill is not None:
+                otherEntity.canCastSkill = False
+            otherEntity.addSkillControlTimer(
                 "ImprisonCancelTimer",
                 3,
                 0,

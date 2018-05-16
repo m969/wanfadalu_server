@@ -18,8 +18,8 @@ class TriggerStrategy(Strategy):
         """
         设置触发器的信息
         """
-        self.trigger = trigger
-        self.otherEntity = otherEntity
+        # self.trigger = trigger
+        # self.otherEntity = otherEntity
         self.triggerRangeXZ = rangeXZ
         self.triggerRangeY = rangeY
         self.triggerControllerID = controllerID
@@ -30,8 +30,8 @@ class TriggerStrategy(Strategy):
         pass
 
 
-    def execute(self):
+    def execute(self, trigger=None, otherEntity=None):
         """
         触发器策略的执行方法
         """
-        Strategy.execute(self)
+        pass

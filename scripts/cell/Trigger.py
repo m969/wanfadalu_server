@@ -13,25 +13,33 @@ class Trigger(KBEngine.Entity, EntityObject):
         KBEngine.Entity.__init__(self)
         EntityObject.__init__(self)
         self.isTrigger = True
+        self.entityList = []
+        self.inEntityList = []
         self.delEntityList = []
         if self.lifeSpans > 0.0:
             self.addTimer(self.lifeSpans, 0, 0)
         if self.circleTrigger:
-            self.entityList = []
-            self.inEntityList = []
             self.addTimer(0, 0.01, 1)
         if self.rectangleTrigger:
-            z = self.triggerDirection.x / (0 - self.triggerDirection.z)
-            self.triggerDirection2 = Math.Vector3(1, 0, z)
+            if abs(self.triggerDirection.z) < 0.001:
+                self.triggerDirection2 = Math.Vector3(0, 0, 1)
+            if abs(self.triggerDirection.x) < 0.001:
+                self.triggerDirection2 = Math.Vector3(1, 0, 0)
+            if (abs(self.triggerDirection.x) > 0.001) and (abs(self.triggerDirection.z) > 0.001):
+                z = self.triggerDirection.x / (0 - self.triggerDirection.z)
+                self.triggerDirection2 = Math.Vector3(1, 0, z)
             self.triggerDirection2.normalise()
-            self.entityList = []
-            self.inEntityList = []
             self.addTimer(0, 0.01, 2)
+
+
+    def destroySelf(self):
+        if not self.isDestroyed:
+            self.destroy()
 
 
     def onTimer(self, tid, userArg):
         if userArg == 0:
-            self.destroy()
+            self.destroySelf()
         elif userArg == 1:
             for entityId in self.entityList:
                 entity = KBEngine.entities.get(entityId, None)
@@ -69,13 +77,16 @@ class Trigger(KBEngine.Entity, EntityObject):
     def executeStrategy(self, entity):
         if self.triggerStrategy is None:
             return
-        if isinstance(self.triggerStrategy, dict):
-            for strategy in self.triggerStrategy.values():
-                strategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
-                strategy.execute()
-        else:
-            self.triggerStrategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
-            self.triggerStrategy.execute()
+        for strategy in self.triggerStrategy.values():
+            strategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
+            strategy.execute(self, entity)
+        # if isinstance(self.triggerStrategy, dict):
+        #     for strategy in self.triggerStrategy.values():
+        #         strategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
+        #         strategy.execute()
+        # else:
+        #     self.triggerStrategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
+        #     self.triggerStrategy.execute()
 
 
     def onEnterTrap(self, other, rangeXZ, rangeY, controllerID, userArg):
@@ -83,22 +94,23 @@ class Trigger(KBEngine.Entity, EntityObject):
         当进入触发器时
         """
         #DEBUG_MSG("Trigger:onEnterTrap")
+        self.triggerControllerID = controllerID
         if self.circleTrigger or self.rectangleTrigger:
             if other.id == self.owner.id:
                 return
             if other.id in self.entityList:
                 return
             self.entityList.append(other.id)
-            self.triggerControllerID = controllerID
         else:
-            DEBUG_MSG("not circleTrigger and rectangleTrigger")
-            if isinstance(self.triggerStrategy, dict):
-                for strategy in self.triggerStrategy.values():
-                    strategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
-                    strategy.execute()
-            else:
-                self.triggerStrategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
-                self.triggerStrategy.execute()
+            self.executeStrategy(other)
+            # DEBUG_MSG("not circleTrigger and rectangleTrigger")
+            # if isinstance(self.triggerStrategy, dict):
+            #     for strategy in self.triggerStrategy.values():
+            #         strategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
+            #         strategy.execute()
+            # else:
+            #     self.triggerStrategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
+            #     self.triggerStrategy.execute()
 
 
     def onLeaveTrap(self, other, rangeXZ, rangeY, controllerID, userArg):

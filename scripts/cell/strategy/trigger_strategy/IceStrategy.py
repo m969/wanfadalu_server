@@ -15,15 +15,14 @@ class IceStrategy(TriggerStrategy):
         super().initializeStrategy(strategyData)
         self.damage = strategyData["伤害"]
 
-    def execute(self):
-        super().execute()
-        if self.otherEntity.id == self.trigger.owner.id:
+    def execute(self, trigger=None, otherEntity=None):
+        if otherEntity.id == trigger.owner.id:
             return
-        if not hasattr(self.otherEntity, "canDamage"):
+        if not hasattr(otherEntity, "canDamage"):
             return
-        if self.otherEntity.canReceiveSkill is True:
-            self.otherEntity.isIceFreezing = True
-            self.otherEntity.addSkillControlTimer(
+        if otherEntity.canReceiveSkill is True:
+            otherEntity.isIceFreezing = True
+            otherEntity.addSkillControlTimer(
                 "IceCancelTimer",
                 3,
                 0,

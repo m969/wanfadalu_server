@@ -20,16 +20,12 @@ class OnceDamageStrategy(TriggerStrategy):
         self.damage = strategyData["伤害"]
 
 
-    def execute(self):
-        super().execute()
-        # DEBUG_MSG("self.otherEntity " + str(self.otherEntity))
-        # DEBUG_MSG("self.trigger " + str(self.trigger))
-        # DEBUG_MSG("self.trigger.owner " + str(self.trigger.owner))
-        if self.otherEntity.id == self.trigger.owner.id:
+    def execute(self, trigger=None, otherEntity=None):
+        if otherEntity.id == trigger.owner.id:
             return
-        if not hasattr(self.otherEntity, "canDamage"):
+        if not hasattr(otherEntity, "canDamage"):
             return
-        if self.otherEntity.canDamage is True:
-            self.otherEntity.receiveDamage(self.trigger.owner, self.damage)
-            if not self.trigger.isDestroyed:
-                self.trigger.destroy()
+        if otherEntity.canDamage is True:
+            otherEntity.receiveDamage(trigger.owner, self.damage)
+            if not trigger.isDestroyed:
+                trigger.destroySelf()

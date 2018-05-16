@@ -14,8 +14,7 @@ class ArenaStrategy(TriggerStrategy):
     def initializeStrategy(self, strategyData):
         super().initializeStrategy(strategyData)
 
-    def execute(self):
-        super().execute()
-        if self.otherEntity.arenaID != self.trigger.owner.id:
-            if self.otherEntity.id != self.trigger.owner.id:
-                self.otherEntity.position = self.trigger.owner.arenaNpc.position
+    def execute(self, trigger=None, otherEntity=None):
+        if otherEntity.arenaID != trigger.owner.id:
+            if otherEntity.id != trigger.owner.id:
+                otherEntity.position = trigger.owner.arenaNpc.position
