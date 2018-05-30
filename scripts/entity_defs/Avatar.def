@@ -28,12 +28,12 @@
 			<Flags>CELL_PRIVATE</Flags>
 			<Persistent>true</Persistent>
 		</lastOnlineTime>
-		<skillKeyOptions>
+		<gongFaKeyOptions>
 			<Type>UNICODE</Type>
 			<Default>None</Default>
 			<Flags>OWN_CLIENT</Flags>
 			<Persistent>true</Persistent>
-		</skillKeyOptions>
+		</gongFaKeyOptions>
 	</Properties>
 	<ClientMethods>
 		<OnPublishBulletin>

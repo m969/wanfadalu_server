@@ -32,20 +32,20 @@ class GongFaSystem:
             self.gongFaIndexList.insert(0, i)
         for gongFaID, gongFa in self.gongFaList.items():
             self.gongFaIndexList.remove(gongFa["index"])
-        self.keyPriority = ["113", "119", "101", "97", "115", "100", "122", "120", "99"]
-        if self.skillKeyOptions == "None":
-            temp_skillKeyOptions = {
-                "113": 0,
-                "119": 0,
-                "101": 0,
+        self.keyPriority = ["97", "115", "100", "102", "103", "104", "106", "107", "108"]
+        if self.gongFaKeyOptions == "None":
+            temp_gongFaKeyOptions = {
                 "97": 0,
                 "115": 0,
                 "100": 0,
-                "122": 0,
-                "120": 0,
-                "99": 0
+                "102": 0,
+                "103": 0,
+                "104": 0,
+                "106": 0,
+                "107": 0,
+                "108": 0
             }
-            self.skillKeyOptions = json.dumps(temp_skillKeyOptions)
+            self.gongFaKeyOptions = json.dumps(temp_gongFaKeyOptions)
 
 
     def learnGongFa(self, gongFaID):
@@ -58,19 +58,19 @@ class GongFaSystem:
         else:
             DEBUG_MSG("learn gongFa " + str(gongFaID))
             if gongFaID in gongFa_config_Table.datas.keys():
-                temp_skillKeyOptions = json.loads(self.skillKeyOptions)
-                DEBUG_MSG("temp_skillKeyOptions " + str(temp_skillKeyOptions))
+                temp_gongFaKeyOptions = json.loads(self.gongFaKeyOptions)
+                DEBUG_MSG("temp_gongFaKeyOptions " + str(temp_gongFaKeyOptions))
+                for key in self.keyPriority:
+                    if temp_gongFaKeyOptions[key] == 0:
+                        temp_gongFaKeyOptions[key] = gongFaID
+                        break
+                self.gongFaKeyOptions = json.dumps(temp_gongFaKeyOptions)
                 temp_gangFa = {}
                 temp_gangFa["index"] = self.gongFaIndexList.pop()
                 temp_gangFa["skillList"] = {}
                 for skillID in local_gongFaMap[gongFaID]:
                     aSkill = { 'skillLevel': 1 }
                     temp_gangFa["skillList"][skillID % 10] = aSkill
-                    for key in self.keyPriority:
-                        if temp_skillKeyOptions[key] == 0:
-                            temp_skillKeyOptions[key] = skillID
-                            break
-                self.skillKeyOptions = json.dumps(temp_skillKeyOptions)
                 self.gongFaList[gongFaID] = temp_gangFa
                 self.gongFaList = self.gongFaList
 
@@ -84,15 +84,14 @@ class GongFaSystem:
             DEBUG_MSG("You have not learned gongFa " + str(gongFaID))
         else:
             DEBUG_MSG("waste gongFa " + str(gongFaID))
-            temp_skillKeyOptions = json.loads(self.skillKeyOptions)
+            temp_gongFaKeyOptions = json.loads(self.gongFaKeyOptions)
             temp_gangFa = self.gongFaList[gongFaID]
             self.gongFaIndexList.insert(0, temp_gangFa["index"])
-            for skillID in local_gongFaMap[gongFaID]:
-                for keyCode, _skillID in temp_skillKeyOptions.items():
-                    if skillID == _skillID:
-                        temp_skillKeyOptions[keyCode] = 0
-                        break
-            self.skillKeyOptions = json.dumps(temp_skillKeyOptions)
+            for keyCode, _gongFaID in temp_gongFaKeyOptions.items():
+                if gongFaID == _gongFaID:
+                    temp_gongFaKeyOptions[keyCode] = 0
+                    break
+            self.gongFaKeyOptions = json.dumps(temp_gongFaKeyOptions)
             del self.gongFaList[gongFaID]
             self.gongFaList = self.gongFaList
 
