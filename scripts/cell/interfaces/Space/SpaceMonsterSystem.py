@@ -2,6 +2,7 @@
 import KBEngine
 from KBEDebug import *
 from strategy.trigger_strategy import *
+import PyDatas.monster_config_Table as monster_config_Table
 
 
 
@@ -9,7 +10,14 @@ from strategy.trigger_strategy import *
 class SpaceMonsterSystem:
     def __init__(self):
         DEBUG_MSG("SpaceMonsterSystem:__init__")
-        # self.addTimer(0, 2, 0)    # 怪物生成定时器 每2秒生成5个
+        self.tmpCreateEntityDatas = []
+        try:
+            exec("import PyDatas.space_%i_spawn_Table" % self.spaceUID)
+        except ImportError:
+            pass
+        else:
+            self.tmpCreateEntityDatas = eval("copy.deepcopy(list(PyDatas.space_%i_spawn_Table.datas.values()))" % self.spaceUID)
+        self.addTimer(0, 1, 0)    # 怪物生成定时器 每2秒生成5个
         # self.monsterSpawnCounter = {}
         # self.monsterSpawnPositionList = self.spaceData["怪物数据"]       # 怪物出生点列表
         # for monsterName, monsterSpawnPositionList in self.monsterSpawnPositionList.items():
@@ -18,45 +26,50 @@ class SpaceMonsterSystem:
 
     def onTimer(self, timerHandle, userData):
         if userData is 0:
-            finishCounter = 0
-            for (monsterName, spawnPositionList) in self.monsterSpawnPositionList.items():
-                tempCounter = 0
-                counter = self.monsterSpawnCounter[monsterName]
-                for position in spawnPositionList:
-                    if counter >= len(spawnPositionList):
-                        finishCounter += 1
-                        break
-                    else:
-                        monster = KBEngine.createEntity(
-                                                        "Monster",
-                                                        self.spaceID,
-                                                        spawnPositionList[counter],
-                                                        (0.0, 0.0, 0.0),
-                                                        {
-                                                            'entityName': monsterName,
-                                                            'modelName': monster_data.data[monsterName]["模型名称"]
-                                                        })      # 创建Monster
-                        monster.receiveSpawnPos(spawnPositionList[counter])
-                        if tempCounter >= 5:
-                            break
-                        counter += 1
-                        tempCounter += 1
-                        self.monsterSpawnCounter[monsterName] = counter
-            if finishCounter >= len(self.monsterSpawnPositionList):
+            if len(self.tmpCreateEntityDatas) <= 0:
                 self.delTimer(timerHandle)
+                return
+            datas = self.tmpCreateEntityDatas.pop(0)
+            if datas is None:
+                ERROR_MSG("Space::onTimer: spawn %i is error!" % datas[0])
+            params = {
+                "typeID": datas["typeID"],
+                "position": datas["spawnPos"],
+                "direction": (0, 0, 0),
+            }
+            KBEngine.createBaseAnywhere(datas["entity_type"], params)
+            # finishCounter = 0
+            # for (monsterName, spawnPositionList) in self.monsterSpawnPositionList.items():
+            #     tempCounter = 0
+            #     counter = self.monsterSpawnCounter[monsterName]
+            #     for position in spawnPositionList:
+            #         if counter >= len(spawnPositionList):
+            #             finishCounter += 1
+            #             break
+            #         else:
+            #             params = {
+            #                 'entityName': monsterName,
+            #                 'modelName': monster_config_Table.datas[monsterName]["模型名称"]
+            #             }
+            #             monster = KBEngine.createEntity("Monster", self.spaceID, spawnPositionList[counter], (0.0, 0.0, 0.0), params)# 创建Monster
+            #             monster.receiveSpawnPos(spawnPositionList[counter])
+            #             if tempCounter >= 5:
+            #                 break
+            #             counter += 1
+            #             tempCounter += 1
+            #             self.monsterSpawnCounter[monsterName] = counter
+            # if finishCounter >= len(self.monsterSpawnPositionList):
+            #     self.delTimer(timerHandle)
 
 
     def monsterReborn(self, spawnPos, name):
         """
         重生怪物
-        :param monsterMailbox:
-        :return:
         """
         DEBUG_MSG("SpaceMonsterSystem:monsterReborn")
-        #重生怪物
-        monster = KBEngine.createEntity("Monster", self.spaceID, spawnPos, (0.0, 0.0, 0.0),
-                                            {
-                                                'entityName': name,
-                                                'modelName': monster_data.data[name]["模型名称"]
-                                            })
+        params = {
+            'entityName': name,
+            'modelName': monster_config_Table.datas[name]["模型名称"]
+        }
+        monster = KBEngine.createEntity("Monster", self.spaceID, spawnPos, (0.0, 0.0, 0.0), params)
         monster.receiveSpawnPos(spawnPos)

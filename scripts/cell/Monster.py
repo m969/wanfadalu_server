@@ -19,20 +19,9 @@ class Monster(KBEngine.Entity, EntityObject, AI, HealthSystem, SuperPowerSystem,
         HealthSystem.__init__(self)
         SuperPowerSystem.__init__(self)
         SkillSystem.__init__(self)
-        # self.spawnPos = (0, 0, 0)
-        # self.timerMoveID = self.addTimer(0, 4, 1)
-        # self.monsterData = monster_data.data[self.name]
-        # self.modelName = self.monsterData["模型名称"]
-        # DEBUG_MSG("modelName is " + str(self.modelName))
-        # self.HP = self.monsterData["生命值"]
-        # self.HP_Max = self.monsterData["生命值"]
-        # self.killerTaskCounterVariableName = self.modelName + "_TaskCounter"
 
 
     def receiveSpawnPos(self, spawnPos):
-        """
-        接收BigWorld中的怪物出生点
-        """
         #DEBUG_MSG("Monster:receiveSpawnPos")
         self.spawnPos = spawnPos
 
@@ -44,19 +33,9 @@ class Monster(KBEngine.Entity, EntityObject, AI, HealthSystem, SuperPowerSystem,
         SkillSystem.onTimer(self, tid, userArg)
 
 
-    def onDie(self, murderer):
-        #DEBUG_MSG("Monster:onDie")
-        HealthSystem.onDie(self, murderer)
-        if murderer.hasAttr(self.killerTaskCounterVariableName) is True:
-            murderer.setAttr(self.killerTaskCounterVariableName,
-                             getattr(murderer, self.killerTaskCounterVariableName) + 1)
-        else:
-            murderer.setAttr(self.killerTaskCounterVariableName, 1)
-        if murderer.hasAttr("Pobudeyi_TaskCounter") is True:
-            murderer.setAttr("Pobudeyi_TaskCounter",
-                             murderer.Pobudeyi_TaskCounter + 1)
-        else:
-            murderer.setAttr("Pobudeyi_TaskCounter", 1)
+    def onDead(self, murderer):
+        #DEBUG_MSG("Monster:onDead")
+        HealthSystem.onDead(self, murderer)
         self.delTimer(self.timerMoveID)
         self.destroy()
 

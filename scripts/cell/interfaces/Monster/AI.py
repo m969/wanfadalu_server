@@ -4,6 +4,7 @@ import random
 import KBEngine
 from KBEDebug import *
 from strategy.trigger_strategy import *
+import PyDatas.monster_config_Table as monster_config_Table
 
 
 
@@ -11,13 +12,13 @@ from strategy.trigger_strategy import *
 class AI:
     def __init__(self):
         # 移动速度
-        self.speed = monster_data.data[self.name]["移动速度"]
+        self.speed = monster_config_Table.datas[self.typeID]["speed"]
         # 怪物的攻击距离
-        self.monsterAttackDistance = monster_data.data[self.name]["攻击距离"]
+        self.monsterAttackDistance = monster_config_Table.datas[self.typeID]["attack_distance"]
         # 怪物的活动范围
-        self.territoryArea = monster_data.data[self.name]["活动范围"]
+        self.territoryArea = monster_config_Table.datas[self.typeID]["patrol_radius"]
         #技能移动速度
-        self.skillSpeed = monster_data.data[self.name]["技能移动速度"]
+        self.skillSpeed = monster_config_Table.datas[self.typeID]["skill_speed"]
         # 移动目标位置
         self.movePos = (100, 0, 200)
         # 怪物攻击的敌人ID
@@ -31,15 +32,11 @@ class AI:
 
 
     def initEntity(self):
-        """
-        virtual method.
-        """
         pass
 
 
     def checkInTerritory(self):
         """
-        virtual method.
         检查自己是否在可活动领地中
         """
         ret = False
@@ -54,7 +51,6 @@ class AI:
     def randomMovePos(self):
         """
         怪物的随机运动的坐标
-        :return:True
         """
         while True:
             rnd = random.random()
@@ -71,12 +67,11 @@ class AI:
     def woodMonsterSkill(self, point, yaw):
         """
         木精怪的技能:发射一个火球
-        :return:
         """
         # 如果目标位置不为空
         if point is not None:
             # 创建一个火球技能实体
-            triggerStrategy = OnceDamageTriggerStrategy()
+            triggerStrategy = OnceDamageStrategy()
             triggerStrategy.initializeStrategy({"伤害": 10})
             bullet = KBEngine.createEntity("Trigger",
                                            self.spaceID,
@@ -99,12 +94,11 @@ class AI:
     def yanshilingMonsterSkill(self, point, yaw):
         """
         岩石灵怪的技能:发射一个火球
-        :return:
         """
         # 如果目标位置不为空
         if point is not None:
             # 创建一个火球技能实体
-            triggerStrategy = OnceDamageTriggerStrategy()
+            triggerStrategy = OnceDamageStrategy()
             triggerStrategy.initializeStrategy({"伤害": 10})
             bullet = KBEngine.createEntity("Trigger",
                                            self.spaceID,
@@ -127,12 +121,11 @@ class AI:
     def langshourenguaiMonsterSkill(self, point, yaw):
         """
         狼兽人怪的技能:发射一个火球或水球
-        :return:
         """
         # 如果目标位置不为空
         if point is not None:
             # 创建一个火球技能实体
-            triggerStrategy = OnceDamageTriggerStrategy()
+            triggerStrategy = OnceDamageStrategy()
             triggerStrategy.initializeStrategy({"伤害": 10})
             rnd = int(random.random() * 10)
             if rnd % 2 == 0:
@@ -214,7 +207,6 @@ class AI:
 
     def onLeaveTrap(self, entityLeaving, range_xz, range_y, controllerID, userarg):
         """
-        KBEngine method.
         有entity离开trap
         """
         # 如果此领域不是以前定义的领域，则返回假
@@ -230,7 +222,6 @@ class AI:
 
     def onAddEnemy(self, entityID):
         """
-        virtual method.
         有敌人进入列表并将设置为敌人
         """
         if self.targetID == 0:
@@ -239,7 +230,6 @@ class AI:
 
     def onRemoveEnemy(self, entityID):
         """
-        virtual method.
         删除敌人
         """
         if self.targetID == entityID:
@@ -276,7 +266,6 @@ class AI:
 
     def onTimer(self, tid, userArg):
         """
-        KBEngine method.
         引擎回调timer触发
         """
         # 建立检测区域
