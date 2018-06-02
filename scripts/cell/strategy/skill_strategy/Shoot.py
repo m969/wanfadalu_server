@@ -27,7 +27,7 @@ class Shoot(Skill):
         params["entityName"] = "Shoot_Trigger"
         params["owner"] = self.spellCaster
         params["lifeSpans"] = 4.0
-        params["triggerSize"] = 4.0
+        params["triggerSize"] = 2.0
         params["triggerStrategy"] = self.triggerStrategy
         trigger = KBEngine.createEntity("Trigger", self.spellCaster.spaceID, self.spellCaster.position, (0.0, 0.0, 0.0), params)
         trigger.moveToPointSample(self.skillPoint, 80)
