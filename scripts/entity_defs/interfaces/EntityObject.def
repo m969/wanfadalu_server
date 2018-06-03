@@ -11,6 +11,12 @@
 			<Flags>CELL_PRIVATE</Flags>
 			<Persistent>true</Persistent>
 		</dbid>
+		<typeID>
+			<Type>INT32</Type>
+			<Default>0</Default>
+			<Flags>ALL_CLIENTS</Flags>
+			<Persistent>true</Persistent>
+		</typeID>
 	</Properties>
 	<ClientMethods>
 		<OnEntityDestroy />

@@ -3,6 +3,7 @@ import KBEngine
 from KBEDebug import *
 from strategy.trigger_strategy import *
 import PyDatas.monster_config_Table as monster_config_Table
+import copy
 
 
 
@@ -33,11 +34,9 @@ class SpaceMonsterSystem:
             if datas is None:
                 ERROR_MSG("Space::onTimer: spawn %i is error!" % datas[0])
             params = {
-                "typeID": datas["typeID"],
-                "position": datas["spawnPos"],
-                "direction": (0, 0, 0),
+                "typeID": datas["typeID"]
             }
-            KBEngine.createBaseAnywhere(datas["entity_type"], params)
+            KBEngine.createEntity(datas["entity_type"], self.spaceID, tuple(datas["spawnPos"]), (0.0, 0.0, 0.0), params)
             # finishCounter = 0
             # for (monsterName, spawnPositionList) in self.monsterSpawnPositionList.items():
             #     tempCounter = 0

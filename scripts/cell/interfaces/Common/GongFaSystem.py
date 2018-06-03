@@ -33,19 +33,20 @@ class GongFaSystem:
         for gongFaID, gongFa in self.gongFaList.items():
             self.gongFaIndexList.remove(gongFa["index"])
         self.keyPriority = ["97", "115", "100", "102", "103", "104", "106", "107", "108"]
-        if self.gongFaKeyOptions == "None":
-            temp_gongFaKeyOptions = {
-                "97": 0,
-                "115": 0,
-                "100": 0,
-                "102": 0,
-                "103": 0,
-                "104": 0,
-                "106": 0,
-                "107": 0,
-                "108": 0
-            }
-            self.gongFaKeyOptions = json.dumps(temp_gongFaKeyOptions)
+        if hasattr(self, "gongFaKeyOptions"):
+            if self.gongFaKeyOptions == "None":
+                temp_gongFaKeyOptions = {
+                    "97": 0,
+                    "115": 0,
+                    "100": 0,
+                    "102": 0,
+                    "103": 0,
+                    "104": 0,
+                    "106": 0,
+                    "107": 0,
+                    "108": 0
+                }
+                self.gongFaKeyOptions = json.dumps(temp_gongFaKeyOptions)
 
 
     def learnGongFa(self, gongFaID):
