@@ -17,9 +17,9 @@ class Arena(KBEngine.Entity, EntityObject):
         self.contestEnd = True
         self.arenaTrigger = None
         self.contestantList = {}
-        self.subscribtionList = []
-        self.onEvent("requestEnterArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestEnterArena)
-        self.onEvent("requestExitArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestExitArena)
+        # self.subscribtionList = []
+        # self.onEvent("requestEnterArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestEnterArena)
+        # self.onEvent("requestExitArena").filter(lambda evt: evt['arenaID'] == self.arenaID).subscribe(on_next=self.requestExitArena)
 
 
     def createArenaTrigger(self):
