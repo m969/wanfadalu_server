@@ -7,7 +7,7 @@ import PyDatas.gongFa_config_Table as gongFa_config_Table
 from GONGFA_LIST import TGongFaList
 from GONGFA_LIST import TSkill
 from interfaces.Common.GongFaSystem import GongFaSystem
-from rx import Observable, Observer
+# from rx import Observable, Observer
 
 
 

@@ -15,7 +15,12 @@ class ArenaSystem:
         DEBUG_MSG("ArenaSystem:requestEnterArena")
         if exposed != self.id:
             return
-        self.publish({"eventName": "requestEnterArena", "arenaID": arenaID, "avatar": self})
+        for entity in KBEngine.entities.values():
+            if entity.getScriptName() == "Arena":
+                if entity.arenaID == arenaID:
+                    entity.requestEnterArena(self)
+                    break
+        # self.publish({"eventName": "requestEnterArena", "arenaID": arenaID, "avatar": self})
 
 
     def onEnterArena(self, arena):
@@ -29,11 +34,27 @@ class ArenaSystem:
         DEBUG_MSG("ArenaSystem:requestExitArena")
         if exposed != self.id:
             return
-        self.publish({"eventName": "requestExitArena", "arenaID": self.arenaID, "avatar": self})
+        for entity in KBEngine.entities.values():
+            if entity.getScriptName() == "Arena":
+                if entity.arenaID == self.arenaID:
+                    entity.requestExitArena(self)
+                    break
+        # self.publish({"eventName": "requestExitArena", "arenaID": self.arenaID, "avatar": self})
+
+
+    def onDead(self, murderer):
+        DEBUG_MSG("ArenaSystem:onDead")
+        if self.arenaID > 0:
+            for entity in KBEngine.entities.values():
+                if entity.getScriptName() == "Arena":
+                    if entity.arenaID == self.arenaID:
+                        entity.onAvatarDead(self)
+                        break
 
 
     def onExitArena(self, arena):
         DEBUG_MSG("ArenaSystem:onExitArena")
+        self.arenaID = 0
         self.position = arena.arenaNpc.position
         self.client.OnExitArena(arena.arenaNpc.position)
 

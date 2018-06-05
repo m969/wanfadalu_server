@@ -48,6 +48,6 @@ class HealthSystem:
 
     def onDead(self, murderer):
         DEBUG_MSG("HealthSystem:onDead")
-        self.publish({"eventName": "avatarDeadEvent", "avatarID": self.id, "avatar": self})
+        # self.publish({"eventName": "avatarDeadEvent", "avatarID": self.id, "avatar": self})
         self.addTimer(4, 0, 21)  # 添加重生时间器
         self.allClients.OnDead()

@@ -7,8 +7,8 @@ import PyDatas.skill_config_Table as skill_config_Table
 from GONGFA_LIST import TGongFaList
 from GONGFA_LIST import TGongFa
 from GONGFA_LIST import TSkill
-from rx import Observable, Observer
-from rx.subjects import Subject
+# from rx import Observable, Observer
+# from rx.subjects import Subject
 import json
 
 

@@ -102,16 +102,9 @@ class Avatar(KBEngine.Entity,
         TeleportSystem.onTeleportSuccess(self, nearbyEntity)
 
 
-    def onEnteredCell(self, parameter_list):
-        DEBUG_MSG("Avatar:onEnteredCell 1")
-
-
-    def onEnteredCell(self, a1, a2):
-        DEBUG_MSG("Avatar:onEnteredCell 2")
-
-
-    def onEnteredCell(self, a1, a2, a3):
-        DEBUG_MSG("Avatar:onEnteredCell 3")
+    def onDead(self, murderer):
+        HealthSystem.onDead(self, murderer)
+        ArenaSystem.onDead(self, murderer)
 
 
     def onDestroy(self):

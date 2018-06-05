@@ -18,4 +18,3 @@ class Functor:
 
 	def __call__(self, *args):
 		self.func(*(self.args + args))
-		
