@@ -34,7 +34,10 @@ class SpaceMonsterSystem:
             if datas is None:
                 ERROR_MSG("Space::onTimer: spawn %i is error!" % datas[0])
             params = {
-                "typeID": datas["typeID"]
+                "typeID": datas["typeID"],
+                "entityName": monster_config_Table.datas[datas["typeID"]]["name"],
+                "HP_Max": monster_config_Table.datas[datas["typeID"]]["hp"],
+                "HP": monster_config_Table.datas[datas["typeID"]]["hp"]
             }
             KBEngine.createEntity(datas["entity_type"], self.spaceID, tuple(datas["spawnPos"]), (0.0, 0.0, 0.0), params)
             # finishCounter = 0
@@ -61,14 +64,22 @@ class SpaceMonsterSystem:
             #     self.delTimer(timerHandle)
 
 
-    def monsterReborn(self, spawnPos, name):
+    def monsterReborn(self, spawnPos, typeID):
         """
         重生怪物
         """
         DEBUG_MSG("SpaceMonsterSystem:monsterReborn")
-        params = {
-            'entityName': name,
-            'modelName': monster_config_Table.datas[name]["模型名称"]
-        }
-        monster = KBEngine.createEntity("Monster", self.spaceID, spawnPos, (0.0, 0.0, 0.0), params)
-        monster.receiveSpawnPos(spawnPos)
+        datas = {}
+        datas["entity_type"] = "Monster"
+        datas["typeID"] = typeID
+        datas["spawnPos"] = spawnPos
+        self.tmpCreateEntityDatas.append(datas)
+        self.addTimer(2, 1, 0)
+        # params = {
+        #     "typeID": typeID,
+        #     "entityName": monster_config_Table.datas[typeID]["name"],
+        #     "HP_Max": monster_config_Table.datas[typeID]["hp"],
+        #     "HP": monster_config_Table.datas[typeID]["hp"]
+        # }
+        # monster = KBEngine.createEntity("Monster", self.spaceID, spawnPos, (0.0, 0.0, 0.0), params)
+        # monster.receiveSpawnPos(spawnPos)

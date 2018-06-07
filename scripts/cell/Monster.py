@@ -36,9 +36,8 @@ class Monster(KBEngine.Entity, EntityObject, AI, HealthSystem, SuperPowerSystem,
     def onDead(self, murderer):
         #DEBUG_MSG("Monster:onDead")
         HealthSystem.onDead(self, murderer)
-        self.delTimer(self.timerMoveID)
         self.destroy()
 
 
     def onDestroy(self):
-        KBEngine.globalData["space_%i" % self.spaceID].cell.monsterReborn(self.spawnPos, self.name)
+        KBEngine.globalData["space_base_spaceID_%i" % self.spaceID].cell.monsterReborn(self.spawnPos, self.typeID)

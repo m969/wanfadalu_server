@@ -67,7 +67,7 @@
 		</requestNpc>
 		<monsterReborn>
 			<Arg>VECTOR3</Arg>
-			<Arg>UNICODE</Arg>
+			<Arg>INT32</Arg>
 		</monsterReborn>
 	</CellMethods>
 </root>

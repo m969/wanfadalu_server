@@ -19,12 +19,14 @@ class AI:
         self.monsterAttackDistance = monster_config_Table.datas[self.typeID]["attack_distance"]
         # 怪物的活动范围
         self.territoryArea = monster_config_Table.datas[self.typeID]["patrol_radius"]
-        #技能移动速度
+        # 技能移动速度
         self.skillSpeed = monster_config_Table.datas[self.typeID]["skill_speed"]
+        self.HP_Max = monster_config_Table.datas[self.typeID]["hp"]
+        self.HP = self.HP_Max
         # 怪物攻击的敌人ID
         self.targetID = 0
         # 怪物移向敌人的移动id
-        self.addTimer(1, 1, 0)
+        self.addTimer(1, 2, 0)
 
 
     def initEntity(self):
