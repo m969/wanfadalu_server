@@ -12,7 +12,7 @@ from ID_DBID_MAP_LIST import TIdDbidMapList
 
 class SpacesManager:
     def __init__(self):
-        DEBUG_MSG("SpacesManager:__init__")
+        # DEBUG_MSG("SpacesManager:__init__")
         KBEngine.globalData["SpacesManager"] = self
         KBEngine.globalData["allAvatarBases"] = {}
         # if not hasattr(self, "spaceDBIDList"):

@@ -8,7 +8,8 @@ from KTween.KTweenEnum import KTweenEnum
 
 class ArenaSystem:
     def __init__(self):
-        DEBUG_MSG("ArenaSystem:__init__")
+        # DEBUG_MSG("ArenaSystem:__init__")
+        pass
 
 
     def requestEnterArena(self, exposed, arenaID):

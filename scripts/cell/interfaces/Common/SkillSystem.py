@@ -14,7 +14,7 @@ from interfaces.Common.GongFaSystem import GongFaSystem
 
 class SkillSystem(GongFaSystem):
     def __init__(self):
-        DEBUG_MSG("SkillSystem:__init__")
+        # DEBUG_MSG("SkillSystem:__init__")
         GongFaSystem.__init__(self)
         self.canCastSkill = True
         self.canReceiveSkill = True

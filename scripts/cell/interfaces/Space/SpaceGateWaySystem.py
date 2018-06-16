@@ -9,7 +9,7 @@ from strategy.trigger_strategy import *
 
 class SpaceGateWaySystem:
     def __init__(self):
-        DEBUG_MSG("SpaceGateWaySystem:__init__")
+        # DEBUG_MSG("SpaceGateWaySystem:__init__")
         for triggerID, triggerData in trigger_config_Table.datas.items():
             if triggerData["spaceUID"] == self.spaceUID:
                 # exec("self.triggerStrategy = " + triggerData["type"] + "Strategy()")

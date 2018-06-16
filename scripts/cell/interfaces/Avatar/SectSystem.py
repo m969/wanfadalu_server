@@ -8,7 +8,8 @@ import PyDatas.prop_config_Table as prop_config_Table
 
 class SectSystem:
     def __init__(self):
-        DEBUG_MSG("SectSystem:__init__")
+        # DEBUG_MSG("SectSystem:__init__")
+        pass
 
 
     def onJoinSectResult(self, sectID, result):

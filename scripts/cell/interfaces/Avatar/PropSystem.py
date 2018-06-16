@@ -15,7 +15,7 @@ import PyDatas.store_config_Table as store_config_Table
 
 class PropSystem:
     def __init__(self):
-        DEBUG_MSG("PropSystem:__init__")
+        # DEBUG_MSG("PropSystem:__init__")
         self.freePropIndexSet = []
         for i in range(0, 16):
             self.freePropIndexSet.insert(0, i)

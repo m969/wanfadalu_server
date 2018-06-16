@@ -5,4 +5,5 @@ from KBEDebug import *
 
 class MotionSystem:
     def __init__(self):
-        DEBUG_MSG("MotionSystem:__init__")
+        # DEBUG_MSG("MotionSystem:__init__")
+        pass

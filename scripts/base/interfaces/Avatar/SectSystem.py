@@ -7,7 +7,7 @@ from KBEDebug import *
 
 class SectSystem:
     def __init__(self):
-        DEBUG_MSG("SectSystem:__init__")
+        # DEBUG_MSG("SectSystem:__init__")
         if self.sectID_b != 0:
             if not hasattr(self, "sectData"):
                 self.sectData = { "sectID": self.sectID_b }

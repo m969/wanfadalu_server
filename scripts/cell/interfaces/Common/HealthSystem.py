@@ -7,7 +7,7 @@ from KBEDebug import *
 
 class HealthSystem:
     def __init__(self):
-        DEBUG_MSG("HealthSystem:__init__")
+        # DEBUG_MSG("HealthSystem:__init__")
         self.canAttack = True
         self.canDamage = True
         self.canHealth = True
@@ -22,6 +22,7 @@ class HealthSystem:
             self.HP = self.HP_Max
             self.MSP = self.MSP_Max
             self.SP = self.SP_Max
+            self.canMove = True
             self.allClients.OnRespawn(respawnPosition)
             self.delTimer(timerHandle)
 
@@ -49,5 +50,6 @@ class HealthSystem:
     def onDead(self, murderer):
         DEBUG_MSG("HealthSystem:onDead")
         # self.publish({"eventName": "avatarDeadEvent", "avatarID": self.id, "avatar": self})
+        self.canMove = False
         self.addTimer(4, 0, 21)  # 添加重生时间器
         self.allClients.OnDead()

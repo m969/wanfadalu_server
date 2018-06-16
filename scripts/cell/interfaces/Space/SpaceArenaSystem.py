@@ -10,7 +10,7 @@ import PyDatas.arena_config_Table as arena_config_Table
 
 class SpaceArenaSystem:
 	def __init__(self):
-		DEBUG_MSG("SpaceArenaSystem:__init__")
+		# DEBUG_MSG("SpaceArenaSystem:__init__")
 		for arenaID, arenaData in arena_config_Table.datas.items():
 			if arenaData["spaceUID"] == self.spaceUID:
 				arenaPosition = arenaData["pos"]

@@ -5,7 +5,8 @@ from KBEDebug import *
 
 class ChatChannelSystem:
     def __init__(self):
-        DEBUG_MSG("ChatChannelSystem:__init__")
+        # DEBUG_MSG("ChatChannelSystem:__init__")
+        pass
 
     def sendChatMessage(self, exposed, selfName, chatContent):
         """

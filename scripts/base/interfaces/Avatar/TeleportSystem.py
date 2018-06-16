@@ -7,7 +7,8 @@ from KBEDebug import *
 
 class TeleportSystem:
     def __init__(self):
-        DEBUG_MSG("TeleportSystem:__init__")
+        # DEBUG_MSG("TeleportSystem:__init__")
+        pass
 
 
     def onTeleportSuccess(self, spaceUID):

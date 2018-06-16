@@ -7,7 +7,8 @@ from KBEDebug import *
 
 class NpcTaskSystem:
     def __init__(self):
-        DEBUG_MSG("NpcTaskSystem:__init__")
+        # DEBUG_MSG("NpcTaskSystem:__init__")
+        pass
 
     def publishTask(self, taskName, taskInfo, taskRequirement):
         DEBUG_MSG("NpcTaskSystem:publishTask")

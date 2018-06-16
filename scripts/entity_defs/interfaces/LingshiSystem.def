@@ -2,7 +2,7 @@
 	<Properties>
 		<lingshiAmount>
 			<Type>INT32</Type>
-			<Default>100</Default>
+			<Default>1000</Default>
 			<Flags>ALL_CLIENTS</Flags>
 			<Persistent>true</Persistent>
 		</lingshiAmount>

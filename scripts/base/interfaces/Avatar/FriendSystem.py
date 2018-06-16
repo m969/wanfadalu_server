@@ -8,7 +8,8 @@ from FRIENDS_INFO import TFriendsInfo
 
 class FriendSystem:
     def __init__(self):
-        DEBUG_MSG("FriendSystem:__init__")
+        # DEBUG_MSG("FriendSystem:__init__")
+        pass
 
 
     def findFriends(self, exposed):

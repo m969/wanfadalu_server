@@ -5,4 +5,5 @@ from KBEDebug import *
 
 class HealthSystem:
     def __init__(self):
-        DEBUG_MSG("HealthSystem:__init__")
+        # DEBUG_MSG("HealthSystem:__init__")
+        pass

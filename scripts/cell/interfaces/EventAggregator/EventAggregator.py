@@ -8,7 +8,8 @@ from KBEDebug import *
 class EventAggregator:
     # eventAggregator = Subject()
     def __init__(self):
-        DEBUG_MSG("EventAggregator:__init__")
+        # DEBUG_MSG("EventAggregator:__init__")
+        pass
 
     # def publish(self, event):
     #     DEBUG_MSG("EventAggregator:publish " + str(event))

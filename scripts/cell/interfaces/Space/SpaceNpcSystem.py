@@ -10,7 +10,7 @@ import math
 
 class SpaceNpcSystem:
     def __init__(self):
-        DEBUG_MSG("SpaceNpcSystem:__init__")
+        # DEBUG_MSG("SpaceNpcSystem:__init__")
         self.npcDatas = {}
         for npcID, npcData in npc_config_Table.datas.items():
             if npcData["spaceUID"] == self.spaceUID:

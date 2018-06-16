@@ -7,4 +7,5 @@ from KBEDebug import *
 
 class LingshiSystem:
     def __init__(self):
-        DEBUG_MSG("LingshiSystem:__init__")
+        # DEBUG_MSG("LingshiSystem:__init__")
+        pass

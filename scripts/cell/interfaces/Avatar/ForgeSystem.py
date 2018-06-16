@@ -21,7 +21,8 @@ for itemID, itemForgeInfo in forge_config_Table.datas.items():
 
 class ForgeSystem:
     def __init__(self):
-        DEBUG_MSG("ForgeSystem:__init__")
+        # DEBUG_MSG("ForgeSystem:__init__")
+        pass
 
 
     def requestTargetItemList(self, exposed, itemUUIDList_json):

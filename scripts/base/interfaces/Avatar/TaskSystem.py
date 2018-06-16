@@ -5,7 +5,8 @@ from KBEDebug import *
 
 class TaskSystem:
     def __init__(self):
-        DEBUG_MSG("TaskSystem:__init__")
+        # DEBUG_MSG("TaskSystem:__init__")
+        pass
 
     def publishTask(self, taskName, taskInfo, taskRequirement):
         DEBUG_MSG("TaskSystem:publishTask")

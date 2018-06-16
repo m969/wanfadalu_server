@@ -8,4 +8,5 @@ from KTween.KTweenEnum import KTweenEnum
 
 class GongFaSystem:
     def __init__(self):
-        DEBUG_MSG("GongFaSystem:__init__")
+        # DEBUG_MSG("GongFaSystem:__init__")
+        pass

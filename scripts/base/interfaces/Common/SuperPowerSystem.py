@@ -6,4 +6,5 @@ import PyDatas.level_data as level_data
 
 class SuperPowerSystem:
     def __init__(self):
-        DEBUG_MSG("SuperPowerSystem:__init__")
+        # DEBUG_MSG("SuperPowerSystem:__init__")
+        pass

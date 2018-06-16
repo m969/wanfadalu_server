@@ -12,7 +12,7 @@ from ID_DBID_MAP_LIST import TIdDbidMapList
 
 class SectsManager:
     def __init__(self):
-        DEBUG_MSG("SectsManager:__init__")
+        # DEBUG_MSG("SectsManager:__init__")
         KBEngine.globalData["SectsManager"] = self
         self.sectList = {}
 

@@ -14,7 +14,8 @@ import copy
 
 class MagicWeaponSystem:
     def __init__(self):
-        DEBUG_MSG("MagicWeaponSystem:__init__")
+        # DEBUG_MSG("MagicWeaponSystem:__init__")
+        pass
         self.freeIndexSet = []
         for i in range(0, 9):
             self.freeIndexSet.insert(0, i)

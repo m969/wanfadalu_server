@@ -8,7 +8,7 @@ import PyDatas.level_data as level_data
 
 class SuperPowerSystem:
     def __init__(self):
-        DEBUG_MSG("SuperPowerSystem:__init__")
+        # DEBUG_MSG("SuperPowerSystem:__init__")
         # self.MSP_Max = 200
         self.MSP = self.MSP_Max
         # self.SP_Max = 10000

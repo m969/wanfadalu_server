@@ -11,7 +11,7 @@ from RANKING_LIST import TRankingList
 
 class RankingListManager:
     def __init__(self):
-        DEBUG_MSG("RankingListManager:__init__")
+        # DEBUG_MSG("RankingListManager:__init__")
         KBEngine.globalData["RankingListManager"] = self
         self.rankingMapList = {}
         for key, value in self.rankingList.items():

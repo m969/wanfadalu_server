@@ -33,7 +33,7 @@ class SkillE(Skill):
                 'campName': self.spellCaster.campName,
                 'lifeSpans': 2.0,
                 'triggerID': 2,
-                'triggerSize': 2.0,
+                'triggerSize': 4.0,
                 'triggerStrategy': self.triggerStrategy
             }
             trigger = KBEngine.createEntity("Trigger", self.spellCaster.spaceID, point, (0.0, 0.0, 0.0), params)

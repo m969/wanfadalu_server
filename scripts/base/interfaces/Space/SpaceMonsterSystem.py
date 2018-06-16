@@ -7,4 +7,5 @@ from KBEDebug import *
 
 class SpaceMonsterSystem:
     def __init__(self):
-        DEBUG_MSG("SpaceMonsterSystem:__init__")
+        # DEBUG_MSG("SpaceMonsterSystem:__init__")
+        pass

@@ -7,4 +7,5 @@ from KBEDebug import *
 
 class DialogSystem:
     def __init__(self):
-        DEBUG_MSG("DialogSystem:__init__")
+        # DEBUG_MSG("DialogSystem:__init__")
+        pass

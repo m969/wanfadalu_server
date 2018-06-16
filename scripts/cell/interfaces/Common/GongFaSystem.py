@@ -26,7 +26,7 @@ for skillID, skillInfo in skill_config_Table.datas.items():
 
 class GongFaSystem:
     def __init__(self):
-        DEBUG_MSG("GongFaSystem:__init__")
+        # DEBUG_MSG("GongFaSystem:__init__")
         self.gongFaIndexList = []
         for i in range(0, 9):
             self.gongFaIndexList.insert(0, i)

@@ -10,7 +10,7 @@ import copy
 
 class SpaceMonsterSystem:
     def __init__(self):
-        DEBUG_MSG("SpaceMonsterSystem:__init__")
+        # DEBUG_MSG("SpaceMonsterSystem:__init__")
         self.tmpCreateEntityDatas = []
         try:
             exec("import PyDatas.space_%i_spawn_Table" % self.spaceUID)

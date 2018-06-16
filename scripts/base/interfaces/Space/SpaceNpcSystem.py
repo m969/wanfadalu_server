@@ -7,4 +7,5 @@ from KBEDebug import *
 
 class SpaceNpcSystem:
     def __init__(self):
-        DEBUG_MSG("SpaceNpcSystem:__init__")
+        # DEBUG_MSG("SpaceNpcSystem:__init__")
+        pass
