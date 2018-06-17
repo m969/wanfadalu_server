@@ -21,16 +21,21 @@ class Monster(KBEngine.Entity, EntityObject, AI, HealthSystem, SuperPowerSystem,
         SkillSystem.__init__(self)
 
 
-    def receiveSpawnPos(self, spawnPos):
-        #DEBUG_MSG("Monster:receiveSpawnPos")
-        self.spawnPos = spawnPos
-
-
     def onTimer(self, tid, userArg):
         AI.onTimer(self, tid, userArg)
         HealthSystem.onTimer(self, tid, userArg)
         SuperPowerSystem.onTimer(self, tid, userArg)
         SkillSystem.onTimer(self, tid, userArg)
+
+
+    def receiveDamage(self, attackerMailbox, damage):
+        HealthSystem.receiveDamage(self, attackerMailbox, damage)
+        AI.receiveDamage(self, attackerMailbox, damage)
+
+
+    def receiveSpawnPos(self, spawnPos):
+        #DEBUG_MSG("Monster:receiveSpawnPos")
+        self.spawnPos = spawnPos
 
 
     def onDead(self, murderer):

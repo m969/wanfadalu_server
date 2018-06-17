@@ -30,6 +30,7 @@ class Trigger(KBEngine.Entity, EntityObject):
                 self.triggerDirection2 = Math.Vector3(1, 0, z)
             self.triggerDirection2.normalise()
             self.addTimer(0, 0.01, 2)
+        self.proximityID = 0
 
 
     def destroySelf(self):
@@ -66,6 +67,8 @@ class Trigger(KBEngine.Entity, EntityObject):
                     self.executeStrategy(otherEntity)
                 elif (S > self.triggerWidth or S2 > self.triggerLength) and (entityId in self.inEntityList):
                     del self.inEntityList[entityId]
+        elif userArg == 3:
+            self.proximityID = self.addProximity(self.triggerSize, self.triggerSize, 0)
         for entityId in self.delEntityList:
             if entityId in self.entityList:
                 self.entityList.remove(entityId)
@@ -94,6 +97,8 @@ class Trigger(KBEngine.Entity, EntityObject):
         当进入触发器时
         """
         #DEBUG_MSG("Trigger:onEnterTrap")
+        if self.proximityID == 0:
+            return
         self.triggerControllerID = controllerID
         if self.circleTrigger or self.rectangleTrigger:
             if other.id == self.owner.id:
@@ -127,7 +132,9 @@ class Trigger(KBEngine.Entity, EntityObject):
         当被看到时
         """
         #DEBUG_MSG("Trigger:onWitnessed")
+        # self.addTimer(0.1, 0, 3)
         self.proximityID = self.addProximity(self.triggerSize, self.triggerSize, 0)
+        pass
 
 
     def moveToPointSample(self, destination, velocity, distance=0.2):
