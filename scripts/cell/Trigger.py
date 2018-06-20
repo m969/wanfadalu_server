@@ -83,13 +83,6 @@ class Trigger(KBEngine.Entity, EntityObject):
         for strategy in self.triggerStrategy.values():
             strategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
             strategy.execute(self, entity)
-        # if isinstance(self.triggerStrategy, dict):
-        #     for strategy in self.triggerStrategy.values():
-        #         strategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
-        #         strategy.execute()
-        # else:
-        #     self.triggerStrategy.setInfo(self, entity, self.triggerSize, self.triggerSize, self.triggerControllerID, None)
-        #     self.triggerStrategy.execute()
 
 
     def onEnterTrap(self, other, rangeXZ, rangeY, controllerID, userArg):
@@ -108,14 +101,6 @@ class Trigger(KBEngine.Entity, EntityObject):
             self.entityList.append(other.id)
         else:
             self.executeStrategy(other)
-            # DEBUG_MSG("not circleTrigger and rectangleTrigger")
-            # if isinstance(self.triggerStrategy, dict):
-            #     for strategy in self.triggerStrategy.values():
-            #         strategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
-            #         strategy.execute()
-            # else:
-            #     self.triggerStrategy.setInfo(self, other, rangeXZ, rangeY, controllerID, userArg)
-            #     self.triggerStrategy.execute()
 
 
     def onLeaveTrap(self, other, rangeXZ, rangeY, controllerID, userArg):
