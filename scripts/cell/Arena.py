@@ -71,12 +71,13 @@ class Arena(KBEngine.Entity, EntityObject):
     def requestExitArena(self, avatar):
         DEBUG_MSG("Arena:requestExitArena")
         requestAvatar = avatar
-        if not requestAvatar.dbid in self.contestantList.keys():
+        if not requestAvatar.dbid in self.contestantList:
             DEBUG_MSG("avatar has not in arena")
             return
         if len(self.contestantList) is 2:
             self.setMatchResult(requestAvatar.dbid)
-        del self.contestantList[requestAvatar.dbid]
+        if requestAvatar.dbid in self.contestantList:
+            del self.contestantList[requestAvatar.dbid]
         requestAvatar.onExitArena(self)
 
 
